@@ -131,10 +131,9 @@ class JapaView extends GetView<JapaController> {
   }
 
   void _confirmReset() => showConfirm(
-        title: 'japa_reset'.tr,
-        message: 'japa_reset_q'.tr,
-        confirmLabel: 'yes'.tr,
-        icon: Icons.restart_alt_rounded,
+        title: 'reset_t'.tr,
+        message: 'reset_m'.tr,
+        confirmLabel: 'restart'.tr,
         destructive: false,
         onConfirm: controller.resetCurrent,
       );

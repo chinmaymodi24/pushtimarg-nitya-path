@@ -33,7 +33,7 @@ class HistoryView extends GetView<HistoryController> {
                       tooltip: 'clear_all'.tr,
                       icon: Icon(Icons.delete_sweep_outlined, color: p.heading),
                       onPressed: () => confirm(
-                          'clear_history_q'.tr, controller.reading.clear),
+                          'clear_history', controller.reading.clear),
                     ),
                 ],
               )),
@@ -168,7 +168,7 @@ class _Row extends StatelessWidget {
         IconButton(
           tooltip: 'delete'.tr,
           icon: Icon(Icons.delete_outline_rounded, color: p.subtext),
-          onPressed: () => confirm('delete_read_q'.tr,
+          onPressed: () => confirm('delete_read',
               () => Get.find<HistoryController>().reading.remove(r.pathId)),
         ),
       ]),

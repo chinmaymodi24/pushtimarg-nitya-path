@@ -28,7 +28,7 @@ class JapaHistoryView extends GetView<JapaController> {
                     IconButton(
                       tooltip: 'clear_all'.tr,
                       icon: Icon(Icons.delete_sweep_outlined, color: p.heading),
-                      onPressed: () => confirm('clear_mala_q'.tr,
+                      onPressed: () => confirm('clear_mala',
                           controller.clearHistory),
                     ),
                 ],
@@ -132,18 +132,17 @@ class MalaTile extends StatelessWidget {
           tooltip: 'delete'.tr,
           icon: Icon(Icons.delete_outline_rounded, color: p.subtext),
           onPressed: () =>
-              confirm('delete_mala_q'.tr, () => c.deleteEntry(entry)),
+              confirm('delete_mala', () => c.deleteEntry(entry)),
         ),
       ]),
     );
   }
 }
 
-/// Asks before deleting anything.
-void confirm(String question, VoidCallback onYes) => showConfirm(
-      title: 'delete'.tr,
-      message: question,
+/// Asks before deleting anything. [key] picks the `key_t` / `key_m` texts.
+void confirm(String key, VoidCallback onYes) => showConfirm(
+      title: '${key}_t'.tr,
+      message: '${key}_m'.tr,
       confirmLabel: 'delete'.tr,
-      icon: Icons.delete_outline_rounded,
       onConfirm: onYes,
     );

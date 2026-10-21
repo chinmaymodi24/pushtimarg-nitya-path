@@ -56,8 +56,8 @@ class AppTheme {
         titleTextStyle: TextStyle(
             fontFamily: uiFont(ui),
             fontFamilyFallback: fallback,
-            fontSize: 22,
-            fontWeight: FontWeight.w700,
+            fontSize: 20,
+            fontWeight: FontWeight.w600,
             color: p.text),
         contentTextStyle: TextStyle(
             fontFamily: uiFont(ui),
