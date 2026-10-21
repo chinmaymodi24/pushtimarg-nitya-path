@@ -16,13 +16,10 @@ class AboutView extends StatelessWidget {
   Widget build(BuildContext context) {
     final p = context.pal;
     return PageScaffold(
-      body: Column(
-        children: [
-          PageHeader(title: 'about'.tr, onBack: Get.back),
-          Expanded(
-            child: ListView(
+      body: ListView(
               padding: const EdgeInsets.fromLTRB(16, 0, 16, 32),
               children: [
+                PageHeader(title: 'about'.tr, onBack: Get.back),
                 const Center(child: AppLogo(width: 220)),
                 const SizedBox(height: 16),
                 AppCard(
@@ -43,9 +40,6 @@ class AboutView extends StatelessWidget {
                       style: TextStyle(fontSize: 13.5, color: p.subtext)),
                 ),
               ],
-            ),
-          ),
-        ],
       ),
     );
   }

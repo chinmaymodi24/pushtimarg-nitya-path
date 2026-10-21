@@ -23,6 +23,11 @@ class PathsView extends GetView<PathsController> {
           onBack: onBack,
           actions: [
             IconButton(
+              tooltip: 'history'.tr,
+              icon: Icon(Icons.history_rounded, color: p.heading),
+              onPressed: () => Get.toNamed(Routes.history),
+            ),
+            IconButton(
               tooltip: 'wishlist'.tr,
               icon: Icon(Icons.favorite_border_rounded, color: p.heading),
               onPressed: () => Get.toNamed(Routes.wishlist),

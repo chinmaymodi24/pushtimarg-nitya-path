@@ -17,6 +17,7 @@ class MoreView extends StatelessWidget {
     [
       (Icons.radio_button_checked_rounded, 'japa_title', Routes.japa, null),
       (Icons.favorite_border_rounded, 'wishlist', Routes.wishlist, null),
+      (Icons.history_rounded, 'history', Routes.history, null),
     ],
     [
       (Icons.rate_review_outlined, 'feedback', Routes.feedback, null),
@@ -32,13 +33,10 @@ class MoreView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final p = context.pal;
-    return Column(
-      children: [
-        PageHeader(title: 'more'.tr, onBack: onBack),
-        Expanded(
-          child: ListView(
+    return ListView(
             padding: const EdgeInsets.fromLTRB(16, 0, 16, 24),
             children: [
+              PageHeader(title: 'more'.tr, onBack: onBack),
               const LogoHeader(height: 190, logoWidth: 220),
               const SizedBox(height: 14),
               Text('more_blurb'.tr,
@@ -80,9 +78,6 @@ class MoreView extends StatelessWidget {
                     style: TextStyle(fontSize: 14, color: p.subtext)),
               ),
             ],
-          ),
-        ),
-      ],
     );
   }
 }

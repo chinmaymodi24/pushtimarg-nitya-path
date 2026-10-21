@@ -4,6 +4,7 @@ import 'package:get_storage/get_storage.dart';
 
 import 'core/services/favorites_service.dart';
 import 'core/services/japa_service.dart';
+import 'core/services/reading_service.dart';
 import 'core/services/settings_service.dart';
 import 'core/theme/app_theme.dart';
 import 'core/translations/app_translations.dart';
@@ -19,6 +20,7 @@ Future<void> main() async {
   Get.put(await PathRepository().load(), permanent: true);
   Get.put(FavoritesController(), permanent: true);
   Get.put(JapaController(), permanent: true);
+  Get.put(ReadingController(), permanent: true);
   runApp(App(settings));
 }
 

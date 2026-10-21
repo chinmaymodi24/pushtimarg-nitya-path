@@ -50,6 +50,32 @@ class AppTheme {
         thumbShape: const RoundSliderThumbShape(enabledThumbRadius: 9),
       ),
       bottomSheetTheme: BottomSheetThemeData(backgroundColor: p.card),
+      dialogTheme: DialogThemeData(
+        backgroundColor: p.card,
+        surfaceTintColor: Colors.transparent,
+        titleTextStyle: TextStyle(
+            fontFamily: uiFont(ui),
+            fontFamilyFallback: fallback,
+            fontSize: 22,
+            fontWeight: FontWeight.w700,
+            color: p.text),
+        contentTextStyle: TextStyle(
+            fontFamily: uiFont(ui),
+            fontFamilyFallback: fallback,
+            fontSize: 15.5,
+            height: 1.5,
+            color: p.subtext),
+      ),
+      textButtonTheme: TextButtonThemeData(
+        style: TextButton.styleFrom(
+          foregroundColor: p.primary,
+          textStyle: TextStyle(
+              fontFamily: uiFont(ui),
+              fontFamilyFallback: fallback,
+              fontSize: 15.5,
+              fontWeight: FontWeight.w700),
+        ),
+      ),
     );
   }
 

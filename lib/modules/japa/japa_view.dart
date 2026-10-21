@@ -10,8 +10,11 @@ import '../../core/theme/app_theme.dart';
 import '../../core/theme/palette.dart';
 import '../../core/utils/script_converter.dart';
 import '../../core/widgets/app_card.dart';
+import '../../core/widgets/confirm_dialog.dart';
 import '../../core/widgets/page_header.dart';
 import '../../core/widgets/page_scaffold.dart';
+import '../../routes/app_routes.dart';
+import 'japa_history_view.dart';
 
 /// Tap-to-count mala of 108 beads for "Shri Krishnah Sharanam Mama".
 class JapaView extends GetView<JapaController> {
@@ -27,7 +30,17 @@ class JapaView extends GetView<JapaController> {
     return PageScaffold(
       body: Column(
         children: [
-          PageHeader(title: 'japa_title'.tr, onBack: Get.back),
+          PageHeader(
+            title: 'japa_title'.tr,
+            onBack: Get.back,
+            actions: [
+              IconButton(
+                tooltip: 'mala_history'.tr,
+                icon: Icon(Icons.history_rounded, color: p.heading),
+                onPressed: () => Get.toNamed(Routes.japaHistory),
+              ),
+            ],
+          ),
           Expanded(
             child: ListView(
               padding: const EdgeInsets.fromLTRB(16, 0, 16, 24),
@@ -61,13 +74,13 @@ class JapaView extends GetView<JapaController> {
                   Expanded(
                     child: Obx(() => _Stat(
                         label: 'japa_today'.tr,
-                        value: '${controller.malasToday.value}')),
+                        value: '${controller.malasToday}')),
                   ),
                   const SizedBox(width: 12),
                   Expanded(
                     child: Obx(() => _Stat(
                         label: 'japa_total'.tr,
-                        value: '${controller.total.value}')),
+                        value: '${controller.total}')),
                   ),
                 ]),
                 const SizedBox(height: 16),
@@ -79,6 +92,36 @@ class JapaView extends GetView<JapaController> {
                         style: TextStyle(color: p.subtext, fontSize: 15)),
                   ),
                 ),
+                const SizedBox(height: 8),
+                Row(children: [
+                  Expanded(
+                    child: Text('recent_malas'.tr,
+                        style: TextStyle(
+                            fontSize: 17,
+                            fontWeight: FontWeight.w700,
+                            color: p.text)),
+                  ),
+                  TextButton(
+                    onPressed: () => Get.toNamed(Routes.japaHistory),
+                    child: Text('see_all'.tr,
+                        style: TextStyle(
+                            color: p.primary, fontWeight: FontWeight.w700)),
+                  ),
+                ]),
+                Obx(() {
+                  final h = controller.history;
+                  if (h.isEmpty) {
+                    return Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 12),
+                      child: Text('mala_empty'.tr,
+                          style: TextStyle(fontSize: 14.5, color: p.subtext)),
+                    );
+                  }
+                  return Column(children: [
+                    for (var i = 0; i < h.length && i < 3; i++)
+                      MalaTile(entry: h[i], number: h.length - i),
+                  ]);
+                }),
               ],
             ),
           ),
@@ -87,18 +130,15 @@ class JapaView extends GetView<JapaController> {
     );
   }
 
-  void _confirmReset() {
-    Get.defaultDialog(
-      title: 'japa_title'.tr,
-      middleText: 'japa_reset_q'.tr,
-      textCancel: 'cancel'.tr,
-      textConfirm: 'yes'.tr,
-      onConfirm: () {
-        controller.resetCurrent();
-        Get.back();
-      },
-    );
-  }
+  void _confirmReset() => showConfirm(
+        title: 'japa_reset'.tr,
+        message: 'japa_reset_q'.tr,
+        confirmLabel: 'yes'.tr,
+        icon: Icons.restart_alt_rounded,
+        destructive: false,
+        onConfirm: controller.resetCurrent,
+      );
+
 }
 
 class _Counter extends StatelessWidget {

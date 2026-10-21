@@ -8,6 +8,7 @@ import '../../core/widgets/logo_header.dart';
 import '../../core/widgets/svg_icon.dart';
 import '../../data/models/seva.dart';
 import '../../routes/app_routes.dart';
+import 'continue_card.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key});
@@ -19,7 +20,8 @@ class HomeView extends StatelessWidget {
       padding: const EdgeInsets.fromLTRB(16, 0, 16, 24),
       children: [
         const LogoHeader(height: 210, logoWidth: 240),
-        const SizedBox(height: 14),
+        const ContinueCard(),
+        const SizedBox(height: 18),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 4),
           child: Text('daily_paths'.tr,
@@ -142,7 +144,7 @@ class _JapaBanner extends StatelessWidget {
                               color: p.heading)),
                       const SizedBox(height: 2),
                       Obx(() => Text(
-                            '${'japa_title'.tr} · ${'japa_home'.tr}: ${japa.malasToday.value}',
+                            '${'japa_title'.tr} · ${'japa_home'.tr}: ${japa.malasToday}',
                             style: TextStyle(fontSize: 13.5, color: p.subtext),
                           )),
                     ],

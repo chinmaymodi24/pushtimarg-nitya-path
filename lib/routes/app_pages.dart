@@ -3,6 +3,9 @@ import 'package:get/get.dart';
 import '../modules/contact/contact_view.dart';
 import '../modules/feedback/feedback_controller.dart';
 import '../modules/feedback/feedback_view.dart';
+import '../modules/history/history_controller.dart';
+import '../modules/history/history_view.dart';
+import '../modules/japa/japa_history_view.dart';
 import '../modules/japa/japa_view.dart';
 import '../modules/legal/legal_view.dart';
 import '../modules/more/about_view.dart';
@@ -58,5 +61,11 @@ class AppPages {
     GetPage(name: Routes.contact, page: () => const ContactView()),
     GetPage(name: Routes.about, page: () => const AboutView()),
     GetPage(name: Routes.legal, page: () => const LegalView()),
+    GetPage(name: Routes.japaHistory, page: () => const JapaHistoryView()),
+    GetPage(
+      name: Routes.history,
+      page: () => const HistoryView(),
+      binding: BindingsBuilder(() => Get.lazyPut(() => HistoryController())),
+    ),
   ];
 }

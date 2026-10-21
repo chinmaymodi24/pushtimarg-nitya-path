@@ -26,8 +26,6 @@ class ReaderView extends GetView<ReaderController> {
     final fav = Get.find<FavoritesController>();
     final p = context.pal;
     return PageScaffold(
-      decoration: CornerFlourishPainter(p.gold.withValues(alpha: 0.5),
-          top: MediaQuery.paddingOf(context).top + 58),
       bottom: const _ReaderBar(),
       body: Column(
         children: [
@@ -67,27 +65,45 @@ class ReaderView extends GetView<ReaderController> {
                   ),
                 ],
               )),
+          const _ProgressStrip(),
           Expanded(
             child: Obx(() {
               final script = s.script.value;
               final scale = s.textScale.value;
               final lang = s.showMeaning.value ? s.meaningLang.value : null;
               final verses = controller.path.verses;
-              return ListView.builder(
-                padding: const EdgeInsets.fromLTRB(22, 12, 22, 32),
-                itemCount: verses.length + 1,
-                itemBuilder: (_, i) => i == verses.length
-                    ? Padding(
-                        padding: const EdgeInsets.only(top: 8),
-                        child: DisclaimerNote(
-                            pathTitle: controller.path.title(s.uiLang.value)),
-                      )
-                    : _VerseBlock(
-                  verse: verses[i],
-                  script: script,
-                  scale: scale,
-                  meaningLang: lang,
-                  last: i == verses.length - 1,
+              // A plain column (not a lazy list) so every verse has a real
+              // position for the progress and "continue reading".
+              return SingleChildScrollView(
+                controller: controller.scroll,
+                padding: const EdgeInsets.fromLTRB(0, 12, 0, 32),
+                // Corner flourishes belong to the page, so they scroll away.
+                child: CustomPaint(
+                  painter: CornerFlourishPainter(p.gold.withValues(alpha: 0.5)),
+                  child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 22),
+                  child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    for (var i = 0; i < verses.length; i++)
+                      KeyedSubtree(
+                        key: controller.verseKeys[i],
+                        child: _VerseBlock(
+                          verse: verses[i],
+                          script: script,
+                          scale: scale,
+                          meaningLang: lang,
+                          last: i == verses.length - 1,
+                        ),
+                      ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 8),
+                      child: DisclaimerNote(
+                          pathTitle: controller.path.title(s.uiLang.value)),
+                    ),
+                  ],
+                ),
+                ),
                 ),
               );
             }),
@@ -236,6 +252,52 @@ class _ReaderBar extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+}
+
+/// Thin bar under the header: how much is read and how many verses remain.
+class _ProgressStrip extends GetView<ReaderController> {
+  const _ProgressStrip();
+
+  @override
+  Widget build(BuildContext context) {
+    final p = context.pal;
+    final n = controller.path.verses.length;
+    final small = TextStyle(fontSize: 12.5, color: p.subtext);
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(22, 0, 22, 4),
+      child: Obx(() {
+        final pr = controller.progress.value;
+        final done = pr >= 0.98;
+        return Column(children: [
+          ClipRRect(
+            borderRadius: BorderRadius.circular(3),
+            child: LinearProgressIndicator(
+              value: pr,
+              minHeight: 5,
+              backgroundColor: p.chipBorder,
+              valueColor: AlwaysStoppedAnimation(p.primary),
+            ),
+          ),
+          const SizedBox(height: 4),
+          Row(children: [
+            Text(
+                'verse_of'.trParams(
+                    {'a': '${controller.verse.value}', 'b': '$n'}),
+                style: small),
+            const Spacer(),
+            Text(
+              done
+                  ? 'read_done'.tr
+                  : '${'left_verses'.trParams({'n': '${controller.versesLeft}'})}  ·  ${(pr * 100).round()}%',
+              style: small.copyWith(
+                  color: done ? p.primary : p.subtext,
+                  fontWeight: done ? FontWeight.w700 : FontWeight.w400),
+            ),
+          ]),
+        ]);
+      }),
     );
   }
 }
