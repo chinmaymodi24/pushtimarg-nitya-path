@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../core/services/favorites_service.dart';
 import '../../core/services/settings_service.dart';
 import '../../core/theme/palette.dart';
 import '../../core/widgets/app_card.dart';
@@ -40,6 +41,13 @@ class PathTile extends StatelessWidget {
                       fontSize: 18, fontWeight: FontWeight.w700, color: p.text),
                 )),
           ),
+          Obx(() => Get.find<FavoritesController>().isFav(path.id)
+              ? Padding(
+                  padding: const EdgeInsets.only(right: 4),
+                  child: Icon(Icons.favorite_rounded,
+                      size: 18, color: p.primary),
+                )
+              : const SizedBox.shrink()),
           Icon(Icons.chevron_right_rounded, color: p.subtext),
         ],
       ),

@@ -5,5 +5,10 @@ abstract class Routes {
   static const reader = '/reader';
   static const settings = '/settings';
   static const specimen = '/specimen';
-  static const info = '/info';
+  static const japa = '/japa';
+  static const wishlist = '/wishlist';
+  static const feedback = '/feedback';
+  static const contact = '/contact';
+  static const about = '/about';
+  static const legal = '/legal';
 }

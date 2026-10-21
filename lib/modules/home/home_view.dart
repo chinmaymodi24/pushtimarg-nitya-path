@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../core/services/japa_service.dart';
 import '../../core/theme/palette.dart';
 import '../../core/widgets/app_card.dart';
 import '../../core/widgets/logo_header.dart';
@@ -38,6 +39,8 @@ class HomeView extends StatelessWidget {
           ),
           itemBuilder: (_, i) => _SevaCard(sevaList[i]),
         ),
+        const SizedBox(height: 14),
+        const _JapaBanner(),
       ],
     );
   }
@@ -82,6 +85,74 @@ class _SevaCard extends StatelessWidget {
           ),
           Icon(Icons.chevron_right_rounded, color: p.subtext, size: 22),
         ],
+      ),
+    );
+  }
+}
+
+/// Shortcut to the japa counter with today's mala count.
+class _JapaBanner extends StatelessWidget {
+  const _JapaBanner();
+
+  @override
+  Widget build(BuildContext context) {
+    final p = context.pal;
+    final japa = Get.find<JapaController>();
+    return Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(16),
+        gradient: LinearGradient(
+          colors: [p.iconTile, p.card],
+          begin: Alignment.centerLeft,
+          end: Alignment.centerRight,
+        ),
+        border: Border.all(color: p.pillBorder.withValues(alpha: 0.6)),
+        boxShadow: [
+          BoxShadow(color: p.shadow, blurRadius: 14, offset: const Offset(0, 4)),
+        ],
+      ),
+      child: Material(
+        type: MaterialType.transparency,
+        child: InkWell(
+          borderRadius: BorderRadius.circular(16),
+          onTap: () => Get.toNamed(Routes.japa),
+          child: Padding(
+            padding: const EdgeInsets.fromLTRB(14, 14, 10, 14),
+            child: Row(
+              children: [
+                Container(
+                  width: 52,
+                  height: 52,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    gradient: LinearGradient(colors: p.chipSelected),
+                  ),
+                  child: Icon(Icons.blur_circular_rounded,
+                      size: 32, color: p.onChipSelected),
+                ),
+                const SizedBox(width: 14),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text('japa_sub'.tr,
+                          style: TextStyle(
+                              fontSize: 17.5,
+                              fontWeight: FontWeight.w700,
+                              color: p.heading)),
+                      const SizedBox(height: 2),
+                      Obx(() => Text(
+                            '${'japa_title'.tr} · ${'japa_home'.tr}: ${japa.malasToday.value}',
+                            style: TextStyle(fontSize: 13.5, color: p.subtext),
+                          )),
+                    ],
+                  ),
+                ),
+                Icon(Icons.chevron_right_rounded, color: p.subtext),
+              ],
+            ),
+          ),
+        ),
       ),
     );
   }

@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
+import 'core/services/favorites_service.dart';
+import 'core/services/japa_service.dart';
 import 'core/services/settings_service.dart';
 import 'core/theme/app_theme.dart';
 import 'core/translations/app_translations.dart';
@@ -15,6 +17,8 @@ Future<void> main() async {
   await GetStorage.init();
   final settings = Get.put(SettingsController(), permanent: true);
   Get.put(await PathRepository().load(), permanent: true);
+  Get.put(FavoritesController(), permanent: true);
+  Get.put(JapaController(), permanent: true);
   runApp(App(settings));
 }
 

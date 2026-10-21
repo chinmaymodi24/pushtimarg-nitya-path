@@ -1,6 +1,11 @@
 import 'package:get/get.dart';
 
-import '../modules/more/info_view.dart';
+import '../modules/contact/contact_view.dart';
+import '../modules/feedback/feedback_controller.dart';
+import '../modules/feedback/feedback_view.dart';
+import '../modules/japa/japa_view.dart';
+import '../modules/legal/legal_view.dart';
+import '../modules/more/about_view.dart';
 import '../modules/paths/paths_controller.dart';
 import '../modules/paths/seva_view.dart';
 import '../modules/reader/reader_controller.dart';
@@ -11,6 +16,7 @@ import '../modules/shell/shell_controller.dart';
 import '../modules/shell/shell_view.dart';
 import '../modules/splash/splash_controller.dart';
 import '../modules/splash/splash_view.dart';
+import '../modules/wishlist/wishlist_view.dart';
 import 'app_routes.dart';
 
 class AppPages {
@@ -42,6 +48,15 @@ class AppPages {
     ),
     GetPage(name: Routes.settings, page: () => const SettingsPage()),
     GetPage(name: Routes.specimen, page: () => const SpecimenView()),
-    GetPage(name: Routes.info, page: () => const InfoView()),
+    GetPage(name: Routes.japa, page: () => const JapaView()),
+    GetPage(name: Routes.wishlist, page: () => const WishlistView()),
+    GetPage(
+      name: Routes.feedback,
+      page: () => const FeedbackView(),
+      binding: BindingsBuilder(() => Get.lazyPut(() => FeedbackController())),
+    ),
+    GetPage(name: Routes.contact, page: () => const ContactView()),
+    GetPage(name: Routes.about, page: () => const AboutView()),
+    GetPage(name: Routes.legal, page: () => const LegalView()),
   ];
 }

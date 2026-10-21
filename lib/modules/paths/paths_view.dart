@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import '../../core/theme/palette.dart';
 import '../../core/widgets/page_header.dart';
 import '../../data/models/seva.dart';
+import '../../routes/app_routes.dart';
 import 'path_tile.dart';
 import 'paths_controller.dart';
 
@@ -17,7 +18,17 @@ class PathsView extends GetView<PathsController> {
     final p = context.pal;
     return Column(
       children: [
-        PageHeader(title: 'all_paths'.tr, onBack: onBack),
+        PageHeader(
+          title: 'all_paths'.tr,
+          onBack: onBack,
+          actions: [
+            IconButton(
+              tooltip: 'wishlist'.tr,
+              icon: Icon(Icons.favorite_border_rounded, color: p.heading),
+              onPressed: () => Get.toNamed(Routes.wishlist),
+            ),
+          ],
+        ),
         Expanded(
           child: ListView(
             padding: const EdgeInsets.fromLTRB(16, 4, 16, 24),

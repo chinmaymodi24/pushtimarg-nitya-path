@@ -20,12 +20,14 @@ class PageHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final p = context.pal;
+    // Both sides equally wide so the title stays centred.
+    final side = actions.length * 44.0 < 96 ? 96.0 : actions.length * 44.0;
     return SizedBox(
       height: 60,
       child: Row(
         children: [
           SizedBox(
-            width: 96,
+            width: side,
             child: Align(
               alignment: Alignment.centerLeft,
               child: onBack == null
@@ -38,11 +40,12 @@ class PageHeader extends StatelessWidget {
             ),
           ),
           Expanded(
-            child: Text(
+            child: FittedBox(
+              fit: BoxFit.scaleDown,
+              child: Text(
               title,
               textAlign: TextAlign.center,
               maxLines: 1,
-              overflow: TextOverflow.ellipsis,
               style: titleStyle ??
                   TextStyle(
                     fontSize: 21,
@@ -50,9 +53,10 @@ class PageHeader extends StatelessWidget {
                     color: p.heading,
                   ),
             ),
+            ),
           ),
           SizedBox(
-            width: 96,
+            width: side,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: actions,

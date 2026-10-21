@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../core/services/favorites_service.dart';
 import '../../core/services/settings_service.dart';
 import '../../core/theme/app_theme.dart';
 import '../../core/theme/palette.dart';
 import '../../core/utils/script_converter.dart';
 import '../../core/widgets/choice_chips.dart';
+import '../../core/widgets/disclaimer_note.dart';
 import '../../core/widgets/ornaments.dart';
 import '../../core/widgets/page_header.dart';
 import '../../core/widgets/page_scaffold.dart';
@@ -21,6 +23,7 @@ class ReaderView extends GetView<ReaderController> {
   @override
   Widget build(BuildContext context) {
     final s = Get.find<SettingsController>();
+    final fav = Get.find<FavoritesController>();
     final p = context.pal;
     return PageScaffold(
       decoration: CornerFlourishPainter(p.gold.withValues(alpha: 0.5),
@@ -33,11 +36,32 @@ class ReaderView extends GetView<ReaderController> {
                 onBack: Get.back,
                 actions: [
                   IconButton(
+                    visualDensity: VisualDensity.compact,
+                    tooltip: 'wishlist'.tr,
+                    icon: Icon(
+                      fav.isFav(controller.path.id)
+                          ? Icons.favorite_rounded
+                          : Icons.favorite_border_rounded,
+                      color: fav.isFav(controller.path.id)
+                          ? p.primary
+                          : p.heading,
+                    ),
+                    onPressed: () {
+                      final added = fav.toggle(controller.path.id);
+                      Get.rawSnackbar(
+                        message: (added ? 'wish_added' : 'wish_removed').tr,
+                        duration: const Duration(milliseconds: 1400),
+                      );
+                    },
+                  ),
+                  IconButton(
+                    visualDensity: VisualDensity.compact,
                     tooltip: 'choose_script'.tr,
                     icon: Icon(Icons.menu_book_outlined, color: p.heading),
                     onPressed: _openScriptSheet,
                   ),
                   IconButton(
+                    visualDensity: VisualDensity.compact,
                     icon: Icon(Icons.settings_outlined, color: p.heading),
                     onPressed: () => Get.toNamed(Routes.settings),
                   ),
@@ -51,8 +75,14 @@ class ReaderView extends GetView<ReaderController> {
               final verses = controller.path.verses;
               return ListView.builder(
                 padding: const EdgeInsets.fromLTRB(22, 12, 22, 32),
-                itemCount: verses.length,
-                itemBuilder: (_, i) => _VerseBlock(
+                itemCount: verses.length + 1,
+                itemBuilder: (_, i) => i == verses.length
+                    ? Padding(
+                        padding: const EdgeInsets.only(top: 8),
+                        child: DisclaimerNote(
+                            pathTitle: controller.path.title(s.uiLang.value)),
+                      )
+                    : _VerseBlock(
                   verse: verses[i],
                   script: script,
                   scale: scale,

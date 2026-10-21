@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../core/config/app_config.dart';
 import '../../core/theme/palette.dart';
 import '../../core/widgets/app_card.dart';
+import '../../core/widgets/disclaimer_note.dart';
 import '../../core/widgets/logo_header.dart';
 import '../../core/widgets/page_header.dart';
 import '../../routes/app_routes.dart';
@@ -11,11 +13,20 @@ class MoreView extends StatelessWidget {
   const MoreView({super.key, this.onBack});
   final VoidCallback? onBack;
 
-  static const _items = [
-    (Icons.account_circle_outlined, 'about', 'about_body'),
-    (Icons.call_outlined, 'contact', 'contact_body'),
-    (Icons.shield_outlined, 'privacy', 'privacy_body'),
-    (Icons.description_outlined, 'terms', 'terms_body'),
+  static const _groups = [
+    [
+      (Icons.radio_button_checked_rounded, 'japa_title', Routes.japa, null),
+      (Icons.favorite_border_rounded, 'wishlist', Routes.wishlist, null),
+    ],
+    [
+      (Icons.rate_review_outlined, 'feedback', Routes.feedback, null),
+      (Icons.call_outlined, 'contact', Routes.contact, null),
+      (Icons.account_circle_outlined, 'about', Routes.about, null),
+    ],
+    [
+      (Icons.shield_outlined, 'privacy', Routes.legal, 'privacy'),
+      (Icons.description_outlined, 'terms', Routes.legal, 'terms'),
+    ],
   ];
 
   @override
@@ -32,34 +43,40 @@ class MoreView extends StatelessWidget {
               const SizedBox(height: 14),
               Text('more_blurb'.tr,
                   style: TextStyle(fontSize: 15, height: 1.7, color: p.text)),
-              const SizedBox(height: 18),
-              AppCard(
-                padding: EdgeInsets.zero,
-                child: Column(children: [
-                  for (var i = 0; i < _items.length; i++) ...[
-                    if (i > 0)
-                      Divider(height: 1, indent: 16, endIndent: 16, color: p.cardBorder),
-                    ListTile(
-                      contentPadding: const EdgeInsets.symmetric(horizontal: 16),
-                      leading: Icon(_items[i].$1, color: p.heading),
-                      title: Text(_items[i].$2.tr,
-                          style: TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.w600,
-                              color: p.text)),
-                      trailing:
-                          Icon(Icons.chevron_right_rounded, color: p.subtext),
-                      onTap: () => Get.toNamed(Routes.info, arguments: {
-                        'title': _items[i].$2,
-                        'body': _items[i].$3,
-                      }),
-                    ),
-                  ],
-                ]),
-              ),
-              const SizedBox(height: 22),
+              const SizedBox(height: 16),
+              for (final g in _groups) ...[
+                AppCard(
+                  padding: EdgeInsets.zero,
+                  child: Column(children: [
+                    for (var i = 0; i < g.length; i++) ...[
+                      if (i > 0)
+                        Divider(
+                            height: 1,
+                            indent: 16,
+                            endIndent: 16,
+                            color: p.cardBorder),
+                      ListTile(
+                        contentPadding:
+                            const EdgeInsets.symmetric(horizontal: 16),
+                        leading: Icon(g[i].$1, color: p.heading),
+                        title: Text(g[i].$2.tr,
+                            style: TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.w600,
+                                color: p.text)),
+                        trailing:
+                            Icon(Icons.chevron_right_rounded, color: p.subtext),
+                        onTap: () => Get.toNamed(g[i].$3, arguments: g[i].$4),
+                      ),
+                    ],
+                  ]),
+                ),
+                const SizedBox(height: 14),
+              ],
+              const DisclaimerNote(),
+              const SizedBox(height: 20),
               Center(
-                child: Text('${'version'.tr} 1.0.0',
+                child: Text('${'version'.tr} ${AppConfig.version}',
                     style: TextStyle(fontSize: 14, color: p.subtext)),
               ),
             ],
