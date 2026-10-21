@@ -19,6 +19,8 @@ Future<void> showConfirm({
       return AlertDialog(
         title: Text(title),
         content: Text(message),
+        contentPadding: const EdgeInsets.fromLTRB(24, 12, 24, 8),
+        actionsPadding: const EdgeInsets.fromLTRB(16, 0, 12, 8),
         actions: [
           TextButton(onPressed: Get.back, child: Text('cancel'.tr)),
           TextButton(
