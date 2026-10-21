@@ -1,4 +1,5 @@
 abstract class Routes {
+  static const splash = '/splash';
   static const shell = '/';
   static const seva = '/seva';
   static const reader = '/reader';

@@ -11,6 +11,13 @@ extension LangX on Lang {
         Lang.hi => 'हिन्दी',
         Lang.en => 'English',
       };
+
+  /// "Meaning" written in this language, for the heading above a meaning.
+  String get meaningWord => switch (this) {
+        Lang.gu => 'અર્થ',
+        Lang.hi => 'अर्थ',
+        Lang.en => 'Meaning',
+      };
 }
 
 extension ReaderScriptX on ReaderScript {

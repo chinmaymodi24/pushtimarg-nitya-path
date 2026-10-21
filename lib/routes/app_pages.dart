@@ -9,16 +9,25 @@ import '../modules/settings/settings_page.dart';
 import '../modules/settings/specimen_view.dart';
 import '../modules/shell/shell_controller.dart';
 import '../modules/shell/shell_view.dart';
+import '../modules/splash/splash_controller.dart';
+import '../modules/splash/splash_view.dart';
 import 'app_routes.dart';
 
 class AppPages {
   static final pages = [
     GetPage(
+      name: Routes.splash,
+      page: () => const SplashView(),
+      binding: BindingsBuilder(() {
+        Get.put(SplashController());
+      }),
+    ),
+    GetPage(
       name: Routes.shell,
       page: () => const ShellView(),
       binding: BindingsBuilder(() {
-        Get.put(ShellController());
-        Get.put(PathsController());
+        Get.put(ShellController(), permanent: true);
+        Get.put(PathsController(), permanent: true);
       }),
     ),
     GetPage(
@@ -31,10 +40,7 @@ class AppPages {
       page: () => const ReaderView(),
       binding: BindingsBuilder(() => Get.lazyPut(() => ReaderController())),
     ),
-    GetPage(
-      name: Routes.settings,
-      page: () => const SettingsPage(),
-    ),
+    GetPage(name: Routes.settings, page: () => const SettingsPage()),
     GetPage(name: Routes.specimen, page: () => const SpecimenView()),
     GetPage(name: Routes.info, page: () => const InfoView()),
   ];

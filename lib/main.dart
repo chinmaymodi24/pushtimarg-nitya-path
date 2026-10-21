@@ -33,7 +33,8 @@ class App extends StatelessWidget {
           translations: AppTranslations(),
           locale: Locale(settings.uiLang.value.code),
           fallbackLocale: const Locale('en'),
-          initialRoute: Routes.shell,
+          initialRoute: Routes.splash,
+          defaultTransition: Transition.cupertino,
           getPages: AppPages.pages,
         ));
   }

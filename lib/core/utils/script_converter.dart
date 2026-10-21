@@ -79,11 +79,7 @@ class ScriptConverter {
     return out.toString();
   }
 
-  /// "॥ 1 ॥" in the chosen script.
-  static String verseMark(int n, ReaderScript script) {
-    const d = '०१२३४५६७८९';
-    final dev = n.toString().split('').map((e) => d[int.parse(e)]).join();
-    if (script == ReaderScript.roman) return '|| $n ||';
-    return convert('॥ $dev ॥', script);
-  }
+  /// "॥ 1 ॥" as in the designs; Roman gets "|| 1 ||".
+  static String verseMark(int n, ReaderScript script) =>
+      script == ReaderScript.roman ? '|| $n ||' : '॥ $n ॥';
 }

@@ -1,5 +1,5 @@
 name: nityapath
-description: "A new Flutter project."
+description: "Pushtimarg Nitya Path - daily paths of Pushtimarg."
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
@@ -36,8 +36,7 @@ dependencies:
   cupertino_icons: ^1.0.8
   get: ^4.7.3
   get_storage: ^2.1.1
-  google_fonts: ^6.3.0
-
+  flutter_svg: ^2.3.0
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -48,6 +47,8 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^6.0.0
+  flutter_native_splash: ^2.4.8
+  flutter_launcher_icons: ^0.14.4
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -62,6 +63,50 @@ flutter:
   assets:
     - assets/images/
     - assets/data/
+    - assets/icons/
+  fonts:
+    - family: NotoSansGujarati
+      fonts:
+        - asset: assets/fonts/NotoSansGujarati-400.ttf
+        - asset: assets/fonts/NotoSansGujarati-500.ttf
+          weight: 500
+        - asset: assets/fonts/NotoSansGujarati-700.ttf
+          weight: 700
+    - family: NotoSansDevanagari
+      fonts:
+        - asset: assets/fonts/NotoSansDevanagari-400.ttf
+        - asset: assets/fonts/NotoSansDevanagari-500.ttf
+          weight: 500
+        - asset: assets/fonts/NotoSansDevanagari-700.ttf
+          weight: 700
+    - family: NotoSans
+      fonts:
+        - asset: assets/fonts/NotoSans-400.ttf
+        - asset: assets/fonts/NotoSans-500.ttf
+          weight: 500
+        - asset: assets/fonts/NotoSans-700.ttf
+          weight: 700
+    - family: NotoSerifGujarati
+      fonts:
+        - asset: assets/fonts/NotoSerifGujarati-400.ttf
+        - asset: assets/fonts/NotoSerifGujarati-500.ttf
+          weight: 500
+        - asset: assets/fonts/NotoSerifGujarati-700.ttf
+          weight: 700
+    - family: NotoSerifDevanagari
+      fonts:
+        - asset: assets/fonts/NotoSerifDevanagari-400.ttf
+        - asset: assets/fonts/NotoSerifDevanagari-500.ttf
+          weight: 500
+        - asset: assets/fonts/NotoSerifDevanagari-700.ttf
+          weight: 700
+    - family: NotoSerif
+      fonts:
+        - asset: assets/fonts/NotoSerif-400.ttf
+        - asset: assets/fonts/NotoSerif-500.ttf
+          weight: 500
+        - asset: assets/fonts/NotoSerif-700.ttf
+          weight: 700
 
   # To add assets to your application, add an assets section, like this:
   # assets:
@@ -93,3 +138,22 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/to/font-from-package
+
+flutter_launcher_icons:
+  android: true
+  ios: false
+  image_path: assets/icon/app_icon.png
+  adaptive_icon_background: "#FFF8EC"
+  adaptive_icon_foreground: assets/icon/app_icon_fg.png
+  min_sdk_android: 21
+
+flutter_native_splash:
+  color: "#FFF8EC"
+  image: assets/icon/splash_logo.png
+  color_dark: "#1E140B"
+  android_12:
+    color: "#FFF8EC"
+    image: assets/icon/splash_android12.png
+    color_dark: "#1E140B"
+  web: false
+  ios: false

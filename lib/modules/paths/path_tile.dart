@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../core/services/settings_service.dart';
-import '../../core/theme/app_theme.dart';
-import '../../core/utils/script_converter.dart';
+import '../../core/theme/palette.dart';
+import '../../core/widgets/app_card.dart';
+import '../../core/widgets/svg_icon.dart';
 import '../../data/models/path_model.dart';
 import '../../routes/app_routes.dart';
 
@@ -13,35 +14,34 @@ class PathTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final pc = context.pc;
-    final settings = Get.find<SettingsController>();
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 10),
-      child: Material(
-        color: pc.card,
-        borderRadius: BorderRadius.circular(14),
-        child: InkWell(
-          borderRadius: BorderRadius.circular(14),
-          onTap: () => Get.toNamed(Routes.reader, arguments: path.id),
-          child: Padding(
-            padding: const EdgeInsets.all(16),
-            child: Row(
-              children: [
-                Expanded(
-                  child: Obx(() {
-                    final s = settings.script.value;
-                    return Text(
-                      ScriptConverter.convert(path.titleDev, s),
-                      style: AppTheme.verseStyle(s, 19, pc.verse)
-                          .copyWith(height: 1.4, fontWeight: FontWeight.w700),
-                    );
-                  }),
-                ),
-                Icon(Icons.chevron_right, color: pc.divider),
-              ],
+    final p = context.pal;
+    final s = Get.find<SettingsController>();
+    return AppCard(
+      margin: const EdgeInsets.only(bottom: 12),
+      padding: const EdgeInsets.fromLTRB(12, 12, 10, 12),
+      onTap: () => Get.toNamed(Routes.reader, arguments: path.id),
+      child: Row(
+        children: [
+          Container(
+            width: 48,
+            height: 48,
+            alignment: Alignment.center,
+            decoration: BoxDecoration(
+              color: p.iconTile,
+              borderRadius: BorderRadius.circular(12),
             ),
+            child: SvgIcon(path.icon, size: 32),
           ),
-        ),
+          const SizedBox(width: 16),
+          Expanded(
+            child: Obx(() => Text(
+                  path.title(s.uiLang.value),
+                  style: TextStyle(
+                      fontSize: 18, fontWeight: FontWeight.w700, color: p.text),
+                )),
+          ),
+          Icon(Icons.chevron_right_rounded, color: p.subtext),
+        ],
       ),
     );
   }

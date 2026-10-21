@@ -18,7 +18,7 @@ void main() {
   });
 
   test('verse marker', () {
-    expect(ScriptConverter.verseMark(12, ReaderScript.gujarati), '॥ ૧૨ ॥');
+    expect(ScriptConverter.verseMark(12, ReaderScript.gujarati), '॥ 12 ॥');
     expect(ScriptConverter.verseMark(2, ReaderScript.roman), '|| 2 ||');
   });
 }

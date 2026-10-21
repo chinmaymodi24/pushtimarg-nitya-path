@@ -1,9 +1,11 @@
+import '../../core/utils/script_converter.dart';
 import 'enums.dart';
 
 class Verse {
   Verse({required this.number, required this.dev, required this.meanings});
 
   final int number;
+
   /// Devanagari source text, lines separated by '\n'.
   final String dev;
   final Map<String, String> meanings;
@@ -24,19 +26,32 @@ class PathModel {
   PathModel({
     required this.id,
     required this.seva,
+    required this.icon,
     required this.titleDev,
+    required this.titleEn,
     required this.verses,
   });
 
   final String id;
   final String seva;
+  final String icon;
   final String titleDev;
+  final String titleEn;
   final List<Verse> verses;
+
+  /// The path's name is shown in the app language, not the reading script.
+  String title(Lang ui) => switch (ui) {
+        Lang.gu => ScriptConverter.convert(titleDev, ReaderScript.gujarati),
+        Lang.hi => titleDev,
+        Lang.en => titleEn,
+      };
 
   factory PathModel.fromJson(Map<String, dynamic> j) => PathModel(
         id: j['id'] as String,
         seva: j['seva'] as String,
+        icon: j['icon'] as String? ?? 'lotus',
         titleDev: j['title'] as String,
+        titleEn: j['title_en'] as String? ?? j['title'] as String,
         verses: (j['verses'] as List)
             .map((e) => Verse.fromJson(e as Map<String, dynamic>))
             .toList(),

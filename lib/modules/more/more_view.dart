@@ -1,47 +1,70 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../core/theme/app_theme.dart';
-import '../../core/widgets/logo.dart';
+import '../../core/theme/palette.dart';
+import '../../core/widgets/app_card.dart';
+import '../../core/widgets/logo_header.dart';
+import '../../core/widgets/page_header.dart';
 import '../../routes/app_routes.dart';
 
 class MoreView extends StatelessWidget {
-  const MoreView({super.key});
+  const MoreView({super.key, this.onBack});
+  final VoidCallback? onBack;
+
+  static const _items = [
+    (Icons.account_circle_outlined, 'about', 'about_body'),
+    (Icons.call_outlined, 'contact', 'contact_body'),
+    (Icons.shield_outlined, 'privacy', 'privacy_body'),
+    (Icons.description_outlined, 'terms', 'terms_body'),
+  ];
 
   @override
   Widget build(BuildContext context) {
-    final pc = context.pc;
-    final items = [
-      (Icons.info_outline, 'about', 'about_body'),
-      (Icons.phone_outlined, 'contact', 'contact_body'),
-      (Icons.shield_outlined, 'privacy', 'privacy_body'),
-      (Icons.description_outlined, 'terms', 'terms_body'),
-    ];
-    return ListView(
-      padding: const EdgeInsets.all(16),
+    final p = context.pal;
+    return Column(
       children: [
-        const Center(child: AppLogo()),
-        const SizedBox(height: 8),
-        Text('more_blurb'.tr),
-        const SizedBox(height: 16),
-        Container(
-          decoration: BoxDecoration(
-            color: pc.card,
-            borderRadius: BorderRadius.circular(16),
-          ),
-          child: Column(children: [
-            for (final it in items)
-              ListTile(
-                leading: Icon(it.$1, color: Theme.of(context).colorScheme.primary),
-                title: Text(it.$2.tr),
-                trailing: Icon(Icons.chevron_right, color: pc.divider),
-                onTap: () => Get.toNamed(Routes.info,
-                    arguments: {'title': it.$2, 'body': it.$3}),
+        PageHeader(title: 'more'.tr, onBack: onBack),
+        Expanded(
+          child: ListView(
+            padding: const EdgeInsets.fromLTRB(16, 0, 16, 24),
+            children: [
+              const LogoHeader(height: 190, logoWidth: 220),
+              const SizedBox(height: 14),
+              Text('more_blurb'.tr,
+                  style: TextStyle(fontSize: 15, height: 1.7, color: p.text)),
+              const SizedBox(height: 18),
+              AppCard(
+                padding: EdgeInsets.zero,
+                child: Column(children: [
+                  for (var i = 0; i < _items.length; i++) ...[
+                    if (i > 0)
+                      Divider(height: 1, indent: 16, endIndent: 16, color: p.cardBorder),
+                    ListTile(
+                      contentPadding: const EdgeInsets.symmetric(horizontal: 16),
+                      leading: Icon(_items[i].$1, color: p.heading),
+                      title: Text(_items[i].$2.tr,
+                          style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w600,
+                              color: p.text)),
+                      trailing:
+                          Icon(Icons.chevron_right_rounded, color: p.subtext),
+                      onTap: () => Get.toNamed(Routes.info, arguments: {
+                        'title': _items[i].$2,
+                        'body': _items[i].$3,
+                      }),
+                    ),
+                  ],
+                ]),
               ),
-          ]),
+              const SizedBox(height: 22),
+              Center(
+                child: Text('${'version'.tr} 1.0.0',
+                    style: TextStyle(fontSize: 14, color: p.subtext)),
+              ),
+            ],
+          ),
         ),
-        const SizedBox(height: 20),
-        Center(child: Text('${'version'.tr} 1.0.0')),
       ],
     );
   }
