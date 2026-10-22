@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../core/widgets/motion.dart';
 import '../../core/widgets/page_header.dart';
 import '../../core/widgets/page_scaffold.dart';
 import '../../data/models/category.dart';
@@ -22,7 +23,7 @@ class CategoryView extends StatelessWidget {
           Expanded(
             child: ListView(
               padding: const EdgeInsets.fromLTRB(16, 4, 16, 24),
-              children: [PathGroupCard(items: items)],
+              children: [FadeSlideIn(child: PathGroupCard(items: items))],
             ),
           ),
         ],

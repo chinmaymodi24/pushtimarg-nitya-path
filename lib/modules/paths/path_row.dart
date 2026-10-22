@@ -6,6 +6,7 @@ import '../../core/services/reading_service.dart';
 import '../../core/services/settings_service.dart';
 import '../../core/theme/palette.dart';
 import '../../core/utils/open_path.dart';
+import '../../core/widgets/motion.dart';
 import '../../core/widgets/svg_icon.dart';
 import '../../data/models/path_model.dart';
 
@@ -109,14 +110,11 @@ class PathRow extends StatelessWidget {
                       if (ready && pr > 0 && !done)
                         Padding(
                           padding: const EdgeInsets.only(top: 6, right: 24),
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(2),
-                            child: LinearProgressIndicator(
-                              value: pr,
-                              minHeight: 4,
-                              backgroundColor: p.chipBorder,
-                              valueColor: AlwaysStoppedAnimation(p.primary),
-                            ),
+                          child: AnimatedBar(
+                            value: pr,
+                            height: 4,
+                            color: p.primary,
+                            background: p.chipBorder,
                           ),
                         ),
                     ],

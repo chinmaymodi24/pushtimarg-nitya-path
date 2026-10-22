@@ -5,6 +5,7 @@ import '../../core/services/settings_service.dart';
 import '../../core/theme/palette.dart';
 import '../../core/widgets/app_card.dart';
 import '../../core/widgets/choice_chips.dart';
+import '../../core/widgets/motion.dart';
 import '../../core/widgets/page_header.dart';
 import '../../core/widgets/size_slider.dart';
 import '../../data/models/enums.dart';
@@ -126,33 +127,35 @@ class _Section extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final p = context.pal;
-    return AppCard(
-      margin: const EdgeInsets.only(bottom: 14),
-      padding: const EdgeInsets.fromLTRB(14, 12, 14, 16),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          SizedBox(
-            height: 36,
-            child: Row(
-              children: [
-                Expanded(
-                  child: Text(
-                    title,
-                    style: TextStyle(
-                      fontSize: 16.5,
-                      fontWeight: FontWeight.w700,
-                      color: p.text,
+    return FadeSlideIn(
+      child: AppCard(
+        margin: const EdgeInsets.only(bottom: 14),
+        padding: const EdgeInsets.fromLTRB(14, 12, 14, 16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            SizedBox(
+              height: 36,
+              child: Row(
+                children: [
+                  Expanded(
+                    child: Text(
+                      title,
+                      style: TextStyle(
+                        fontSize: 16.5,
+                        fontWeight: FontWeight.w700,
+                        color: p.text,
+                      ),
                     ),
                   ),
-                ),
-                ?trailing,
-              ],
+                  ?trailing,
+                ],
+              ),
             ),
-          ),
-          const SizedBox(height: 10),
-          child,
-        ],
+            const SizedBox(height: 10),
+            child,
+          ],
+        ),
       ),
     );
   }

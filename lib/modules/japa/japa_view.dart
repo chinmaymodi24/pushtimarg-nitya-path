@@ -12,6 +12,7 @@ import '../../core/utils/script_converter.dart';
 import '../../core/widgets/app_card.dart';
 import '../../core/widgets/confirm_dialog.dart';
 import '../../core/widgets/page_header.dart';
+import '../../core/widgets/motion.dart';
 import '../../core/widgets/page_scaffold.dart';
 import '../../core/widgets/tab_header.dart';
 import '../../routes/app_routes.dart';
@@ -204,14 +205,26 @@ class _Counter extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text(
-            '${c.count.value}',
-            style: TextStyle(
-              fontFamily: 'NotoSans',
-              fontSize: size * 0.32,
-              fontWeight: FontWeight.w700,
-              color: p.heading,
-              height: 1.1,
+          // Each count pops in, so a tap is felt even without vibration.
+          AnimatedSwitcher(
+            duration: Motion.fast,
+            transitionBuilder: (child, a) => ScaleTransition(
+              scale: Tween(
+                begin: 0.7,
+                end: 1.0,
+              ).animate(CurvedAnimation(parent: a, curve: Curves.easeOutBack)),
+              child: FadeTransition(opacity: a, child: child),
+            ),
+            child: Text(
+              '${c.count.value}',
+              key: ValueKey(c.count.value),
+              style: TextStyle(
+                fontFamily: 'NotoSans',
+                fontSize: size * 0.32,
+                fontWeight: FontWeight.w700,
+                color: p.heading,
+                height: 1.1,
+              ),
             ),
           ),
           Text(

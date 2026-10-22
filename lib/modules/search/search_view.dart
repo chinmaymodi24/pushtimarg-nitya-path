@@ -35,7 +35,15 @@ class SearchView extends GetView<AppSearchController> {
                     color: p.heading,
                   ),
                 ),
-                Expanded(child: _Field(controller: controller)),
+                Expanded(
+                  child: Hero(
+                    tag: 'app-search',
+                    child: Material(
+                      type: MaterialType.transparency,
+                      child: _Field(controller: controller),
+                    ),
+                  ),
+                ),
               ],
             ),
           ),

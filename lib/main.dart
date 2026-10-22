@@ -11,6 +11,7 @@ import 'core/translations/app_translations.dart';
 import 'data/models/enums.dart';
 import 'data/repository/path_repository.dart';
 import 'routes/app_pages.dart';
+import 'modules/splash/splash_view.dart';
 import 'routes/app_routes.dart';
 
 Future<void> main() async {
@@ -21,6 +22,7 @@ Future<void> main() async {
   Get.put(FavoritesController(), permanent: true);
   Get.put(JapaController(), permanent: true);
   Get.put(ReadingController(), permanent: true);
+  await precacheSplash();
   runApp(App(settings));
 }
 
@@ -41,7 +43,8 @@ class App extends StatelessWidget {
         locale: Locale(settings.uiLang.value.code),
         fallbackLocale: const Locale('en'),
         initialRoute: Routes.splash,
-        defaultTransition: Transition.cupertino,
+        defaultTransition: Transition.rightToLeftWithFade,
+        transitionDuration: const Duration(milliseconds: 280),
         getPages: AppPages.pages,
       ),
     );

@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 
 import '../../core/services/favorites_service.dart';
 import '../../core/theme/palette.dart';
+import '../../core/widgets/motion.dart';
 import '../../core/widgets/svg_icon.dart';
 import '../../core/widgets/tab_header.dart';
 import '../../data/models/category.dart';
@@ -69,11 +70,14 @@ class PathsView extends GetView<PathsTabController> {
                     ),
                   ),
                 ),
-                for (final c in categoryList)
-                  _CategoryCard(
-                    c,
-                    controller.pathsIn(c).length,
-                    controller.pathsIn(c).where((x) => x.available).length,
+                for (final (i, c) in categoryList.indexed)
+                  FadeSlideIn(
+                    index: i,
+                    child: _CategoryCard(
+                      c,
+                      controller.pathsIn(c).length,
+                      controller.pathsIn(c).where((x) => x.available).length,
+                    ),
                   ),
               ],
             );

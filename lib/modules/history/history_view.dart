@@ -7,6 +7,7 @@ import '../../core/utils/time_format.dart';
 import '../../core/widgets/app_card.dart';
 import '../../core/widgets/page_header.dart';
 import '../../core/widgets/page_scaffold.dart';
+import '../../core/widgets/motion.dart';
 import '../../core/widgets/svg_icon.dart';
 import '../../data/models/path_model.dart';
 import '../../data/models/reading_record.dart';
@@ -160,14 +161,11 @@ class _Row extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 6),
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(3),
-                  child: LinearProgressIndicator(
-                    value: r.progress,
-                    minHeight: 4,
-                    backgroundColor: p.chipBorder,
-                    valueColor: AlwaysStoppedAnimation(p.primary),
-                  ),
+                AnimatedBar(
+                  value: r.progress,
+                  height: 4,
+                  color: p.primary,
+                  background: p.chipBorder,
                 ),
                 const SizedBox(height: 6),
                 Text(

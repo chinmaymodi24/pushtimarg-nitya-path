@@ -5,6 +5,7 @@ import '../../core/config/app_config.dart';
 import '../../core/theme/palette.dart';
 import '../../core/widgets/app_card.dart';
 import '../../core/widgets/disclaimer_note.dart';
+import '../../core/widgets/motion.dart';
 import '../../core/widgets/tab_header.dart';
 import '../../routes/app_routes.dart';
 
@@ -42,40 +43,44 @@ class MoreView extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               const SizedBox(height: 4),
-              for (final g in _groups) ...[
-                AppCard(
-                  padding: EdgeInsets.zero,
-                  child: Column(
-                    children: [
-                      for (var i = 0; i < g.length; i++) ...[
-                        if (i > 0)
-                          Divider(
-                            height: 1,
-                            indent: 16,
-                            endIndent: 16,
-                            color: p.cardBorder,
-                          ),
-                        ListTile(
-                          contentPadding: const EdgeInsets.symmetric(
-                            horizontal: 16,
-                          ),
-                          leading: Icon(g[i].$1, color: p.heading),
-                          title: Text(
-                            g[i].$2.tr,
-                            style: TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.w600,
-                              color: p.text,
+              for (final (gi, g) in _groups.indexed) ...[
+                FadeSlideIn(
+                  index: gi,
+                  child: AppCard(
+                    padding: EdgeInsets.zero,
+                    child: Column(
+                      children: [
+                        for (var i = 0; i < g.length; i++) ...[
+                          if (i > 0)
+                            Divider(
+                              height: 1,
+                              indent: 16,
+                              endIndent: 16,
+                              color: p.cardBorder,
                             ),
+                          ListTile(
+                            contentPadding: const EdgeInsets.symmetric(
+                              horizontal: 16,
+                            ),
+                            leading: Icon(g[i].$1, color: p.heading),
+                            title: Text(
+                              g[i].$2.tr,
+                              style: TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.w600,
+                                color: p.text,
+                              ),
+                            ),
+                            trailing: Icon(
+                              Icons.chevron_right_rounded,
+                              color: p.subtext,
+                            ),
+                            onTap: () =>
+                                Get.toNamed(g[i].$3, arguments: g[i].$4),
                           ),
-                          trailing: Icon(
-                            Icons.chevron_right_rounded,
-                            color: p.subtext,
-                          ),
-                          onTap: () => Get.toNamed(g[i].$3, arguments: g[i].$4),
-                        ),
+                        ],
                       ],
-                    ],
+                    ),
                   ),
                 ),
                 const SizedBox(height: 14),

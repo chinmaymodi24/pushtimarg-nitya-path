@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import '../../modules/shell/shell_controller.dart';
 import '../../routes/app_routes.dart';
 import '../theme/palette.dart';
+import 'motion.dart';
 
 /// Floating white tab bar; the selected tab's icon sits in a saffron pill.
 class AppBottomNav extends StatelessWidget {
@@ -57,40 +58,60 @@ class AppBottomNav extends StatelessWidget {
             children: [
               for (var i = 0; i < _items.length; i++)
                 Expanded(
-                  child: InkResponse(
-                    onTap: () => open(i),
-                    radius: 36,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        AnimatedContainer(
-                          duration: const Duration(milliseconds: 200),
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: 16,
-                            vertical: 3,
+                  // No ink splash: the sliding pill is the tap feedback.
+                  child: Semantics(
+                    button: true,
+                    selected: i == current,
+                    label: _items[i].$3.tr,
+                    child: GestureDetector(
+                      behavior: HitTestBehavior.opaque,
+                      onTap: () => open(i),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          AnimatedContainer(
+                            duration: Motion.medium,
+                            curve: Motion.curve,
+                            padding: EdgeInsets.symmetric(
+                              horizontal: i == current ? 18 : 12,
+                              vertical: 3,
+                            ),
+                            decoration: BoxDecoration(
+                              color: i == current
+                                  ? p.primary
+                                  : p.primary.withValues(alpha: 0),
+                              borderRadius: BorderRadius.circular(14),
+                            ),
+                            child: AnimatedScale(
+                              scale: i == current ? 1.08 : 1,
+                              duration: Motion.medium,
+                              curve: Curves.easeOutBack,
+                              child: Icon(
+                                i == current ? _items[i].$2 : _items[i].$1,
+                                size: 23,
+                                color: i == current ? Colors.white : p.subtext,
+                              ),
+                            ),
                           ),
-                          decoration: BoxDecoration(
-                            color: i == current
-                                ? p.primary
-                                : Colors.transparent,
-                            borderRadius: BorderRadius.circular(14),
+                          const SizedBox(height: 3),
+                          AnimatedDefaultTextStyle(
+                            duration: Motion.fast,
+                            style: TextStyle(
+                              fontFamily: DefaultTextStyle.of(context)
+                                  .style
+                                  .fontFamily,
+                              fontSize: 11.5,
+                              fontWeight: i == current
+                                  ? FontWeight.w700
+                                  : FontWeight.w600,
+                              color: i == current ? p.primary : p.subtext,
+                            ),
+                            child: ExcludeSemantics(
+                              child: Text(_items[i].$3.tr),
+                            ),
                           ),
-                          child: Icon(
-                            i == current ? _items[i].$2 : _items[i].$1,
-                            size: 23,
-                            color: i == current ? Colors.white : p.subtext,
-                          ),
-                        ),
-                        const SizedBox(height: 3),
-                        Text(
-                          _items[i].$3.tr,
-                          style: TextStyle(
-                            fontSize: 11.5,
-                            fontWeight: FontWeight.w600,
-                            color: i == current ? p.primary : p.subtext,
-                          ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
                 ),

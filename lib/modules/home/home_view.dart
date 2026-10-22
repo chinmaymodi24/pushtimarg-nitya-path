@@ -8,6 +8,7 @@ import '../../core/services/settings_service.dart';
 import '../../core/theme/palette.dart';
 import '../../core/utils/day_info.dart';
 import '../../core/widgets/app_logo.dart';
+import '../../core/widgets/motion.dart';
 import '../../core/widgets/svg_icon.dart';
 import '../../data/models/seva.dart';
 import '../../data/repository/path_repository.dart';
@@ -25,15 +26,15 @@ class HomeView extends GetView<HomeController> {
     return ListView(
       padding: const EdgeInsets.fromLTRB(18, 4, 18, 24),
       children: const [
-        _Header(),
+        FadeSlideIn(index: 0, child: _Header()),
         SizedBox(height: 12),
-        _SearchBar(),
+        FadeSlideIn(index: 1, child: _SearchBar()),
         SizedBox(height: 14),
-        _NowSevaCard(),
-        _SectionTitle(),
-        _SevaGrid(),
+        FadeSlideIn(index: 2, child: _NowSevaCard()),
+        FadeSlideIn(index: 3, child: _SectionTitle()),
+        FadeSlideIn(index: 4, child: _SevaGrid()),
         SizedBox(height: 16),
-        _MiniCards(),
+        FadeSlideIn(index: 5, child: _MiniCards()),
       ],
     );
   }
@@ -502,14 +503,10 @@ class _Mini extends StatelessWidget {
               ),
               const Spacer(),
               const SizedBox(height: 7),
-              ClipRRect(
-                borderRadius: BorderRadius.circular(3),
-                child: LinearProgressIndicator(
-                  value: progress,
-                  minHeight: 5,
-                  backgroundColor: p.chipBorder,
-                  valueColor: AlwaysStoppedAnimation(p.primary),
-                ),
+              AnimatedBar(
+                value: progress,
+                color: p.primary,
+                background: p.chipBorder,
               ),
             ],
           ),
@@ -526,29 +523,32 @@ class _SearchBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final p = context.pal;
-    return Material(
-      color: p.card,
-      shape: StadiumBorder(side: BorderSide(color: p.cardBorder)),
-      child: InkWell(
-        customBorder: const StadiumBorder(),
-        onTap: () => Get.toNamed(Routes.search),
-        child: SizedBox(
-          height: 48,
-          child: Row(
-            children: [
-              const SizedBox(width: 16),
-              Icon(Icons.search_rounded, color: p.subtext),
-              const SizedBox(width: 10),
-              Expanded(
-                child: Text(
-                  'search_hint'.tr,
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                  style: TextStyle(fontSize: 14.5, color: p.subtext),
+    return Hero(
+      tag: 'app-search',
+      child: Material(
+        color: p.card,
+        shape: StadiumBorder(side: BorderSide(color: p.cardBorder)),
+        child: InkWell(
+          customBorder: const StadiumBorder(),
+          onTap: () => Get.toNamed(Routes.search),
+          child: SizedBox(
+            height: 48,
+            child: Row(
+              children: [
+                const SizedBox(width: 16),
+                Icon(Icons.search_rounded, color: p.subtext),
+                const SizedBox(width: 10),
+                Expanded(
+                  child: Text(
+                    'search_hint'.tr,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyle(fontSize: 14.5, color: p.subtext),
+                  ),
                 ),
-              ),
-              const SizedBox(width: 16),
-            ],
+                const SizedBox(width: 16),
+              ],
+            ),
           ),
         ),
       ),

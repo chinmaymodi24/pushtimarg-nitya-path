@@ -38,6 +38,8 @@ class AppPages {
     GetPage(
       name: Routes.shell,
       page: () => const ShellView(),
+      transition: Transition.fadeIn,
+      transitionDuration: const Duration(milliseconds: 450),
       binding: BindingsBuilder(() {
         Get.put(ShellController(), permanent: true);
         Get.put(HomeController(), permanent: true);
