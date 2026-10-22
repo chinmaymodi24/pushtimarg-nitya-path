@@ -59,39 +59,38 @@ class SplashView extends GetView<SplashController> {
               gaplessPlayback: true,
             ),
           ),
+          // Just under the artwork, which keeps its exact native position.
+          Center(
+            child: Transform.translate(
+              offset: const Offset(0, _logoBox * 0.38),
+              child: _FadeIn(
+                child: SizedBox(
+                  width: 110,
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(2),
+                    child: LinearProgressIndicator(
+                      minHeight: 3,
+                      backgroundColor: p.chipBorder,
+                      valueColor: AlwaysStoppedAnimation(p.primary),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ),
           Positioned(
             left: 0,
             right: 0,
             bottom: 56,
-            child: TweenAnimationBuilder<double>(
-              tween: Tween(begin: 0, end: 1),
-              duration: const Duration(milliseconds: 500),
-              curve: Curves.easeOut,
-              builder: (_, t, child) => Opacity(opacity: t, child: child),
-              child: Column(
-                children: [
-                  SizedBox(
-                    width: 96,
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(2),
-                      child: LinearProgressIndicator(
-                        minHeight: 3,
-                        backgroundColor: p.chipBorder,
-                        valueColor: AlwaysStoppedAnimation(p.primary),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(height: 22),
-                  Text(
-                    'mantra'.tr,
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontSize: 17,
-                      fontWeight: FontWeight.w600,
-                      color: p.heading,
-                    ),
-                  ),
-                ],
+            child: _FadeIn(
+              child: Text(
+                'mantra'.tr,
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 17,
+                  fontWeight: FontWeight.w600,
+                  color: p.heading,
+                ),
               ),
             ),
           ),
@@ -99,4 +98,18 @@ class SplashView extends GetView<SplashController> {
       ),
     );
   }
+}
+
+class _FadeIn extends StatelessWidget {
+  const _FadeIn({required this.child});
+  final Widget child;
+
+  @override
+  Widget build(BuildContext context) => TweenAnimationBuilder<double>(
+    tween: Tween(begin: 0, end: 1),
+    duration: const Duration(milliseconds: 500),
+    curve: Curves.easeOut,
+    builder: (_, t, child) => Opacity(opacity: t, child: child),
+    child: child,
+  );
 }
