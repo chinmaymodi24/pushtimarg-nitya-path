@@ -1,4 +1,5 @@
 import '../../core/utils/script_converter.dart';
+import '../../core/utils/search_fold.dart';
 import 'enums.dart';
 
 class Verse {
@@ -9,6 +10,14 @@ class Verse {
   /// Devanagari source text, lines separated by '\n'.
   final String dev;
   final Map<String, String> meanings;
+
+  /// Verse in every script plus all meanings, folded, for search.
+  late final String searchText = fold([
+    dev,
+    ScriptConverter.convert(dev, ReaderScript.gujarati),
+    ScriptConverter.convert(dev, ReaderScript.roman),
+    ...meanings.values,
+  ].join(' '));
 
   String? meaning(Lang l) {
     final m = meanings[l.code];
@@ -47,12 +56,12 @@ class PathModel {
       };
 
   /// Title in every script, lower-cased, for search.
-  late final String searchText = [
+  late final String searchText = fold([
     titleDev,
     ScriptConverter.convert(titleDev, ReaderScript.gujarati),
     ScriptConverter.convert(titleDev, ReaderScript.roman),
     titleEn,
-  ].join(' ').toLowerCase();
+  ].join(' '));
 
   factory PathModel.fromJson(Map<String, dynamic> j) => PathModel(
         id: j['id'] as String,

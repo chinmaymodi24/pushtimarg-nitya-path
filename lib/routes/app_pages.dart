@@ -15,6 +15,8 @@ import '../modules/paths/paths_tab_controller.dart';
 import '../modules/paths/seva_view.dart';
 import '../modules/reader/reader_controller.dart';
 import '../modules/reader/reader_view.dart';
+import '../modules/search/search_controller.dart';
+import '../modules/search/search_view.dart';
 import '../modules/settings/settings_page.dart';
 import '../modules/settings/specimen_view.dart';
 import '../modules/shell/shell_controller.dart';
@@ -64,6 +66,12 @@ class AppPages {
     GetPage(name: Routes.contact, page: () => const ContactView()),
     GetPage(name: Routes.about, page: () => const AboutView()),
     GetPage(name: Routes.legal, page: () => const LegalView()),
+    GetPage(
+      name: Routes.search,
+      page: () => const SearchView(),
+      transition: Transition.fadeIn,
+      binding: BindingsBuilder(() => Get.lazyPut(() => AppSearchController())),
+    ),
     GetPage(name: Routes.japaHistory, page: () => const JapaHistoryView()),
     GetPage(
       name: Routes.history,

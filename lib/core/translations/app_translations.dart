@@ -160,6 +160,15 @@ class AppTranslations extends Translations {
     'read_pct': "@n% વાંચ્યું",
     'scroll_left': "પાછળ",
     'scroll_right': "આગળ",
+    'search_hint': "પાઠ, શ્લોક કે સુવિધા શોધો…",
+    'sec_paths': "પાઠ",
+    'sec_verses': "શ્લોક અને અર્થ",
+    'sec_sevas': "સેવા",
+    'sec_features': "એપ સુવિધાઓ",
+    'quick_access': "ઝડપી પહોંચ",
+    'verse_n': "શ્લોક @n",
+    'search_tip': "પાઠનું નામ, શ્લોકના શબ્દો, અર્થ કે એપની કોઈ પણ સુવિધા લખો. ગુજરાતી, હિન્દી કે English ચાલશે.",
+    'more_results': "+ @n વધુ",
   };
 
   static const _hi = {
@@ -314,6 +323,15 @@ class AppTranslations extends Translations {
     'read_pct': "@n% पढ़ा",
     'scroll_left': "पीछे",
     'scroll_right': "आगे",
+    'search_hint': "पाठ, श्लोक या सुविधा खोजें…",
+    'sec_paths': "पाठ",
+    'sec_verses': "श्लोक और अर्थ",
+    'sec_sevas': "सेवा",
+    'sec_features': "ऐप सुविधाएँ",
+    'quick_access': "त्वरित पहुँच",
+    'verse_n': "श्लोक @n",
+    'search_tip': "पाठ का नाम, श्लोक के शब्द, अर्थ या ऐप की कोई भी सुविधा लिखें। गुजराती, हिन्दी या English चलेगा।",
+    'more_results': "+ @n और",
   };
 
   static const _en = {
@@ -468,5 +486,14 @@ class AppTranslations extends Translations {
     'read_pct': "@n% read",
     'scroll_left': "Scroll left",
     'scroll_right': "Scroll right",
+    'search_hint': "Search paths, verses or features…",
+    'sec_paths': "Paths",
+    'sec_verses': "Verses and meanings",
+    'sec_sevas': "Seva",
+    'sec_features': "App features",
+    'quick_access': "Quick access",
+    'verse_n': "Verse @n",
+    'search_tip': "Type a path name, words from a verse, a meaning or any app feature. Gujarati, Hindi or English all work.",
+    'more_results': "+ @n more",
   };
 }

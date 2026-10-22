@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../core/utils/search_fold.dart';
+
 import '../../core/services/favorites_service.dart';
 import '../../data/models/path_model.dart';
 import '../../data/models/seva.dart';
@@ -52,7 +54,7 @@ class PathsTabController extends GetxController {
 
   /// Visible paths grouped by seva, in seva order; empty groups dropped.
   List<(Seva, List<PathModel>)> get groups {
-    final q = query.value.trim().toLowerCase();
+    final q = fold(query.value.trim());
     final f = filter.value;
     final favs = _fav.ids.toSet();
     final out = <(Seva, List<PathModel>)>[];

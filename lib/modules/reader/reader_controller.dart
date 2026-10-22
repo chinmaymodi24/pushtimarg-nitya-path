@@ -23,6 +23,10 @@ class ReaderController extends GetxController {
   final progress = 0.0.obs;
   final verse = 1.obs;
 
+  /// Verse briefly tinted after arriving from search; 0 when none.
+  final highlight = 0.obs;
+  int? _jumpTo;
+
   double? _resumeAt;
   bool _engaged = false;
   bool _sessionCounted = false;
@@ -37,7 +41,10 @@ class ReaderController extends GetxController {
     super.onInit();
     final a = Get.arguments;
     final id = a is Map ? a['id'] as String : a as String;
-    if (a is Map) _resumeAt = (a['resume'] as num?)?.toDouble();
+    if (a is Map) {
+      _resumeAt = (a['resume'] as num?)?.toDouble();
+      _jumpTo = a['verse'] as int?;
+    }
     path = Get.find<PathRepository>().byId(id)!;
     verseKeys = List.generate(path.verses.length, (_) => GlobalKey());
     scroll.addListener(_onScroll);
@@ -50,7 +57,19 @@ class ReaderController extends GetxController {
       if (!scroll.hasClients) return;
       final max = scroll.position.maxScrollExtent;
       final r = _resumeAt;
-      if (r != null && r > 0 && max > 0) {
+      final j = _jumpTo;
+      if (j != null && j >= 1 && j <= verseKeys.length) {
+        final ctx = verseKeys[j - 1].currentContext;
+        if (ctx != null) {
+          Scrollable.ensureVisible(
+            ctx,
+            alignment: 0.02,
+            duration: const Duration(milliseconds: 450),
+          );
+        }
+        highlight.value = j;
+        Timer(const Duration(milliseconds: 2600), () => highlight.value = 0);
+      } else if (r != null && r > 0 && max > 0) {
         scroll.jumpTo((r * max).clamp(0, max));
       } else if (max <= 0) {
         progress.value = 1;
@@ -79,8 +98,7 @@ class ReaderController extends GetxController {
     final line = ctx == null ? 300.0 : MediaQuery.sizeOf(ctx).height * 0.35;
     var current = 1;
     for (var i = 0; i < verseKeys.length; i++) {
-      final box =
-          verseKeys[i].currentContext?.findRenderObject() as RenderBox?;
+      final box = verseKeys[i].currentContext?.findRenderObject() as RenderBox?;
       if (box == null || !box.attached) continue;
       if (box.localToGlobal(Offset.zero).dy <= line) current = i + 1;
     }

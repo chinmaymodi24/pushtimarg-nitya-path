@@ -29,42 +29,44 @@ class ReaderView extends GetView<ReaderController> {
       bottom: const _ReaderBar(),
       body: Column(
         children: [
-          Obx(() => PageHeader(
-                title: controller.path.title(s.uiLang.value),
-                onBack: Get.back,
-                actions: [
-                  IconButton(
-                    visualDensity: VisualDensity.compact,
-                    tooltip: 'wishlist'.tr,
-                    icon: Icon(
-                      fav.isFav(controller.path.id)
-                          ? Icons.favorite_rounded
-                          : Icons.favorite_border_rounded,
-                      color: fav.isFav(controller.path.id)
-                          ? p.primary
-                          : p.heading,
-                    ),
-                    onPressed: () {
-                      final added = fav.toggle(controller.path.id);
-                      Get.rawSnackbar(
-                        message: (added ? 'wish_added' : 'wish_removed').tr,
-                        duration: const Duration(milliseconds: 1400),
-                      );
-                    },
+          Obx(
+            () => PageHeader(
+              title: controller.path.title(s.uiLang.value),
+              onBack: Get.back,
+              actions: [
+                IconButton(
+                  visualDensity: VisualDensity.compact,
+                  tooltip: 'wishlist'.tr,
+                  icon: Icon(
+                    fav.isFav(controller.path.id)
+                        ? Icons.favorite_rounded
+                        : Icons.favorite_border_rounded,
+                    color: fav.isFav(controller.path.id)
+                        ? p.primary
+                        : p.heading,
                   ),
-                  IconButton(
-                    visualDensity: VisualDensity.compact,
-                    tooltip: 'choose_script'.tr,
-                    icon: Icon(Icons.menu_book_outlined, color: p.heading),
-                    onPressed: _openScriptSheet,
-                  ),
-                  IconButton(
-                    visualDensity: VisualDensity.compact,
-                    icon: Icon(Icons.settings_outlined, color: p.heading),
-                    onPressed: () => Get.toNamed(Routes.settings),
-                  ),
-                ],
-              )),
+                  onPressed: () {
+                    final added = fav.toggle(controller.path.id);
+                    Get.rawSnackbar(
+                      message: (added ? 'wish_added' : 'wish_removed').tr,
+                      duration: const Duration(milliseconds: 1400),
+                    );
+                  },
+                ),
+                IconButton(
+                  visualDensity: VisualDensity.compact,
+                  tooltip: 'choose_script'.tr,
+                  icon: Icon(Icons.menu_book_outlined, color: p.heading),
+                  onPressed: _openScriptSheet,
+                ),
+                IconButton(
+                  visualDensity: VisualDensity.compact,
+                  icon: Icon(Icons.settings_outlined, color: p.heading),
+                  onPressed: () => Get.toNamed(Routes.settings),
+                ),
+              ],
+            ),
+          ),
           const _ProgressStrip(),
           Expanded(
             child: Obx(() {
@@ -81,29 +83,33 @@ class ReaderView extends GetView<ReaderController> {
                 child: CustomPaint(
                   painter: CornerFlourishPainter(p.gold.withValues(alpha: 0.5)),
                   child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 22),
-                  child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    for (var i = 0; i < verses.length; i++)
-                      KeyedSubtree(
-                        key: controller.verseKeys[i],
-                        child: _VerseBlock(
-                          verse: verses[i],
-                          script: script,
-                          scale: scale,
-                          meaningLang: lang,
-                          last: i == verses.length - 1,
+                    padding: const EdgeInsets.symmetric(horizontal: 22),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        for (var i = 0; i < verses.length; i++)
+                          KeyedSubtree(
+                            key: controller.verseKeys[i],
+                            child: _VerseBlock(
+                              highlighted:
+                                  controller.highlight.value ==
+                                  verses[i].number,
+                              verse: verses[i],
+                              script: script,
+                              scale: scale,
+                              meaningLang: lang,
+                              last: i == verses.length - 1,
+                            ),
+                          ),
+                        Padding(
+                          padding: const EdgeInsets.only(top: 8),
+                          child: DisclaimerNote(
+                            pathTitle: controller.path.title(s.uiLang.value),
+                          ),
                         ),
-                      ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 8),
-                      child: DisclaimerNote(
-                          pathTitle: controller.path.title(s.uiLang.value)),
+                      ],
                     ),
-                  ],
-                ),
-                ),
+                  ),
                 ),
               );
             }),
@@ -116,38 +122,50 @@ class ReaderView extends GetView<ReaderController> {
   void _openScriptSheet() {
     final s = Get.find<SettingsController>();
     Get.bottomSheet(
-      Builder(builder: (context) {
-        final p = context.pal;
-        return Container(
-          padding: const EdgeInsets.fromLTRB(16, 20, 16, 32),
-          decoration: BoxDecoration(
-            color: p.card,
-            borderRadius: const BorderRadius.vertical(top: Radius.circular(22)),
-          ),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text('choose_script'.tr,
+      Builder(
+        builder: (context) {
+          final p = context.pal;
+          return Container(
+            padding: const EdgeInsets.fromLTRB(16, 20, 16, 32),
+            decoration: BoxDecoration(
+              color: p.card,
+              borderRadius: const BorderRadius.vertical(
+                top: Radius.circular(22),
+              ),
+            ),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'choose_script'.tr,
                   style: TextStyle(
-                      fontSize: 17, fontWeight: FontWeight.w700, color: p.text)),
-              const SizedBox(height: 14),
-              Obx(() => ChoiceChips<ReaderScript>(
+                    fontSize: 17,
+                    fontWeight: FontWeight.w700,
+                    color: p.text,
+                  ),
+                ),
+                const SizedBox(height: 14),
+                Obx(
+                  () => ChoiceChips<ReaderScript>(
                     values: ReaderScript.values,
                     selected: s.script.value,
                     label: (v) => v.nativeName,
                     onSelected: s.setScript,
-                  )),
-            ],
-          ),
-        );
-      }),
+                  ),
+                ),
+              ],
+            ),
+          );
+        },
+      ),
     );
   }
 }
 
 class _VerseBlock extends StatelessWidget {
   const _VerseBlock({
+    required this.highlighted,
     required this.verse,
     required this.script,
     required this.scale,
@@ -155,6 +173,7 @@ class _VerseBlock extends StatelessWidget {
     required this.last,
   });
 
+  final bool highlighted;
   final Verse verse;
   final ReaderScript script;
   final double scale;
@@ -165,33 +184,46 @@ class _VerseBlock extends StatelessWidget {
   Widget build(BuildContext context) {
     final p = context.pal;
     final meaning = meaningLang == null ? null : verse.meaning(meaningLang!);
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: [
-        Text(
-          ScriptConverter.verseMark(verse.number, script),
-          textAlign: TextAlign.center,
-          style: AppTheme.verse(script, 16 * scale, p.subtext),
-        ),
-        const SizedBox(height: 4),
-        Text(
-          ScriptConverter.convert(verse.dev, script),
-          textAlign: TextAlign.center,
-          style: AppTheme.verse(script, 21 * scale, p.verse),
-        ),
-        if (meaning != null) ...[
-          const OrnamentDivider(),
+    return AnimatedContainer(
+      duration: const Duration(milliseconds: 400),
+      padding: const EdgeInsets.symmetric(horizontal: 8),
+      decoration: BoxDecoration(
+        color: highlighted ? p.iconTile : Colors.transparent,
+        borderRadius: BorderRadius.circular(16),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
           Text(
-            '${meaningLang!.meaningWord} (${meaningLang!.nativeName})',
-            style: AppTheme.meaning(meaningLang!, 17 * scale, p.heading)
-                .copyWith(fontWeight: FontWeight.w700),
+            ScriptConverter.verseMark(verse.number, script),
+            textAlign: TextAlign.center,
+            style: AppTheme.verse(script, 16 * scale, p.subtext),
           ),
           const SizedBox(height: 4),
-          Text(meaning,
-              style: AppTheme.meaning(meaningLang!, 15.5 * scale, p.meaning)),
+          Text(
+            ScriptConverter.convert(verse.dev, script),
+            textAlign: TextAlign.center,
+            style: AppTheme.verse(script, 21 * scale, p.verse),
+          ),
+          if (meaning != null) ...[
+            const OrnamentDivider(),
+            Text(
+              '${meaningLang!.meaningWord} (${meaningLang!.nativeName})',
+              style: AppTheme.meaning(
+                meaningLang!,
+                17 * scale,
+                p.heading,
+              ).copyWith(fontWeight: FontWeight.w700),
+            ),
+            const SizedBox(height: 4),
+            Text(
+              meaning,
+              style: AppTheme.meaning(meaningLang!, 15.5 * scale, p.meaning),
+            ),
+          ],
+          if (!last) const OrnamentDivider() else const SizedBox(height: 16),
         ],
-        if (!last) const OrnamentDivider() else const SizedBox(height: 16),
-      ],
+      ),
     );
   }
 }
@@ -218,28 +250,31 @@ class _ReaderBar extends StatelessWidget {
             children: [
               const Expanded(child: SizeSlider()),
               const SizedBox(width: 8),
-              Obx(() => GestureDetector(
-                    onTap: () => s.setShowMeaning(!s.showMeaning.value),
-                    child: Container(
-                      height: 38,
-                      padding: const EdgeInsets.symmetric(horizontal: 14),
-                      alignment: Alignment.center,
-                      decoration: BoxDecoration(
-                        color: p.pill,
-                        borderRadius: BorderRadius.circular(19),
-                        border: Border.all(color: p.pillBorder),
-                      ),
-                      child: Text(
-                        s.showMeaning.value
-                            ? 'hide_meaning'.tr
-                            : 'show_meaning_btn'.tr,
-                        style: TextStyle(
-                            fontSize: 14,
-                            fontWeight: FontWeight.w600,
-                            color: p.text),
+              Obx(
+                () => GestureDetector(
+                  onTap: () => s.setShowMeaning(!s.showMeaning.value),
+                  child: Container(
+                    height: 38,
+                    padding: const EdgeInsets.symmetric(horizontal: 14),
+                    alignment: Alignment.center,
+                    decoration: BoxDecoration(
+                      color: p.pill,
+                      borderRadius: BorderRadius.circular(19),
+                      border: Border.all(color: p.pillBorder),
+                    ),
+                    child: Text(
+                      s.showMeaning.value
+                          ? 'hide_meaning'.tr
+                          : 'show_meaning_btn'.tr,
+                      style: TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.w600,
+                        color: p.text,
                       ),
                     ),
-                  )),
+                  ),
+                ),
+              ),
               IconButton(
                 onPressed: () => s.toggleDark(context),
                 icon: Icon(
@@ -270,33 +305,41 @@ class _ProgressStrip extends GetView<ReaderController> {
       child: Obx(() {
         final pr = controller.progress.value;
         final done = pr >= 0.98;
-        return Column(children: [
-          ClipRRect(
-            borderRadius: BorderRadius.circular(3),
-            child: LinearProgressIndicator(
-              value: pr,
-              minHeight: 5,
-              backgroundColor: p.chipBorder,
-              valueColor: AlwaysStoppedAnimation(p.primary),
+        return Column(
+          children: [
+            ClipRRect(
+              borderRadius: BorderRadius.circular(3),
+              child: LinearProgressIndicator(
+                value: pr,
+                minHeight: 5,
+                backgroundColor: p.chipBorder,
+                valueColor: AlwaysStoppedAnimation(p.primary),
+              ),
             ),
-          ),
-          const SizedBox(height: 4),
-          Row(children: [
-            Text(
-                'verse_of'.trParams(
-                    {'a': '${controller.verse.value}', 'b': '$n'}),
-                style: small),
-            const Spacer(),
-            Text(
-              done
-                  ? 'read_done'.tr
-                  : '${'left_verses'.trParams({'n': '${controller.versesLeft}'})}  ·  ${(pr * 100).round()}%',
-              style: small.copyWith(
-                  color: done ? p.primary : p.subtext,
-                  fontWeight: done ? FontWeight.w700 : FontWeight.w400),
+            const SizedBox(height: 4),
+            Row(
+              children: [
+                Text(
+                  'verse_of'.trParams({
+                    'a': '${controller.verse.value}',
+                    'b': '$n',
+                  }),
+                  style: small,
+                ),
+                const Spacer(),
+                Text(
+                  done
+                      ? 'read_done'.tr
+                      : '${'left_verses'.trParams({'n': '${controller.versesLeft}'})}  ·  ${(pr * 100).round()}%',
+                  style: small.copyWith(
+                    color: done ? p.primary : p.subtext,
+                    fontWeight: done ? FontWeight.w700 : FontWeight.w400,
+                  ),
+                ),
+              ],
             ),
-          ]),
-        ]);
+          ],
+        );
       }),
     );
   }

@@ -13,4 +13,5 @@ abstract class Routes {
   static const legal = '/legal';
   static const japaHistory = '/japa-history';
   static const history = '/history';
+  static const search = '/search';
 }

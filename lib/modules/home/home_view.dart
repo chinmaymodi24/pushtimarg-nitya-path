@@ -26,6 +26,8 @@ class HomeView extends GetView<HomeController> {
       padding: const EdgeInsets.fromLTRB(18, 4, 18, 24),
       children: const [
         _Header(),
+        SizedBox(height: 12),
+        _SearchBar(),
         SizedBox(height: 14),
         _NowSevaCard(),
         _SectionTitle(),
@@ -552,6 +554,43 @@ class _Mini extends StatelessWidget {
                   valueColor: AlwaysStoppedAnimation(p.primary),
                 ),
               ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+/// Looks like a field; opens the full search screen.
+class _SearchBar extends StatelessWidget {
+  const _SearchBar();
+
+  @override
+  Widget build(BuildContext context) {
+    final p = context.pal;
+    return Material(
+      color: p.card,
+      shape: StadiumBorder(side: BorderSide(color: p.cardBorder)),
+      child: InkWell(
+        customBorder: const StadiumBorder(),
+        onTap: () => Get.toNamed(Routes.search),
+        child: SizedBox(
+          height: 48,
+          child: Row(
+            children: [
+              const SizedBox(width: 16),
+              Icon(Icons.search_rounded, color: p.subtext),
+              const SizedBox(width: 10),
+              Expanded(
+                child: Text(
+                  'search_hint'.tr,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(fontSize: 14.5, color: p.subtext),
+                ),
+              ),
+              const SizedBox(width: 16),
             ],
           ),
         ),

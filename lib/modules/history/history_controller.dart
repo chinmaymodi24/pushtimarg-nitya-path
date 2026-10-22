@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../core/utils/search_fold.dart';
+
 import '../../core/services/reading_service.dart';
 import '../../data/models/path_model.dart';
 import '../../data/models/reading_record.dart';
@@ -21,7 +23,7 @@ class HistoryController extends GetxController {
 
   /// Read paths, newest first, filtered by the search text in any script.
   List<(ReadRecord, PathModel)> get items {
-    final q = query.value.trim().toLowerCase();
+    final q = fold(query.value.trim());
     final out = <(ReadRecord, PathModel)>[];
     for (final r in reading.sorted) {
       final path = _repo.byId(r.pathId);
