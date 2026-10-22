@@ -26,8 +26,10 @@ class SettingsController extends GetxController {
     showMeaning.value = _box.read<bool>('showMeaning') ?? true;
     meaningLang.value = _enum(Lang.values, 'meaningLang', Lang.gu);
     uiLang.value = _enum(Lang.values, 'uiLang', Lang.gu);
-    textScale.value =
-        (_box.read<double>('textScale') ?? 1.0).clamp(minScale, maxScale);
+    textScale.value = (_box.read<double>('textScale') ?? 1.0).clamp(
+      minScale,
+      maxScale,
+    );
     themeMode.value = _enum(ThemeMode.values, 'themeMode', ThemeMode.light);
   }
 

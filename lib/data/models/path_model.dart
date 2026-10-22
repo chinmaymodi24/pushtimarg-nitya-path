@@ -12,12 +12,14 @@ class Verse {
   final Map<String, String> meanings;
 
   /// Verse in every script plus all meanings, folded, for search.
-  late final String searchText = fold([
-    dev,
-    ScriptConverter.convert(dev, ReaderScript.gujarati),
-    ScriptConverter.convert(dev, ReaderScript.roman),
-    ...meanings.values,
-  ].join(' '));
+  late final String searchText = fold(
+    [
+      dev,
+      ScriptConverter.convert(dev, ReaderScript.gujarati),
+      ScriptConverter.convert(dev, ReaderScript.roman),
+      ...meanings.values,
+    ].join(' '),
+  );
 
   String? meaning(Lang l) {
     final m = meanings[l.code];
@@ -25,10 +27,10 @@ class Verse {
   }
 
   factory Verse.fromJson(Map<String, dynamic> j) => Verse(
-        number: j['n'] as int,
-        dev: j['dev'] as String,
-        meanings: Map<String, String>.from(j['meaning'] as Map? ?? {}),
-      );
+    number: j['n'] as int,
+    dev: j['dev'] as String,
+    meanings: Map<String, String>.from(j['meaning'] as Map? ?? {}),
+  );
 }
 
 class PathModel {
@@ -50,27 +52,29 @@ class PathModel {
 
   /// The path's name is shown in the app language, not the reading script.
   String title(Lang ui) => switch (ui) {
-        Lang.gu => ScriptConverter.convert(titleDev, ReaderScript.gujarati),
-        Lang.hi => titleDev,
-        Lang.en => titleEn,
-      };
+    Lang.gu => ScriptConverter.convert(titleDev, ReaderScript.gujarati),
+    Lang.hi => titleDev,
+    Lang.en => titleEn,
+  };
 
   /// Title in every script, lower-cased, for search.
-  late final String searchText = fold([
-    titleDev,
-    ScriptConverter.convert(titleDev, ReaderScript.gujarati),
-    ScriptConverter.convert(titleDev, ReaderScript.roman),
-    titleEn,
-  ].join(' '));
+  late final String searchText = fold(
+    [
+      titleDev,
+      ScriptConverter.convert(titleDev, ReaderScript.gujarati),
+      ScriptConverter.convert(titleDev, ReaderScript.roman),
+      titleEn,
+    ].join(' '),
+  );
 
   factory PathModel.fromJson(Map<String, dynamic> j) => PathModel(
-        id: j['id'] as String,
-        seva: j['seva'] as String,
-        icon: j['icon'] as String? ?? 'lotus',
-        titleDev: j['title'] as String,
-        titleEn: j['title_en'] as String? ?? j['title'] as String,
-        verses: (j['verses'] as List)
-            .map((e) => Verse.fromJson(e as Map<String, dynamic>))
-            .toList(),
-      );
+    id: j['id'] as String,
+    seva: j['seva'] as String,
+    icon: j['icon'] as String? ?? 'lotus',
+    titleDev: j['title'] as String,
+    titleEn: j['title_en'] as String? ?? j['title'] as String,
+    verses: (j['verses'] as List)
+        .map((e) => Verse.fromJson(e as Map<String, dynamic>))
+        .toList(),
+  );
 }

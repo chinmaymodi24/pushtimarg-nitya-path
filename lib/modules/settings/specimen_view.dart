@@ -38,10 +38,12 @@ class SpecimenView extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                              '${script.nativeName} · ${label.tr} · ${(21 * scale).round()}px',
-                              style: TextStyle(
-                                  color: p.heading,
-                                  fontWeight: FontWeight.w600)),
+                            '${script.nativeName} · ${label.tr} · ${(21 * scale).round()}px',
+                            style: TextStyle(
+                              color: p.heading,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
                           const SizedBox(height: 6),
                           Text(
                             ScriptConverter.convert(_sample, script),

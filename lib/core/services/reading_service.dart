@@ -19,8 +19,9 @@ class ReadingController extends GetxController {
   }
 
   /// Most recently read first.
-  List<ReadRecord> get sorted => records.values.toList()
-    ..sort((a, b) => b.lastReadAt.compareTo(a.lastReadAt));
+  List<ReadRecord> get sorted =>
+      records.values.toList()
+        ..sort((a, b) => b.lastReadAt.compareTo(a.lastReadAt));
 
   ReadRecord? get last => records.isEmpty ? null : sorted.first;
 
@@ -31,12 +32,14 @@ class ReadingController extends GetxController {
     bool newSession = false,
     bool completedNow = false,
   }) {
-    final r = records[pathId] ??
+    final r =
+        records[pathId] ??
         ReadRecord(
-            pathId: pathId,
-            lastReadAt: DateTime.now(),
-            progress: 0,
-            verse: 1);
+          pathId: pathId,
+          lastReadAt: DateTime.now(),
+          progress: 0,
+          verse: 1,
+        );
     r
       ..lastReadAt = DateTime.now()
       ..progress = progress

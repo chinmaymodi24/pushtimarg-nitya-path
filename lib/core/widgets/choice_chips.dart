@@ -43,15 +43,17 @@ class ChoiceChips<T> extends StatelessWidget {
                           : null,
                       color: v == selected ? null : p.chip,
                       border: Border.all(
-                          color: v == selected
-                              ? Colors.transparent
-                              : p.chipBorder),
+                        color: v == selected
+                            ? Colors.transparent
+                            : p.chipBorder,
+                      ),
                       boxShadow: v == selected
                           ? [
                               BoxShadow(
-                                  color: p.primary.withValues(alpha: 0.28),
-                                  blurRadius: 8,
-                                  offset: const Offset(0, 3)),
+                                color: p.primary.withValues(alpha: 0.28),
+                                blurRadius: 8,
+                                offset: const Offset(0, 3),
+                              ),
                             ]
                           : null,
                     ),
@@ -59,8 +61,9 @@ class ChoiceChips<T> extends StatelessWidget {
                       label(v),
                       style: TextStyle(
                         fontSize: 15,
-                        fontWeight:
-                            v == selected ? FontWeight.w700 : FontWeight.w500,
+                        fontWeight: v == selected
+                            ? FontWeight.w700
+                            : FontWeight.w500,
                         color: v == selected ? p.onChipSelected : p.text,
                       ),
                     ),

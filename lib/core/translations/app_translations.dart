@@ -3,10 +3,10 @@ import 'package:get/get.dart';
 class AppTranslations extends Translations {
   @override
   Map<String, Map<String, String>> get keys => {
-        'gu': _gu,
-        'hi': _hi,
-        'en': _en,
-      };
+    'gu': _gu,
+    'hi': _hi,
+    'en': _en,
+  };
 
   static const _gu = {
     'daily_paths': "દૈનિક સેવા પ્રમાણે પાઠ",
@@ -104,7 +104,8 @@ class AppTranslations extends Translations {
     'read_again': "ફરી વાંચો",
     'history': "વાંચન ઇતિહાસ",
     'history_search': "પાઠ શોધો...",
-    'history_empty': "હજુ કોઈ પાઠ વાંચ્યો નથી.\nપાઠ ખોલી થોડું વાંચશો એટલે અહીં દેખાશે.",
+    'history_empty':
+        "હજુ કોઈ પાઠ વાંચ્યો નથી.\nપાઠ ખોલી થોડું વાંચશો એટલે અહીં દેખાશે.",
     'no_results': "કોઈ પાઠ મળ્યો નહીં",
     'completed_times': "@n વાર પૂર્ણ",
     'clear_all': "બધું કાઢી નાખો",
@@ -126,13 +127,16 @@ class AppTranslations extends Translations {
     'delete_mala_t': "માળા કાઢી નાખવી છે?",
     'delete_mala_m': "આ માળા ઇતિહાસમાંથી કાયમ માટે નીકળી જશે.",
     'clear_mala_t': "બધો માળા ઇતિહાસ કાઢી નાખવો છે?",
-    'clear_mala_m': "પૂર્ણ થયેલી બધી માળાની નોંધ નીકળી જશે. તે પાછી લાવી શકાશે નહીં.",
+    'clear_mala_m':
+        "પૂર્ણ થયેલી બધી માળાની નોંધ નીકળી જશે. તે પાછી લાવી શકાશે નહીં.",
     'delete_read_t': "પાઠ ઇતિહાસમાંથી કાઢવો છે?",
     'delete_read_m': "આ પાઠની વાંચન પ્રગતિ નીકળી જશે.",
     'clear_history_t': "આખો વાંચન ઇતિહાસ કાઢી નાખવો છે?",
-    'clear_history_m': "બધા પાઠની વાંચન પ્રગતિ નીકળી જશે. તે પાછી લાવી શકાશે નહીં.",
+    'clear_history_m':
+        "બધા પાઠની વાંચન પ્રગતિ નીકળી જશે. તે પાછી લાવી શકાશે નહીં.",
     'reset_t': "ચાલુ માળા ફરી શરૂ કરવી છે?",
-    'reset_m': "ચાલુ માળાની ગણતરી 0 થઈ જશે. પૂર્ણ થયેલી માળા પર કોઈ અસર નહીં થાય.",
+    'reset_m':
+        "ચાલુ માળાની ગણતરી 0 થઈ જશે. પૂર્ણ થયેલી માળા પર કોઈ અસર નહીં થાય.",
     'restart': "ફરી શરૂ કરો",
     'contact_phone': "મોબાઈલ",
     'call': "ફોન કરો",
@@ -249,7 +253,8 @@ class AppTranslations extends Translations {
     'fb_note': "भेजें दबाने पर आपका ईमेल ऐप खुलेगा और संदेश तैयार होगा। बस Send दबाएँ।",
     'fb_empty': "कृपया संदेश लिखें",
     'no_email_app': "ईमेल ऐप नहीं मिला। पता कॉपी कर लिया है:",
-    'contact_intro': "प्रश्न, सुझाव या पाठ में त्रुटि — कुछ भी हो तो हमें लिखें।",
+    'contact_intro':
+        "प्रश्न, सुझाव या पाठ में त्रुटि — कुछ भी हो तो हमें लिखें।",
     'contact_email': "ईमेल",
     'write_email': "ईमेल लिखें",
     'copy': "कॉपी",
@@ -267,7 +272,8 @@ class AppTranslations extends Translations {
     'read_again': "फिर से पढ़ें",
     'history': "पठन इतिहास",
     'history_search': "पाठ खोजें...",
-    'history_empty': "अभी कोई पाठ नहीं पढ़ा।\nपाठ खोलकर थोड़ा पढ़ेंगे तो यहाँ दिखेगा।",
+    'history_empty':
+        "अभी कोई पाठ नहीं पढ़ा।\nपाठ खोलकर थोड़ा पढ़ेंगे तो यहाँ दिखेगा।",
     'no_results': "कोई पाठ नहीं मिला",
     'completed_times': "@n बार पूर्ण",
     'clear_all': "सब हटाएँ",
@@ -293,9 +299,11 @@ class AppTranslations extends Translations {
     'delete_read_t': "पाठ इतिहास से हटाना है?",
     'delete_read_m': "इस पाठ की पठन प्रगति हट जाएगी।",
     'clear_history_t': "पूरा पठन इतिहास हटाना है?",
-    'clear_history_m': "सभी पाठों की पठन प्रगति हट जाएगी। इसे वापस नहीं लाया जा सकेगा।",
+    'clear_history_m':
+        "सभी पाठों की पठन प्रगति हट जाएगी। इसे वापस नहीं लाया जा सकेगा।",
     'reset_t': "चालू माला फिर से शुरू करनी है?",
-    'reset_m': "चालू माला की गिनती 0 हो जाएगी। पूर्ण हुई मालाओं पर कोई असर नहीं होगा।",
+    'reset_m':
+        "चालू माला की गिनती 0 हो जाएगी। पूर्ण हुई मालाओं पर कोई असर नहीं होगा।",
     'restart': "फिर शुरू करें",
     'contact_phone': "मोबाइल",
     'call': "कॉल करें",
@@ -430,7 +438,8 @@ class AppTranslations extends Translations {
     'read_again': "Read again",
     'history': "Reading history",
     'history_search': "Search paths...",
-    'history_empty': "No paths read yet.\nOpen a path and read a little; it will show here.",
+    'history_empty':
+        "No paths read yet.\nOpen a path and read a little; it will show here.",
     'no_results': "No paths found",
     'completed_times': "Completed @n×",
     'clear_all': "Clear all",
@@ -452,13 +461,16 @@ class AppTranslations extends Translations {
     'delete_mala_t': "Delete this mala?",
     'delete_mala_m': "It will be removed from your history for good.",
     'clear_mala_t': "Clear all mala history?",
-    'clear_mala_m': "Every completed mala will be removed. This can't be undone.",
+    'clear_mala_m':
+        "Every completed mala will be removed. This can't be undone.",
     'delete_read_t': "Remove from history?",
     'delete_read_m': "Your reading progress for this path will be removed.",
     'clear_history_t': "Clear reading history?",
-    'clear_history_m': "Progress for every path will be removed. This can't be undone.",
+    'clear_history_m':
+        "Progress for every path will be removed. This can't be undone.",
     'reset_t': "Restart this mala?",
-    'reset_m': "The current count goes back to 0. Completed malas are not affected.",
+    'reset_m':
+        "The current count goes back to 0. Completed malas are not affected.",
     'restart': "Restart",
     'contact_phone': "Mobile",
     'call': "Call",

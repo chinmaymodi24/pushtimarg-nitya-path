@@ -13,27 +13,30 @@ Future<void> showConfirm({
   bool destructive = true,
 }) {
   return Get.dialog<void>(
-    Builder(builder: (context) {
-      final p = context.pal;
-      final cs = Theme.of(context).colorScheme;
-      return AlertDialog(
-        title: Text(title),
-        content: Text(message),
-        // Material defaults everywhere except a shorter gap under the buttons.
-        actionsPadding: const EdgeInsets.fromLTRB(24, 0, 16, 14),
-        actions: [
-          TextButton(onPressed: Get.back, child: Text('cancel'.tr)),
-          TextButton(
-            style: TextButton.styleFrom(
-                foregroundColor: destructive ? cs.error : p.primary),
-            onPressed: () {
-              Get.back();
-              onConfirm();
-            },
-            child: Text(confirmLabel),
-          ),
-        ],
-      );
-    }),
+    Builder(
+      builder: (context) {
+        final p = context.pal;
+        final cs = Theme.of(context).colorScheme;
+        return AlertDialog(
+          title: Text(title),
+          content: Text(message),
+          // Material defaults everywhere except a shorter gap under the buttons.
+          actionsPadding: const EdgeInsets.fromLTRB(24, 0, 16, 14),
+          actions: [
+            TextButton(onPressed: Get.back, child: Text('cancel'.tr)),
+            TextButton(
+              style: TextButton.styleFrom(
+                foregroundColor: destructive ? cs.error : p.primary,
+              ),
+              onPressed: () {
+                Get.back();
+                onConfirm();
+              },
+              child: Text(confirmLabel),
+            ),
+          ],
+        );
+      },
+    ),
   );
 }

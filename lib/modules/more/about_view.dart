@@ -5,7 +5,7 @@ import '../../core/config/app_config.dart';
 import '../../core/theme/palette.dart';
 import '../../core/widgets/app_card.dart';
 import '../../core/widgets/disclaimer_note.dart';
-import '../../core/widgets/logo_header.dart';
+import '../../core/widgets/app_logo.dart';
 import '../../core/widgets/page_header.dart';
 import '../../core/widgets/page_scaffold.dart';
 

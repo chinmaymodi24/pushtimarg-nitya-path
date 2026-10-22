@@ -23,22 +23,22 @@ class ReadRecord {
   bool get isComplete => progress >= 0.98;
 
   Map<String, dynamic> toJson() => {
-        'id': pathId,
-        'at': lastReadAt.millisecondsSinceEpoch,
-        'p': progress,
-        'v': verse,
-        'reads': readCount,
-        'done': completedCount,
-      };
+    'id': pathId,
+    'at': lastReadAt.millisecondsSinceEpoch,
+    'p': progress,
+    'v': verse,
+    'reads': readCount,
+    'done': completedCount,
+  };
 
   factory ReadRecord.fromJson(Map j) => ReadRecord(
-        pathId: j['id'] as String,
-        lastReadAt: DateTime.fromMillisecondsSinceEpoch(j['at'] as int),
-        progress: (j['p'] as num).toDouble(),
-        verse: j['v'] as int,
-        readCount: j['reads'] as int? ?? 0,
-        completedCount: j['done'] as int? ?? 0,
-      );
+    pathId: j['id'] as String,
+    lastReadAt: DateTime.fromMillisecondsSinceEpoch(j['at'] as int),
+    progress: (j['p'] as num).toDouble(),
+    verse: j['v'] as int,
+    readCount: j['reads'] as int? ?? 0,
+    completedCount: j['done'] as int? ?? 0,
+  );
 }
 
 /// One completed mala.
@@ -50,11 +50,13 @@ class MalaEntry {
   /// Time from the first bead to the 108th, when known.
   final int? seconds;
 
-  Map<String, dynamic> toJson() =>
-      {'at': completedAt.millisecondsSinceEpoch, 's': seconds};
+  Map<String, dynamic> toJson() => {
+    'at': completedAt.millisecondsSinceEpoch,
+    's': seconds,
+  };
 
   factory MalaEntry.fromJson(Map j) => MalaEntry(
-        completedAt: DateTime.fromMillisecondsSinceEpoch(j['at'] as int),
-        seconds: j['s'] as int?,
-      );
+    completedAt: DateTime.fromMillisecondsSinceEpoch(j['at'] as int),
+    seconds: j['s'] as int?,
+  );
 }

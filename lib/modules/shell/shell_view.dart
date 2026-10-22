@@ -33,18 +33,20 @@ class ShellView extends GetView<ShellController> {
           onConfirm: SystemNavigator.pop,
         );
       },
-      child: Obx(() => PageScaffold(
-            bottom: AppBottomNav(current: controller.index.value),
-            body: IndexedStack(
-              index: controller.index.value,
-              children: [
-                const HomeView(),
-                const PathsView(),
-                JapaView(onBack: () => controller.go(0)),
-                MoreView(onBack: () => controller.go(0)),
-              ],
-            ),
-          )),
+      child: Obx(
+        () => PageScaffold(
+          bottom: AppBottomNav(current: controller.index.value),
+          body: IndexedStack(
+            index: controller.index.value,
+            children: [
+              const HomeView(),
+              const PathsView(),
+              JapaView(onBack: () => controller.go(0)),
+              MoreView(onBack: () => controller.go(0)),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }

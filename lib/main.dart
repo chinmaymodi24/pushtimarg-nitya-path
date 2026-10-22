@@ -30,18 +30,20 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Obx(() => GetMaterialApp(
-          title: 'Pushtimarg Nitya Path',
-          debugShowCheckedModeBanner: false,
-          theme: AppTheme.light(settings.uiLang.value),
-          darkTheme: AppTheme.dark(settings.uiLang.value),
-          themeMode: settings.themeMode.value,
-          translations: AppTranslations(),
-          locale: Locale(settings.uiLang.value.code),
-          fallbackLocale: const Locale('en'),
-          initialRoute: Routes.splash,
-          defaultTransition: Transition.cupertino,
-          getPages: AppPages.pages,
-        ));
+    return Obx(
+      () => GetMaterialApp(
+        title: 'Pushtimarg Nitya Path',
+        debugShowCheckedModeBanner: false,
+        theme: AppTheme.light(settings.uiLang.value),
+        darkTheme: AppTheme.dark(settings.uiLang.value),
+        themeMode: settings.themeMode.value,
+        translations: AppTranslations(),
+        locale: Locale(settings.uiLang.value.code),
+        fallbackLocale: const Locale('en'),
+        initialRoute: Routes.splash,
+        defaultTransition: Transition.cupertino,
+        getPages: AppPages.pages,
+      ),
+    );
   }
 }

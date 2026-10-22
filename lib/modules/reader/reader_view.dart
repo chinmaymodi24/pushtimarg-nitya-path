@@ -7,7 +7,6 @@ import '../../core/theme/app_theme.dart';
 import '../../core/theme/palette.dart';
 import '../../core/utils/script_converter.dart';
 import '../../core/widgets/choice_chips.dart';
-import '../../core/widgets/disclaimer_note.dart';
 import '../../core/widgets/ornaments.dart';
 import '../../core/widgets/page_header.dart';
 import '../../core/widgets/page_scaffold.dart';
@@ -101,12 +100,6 @@ class ReaderView extends GetView<ReaderController> {
                               last: i == verses.length - 1,
                             ),
                           ),
-                        Padding(
-                          padding: const EdgeInsets.only(top: 8),
-                          child: DisclaimerNote(
-                            pathTitle: controller.path.title(s.uiLang.value),
-                          ),
-                        ),
                       ],
                     ),
                   ),

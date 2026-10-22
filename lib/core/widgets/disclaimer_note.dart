@@ -24,29 +24,44 @@ class DisclaimerNote extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Row(children: [
-            Icon(Icons.volunteer_activism_outlined, size: 20, color: p.heading),
-            const SizedBox(width: 8),
-            Text('disclaimer_title'.tr,
+          Row(
+            children: [
+              Icon(
+                Icons.volunteer_activism_outlined,
+                size: 20,
+                color: p.heading,
+              ),
+              const SizedBox(width: 8),
+              Text(
+                'disclaimer_title'.tr,
                 style: TextStyle(
-                    fontSize: 15.5,
-                    fontWeight: FontWeight.w700,
-                    color: p.heading)),
-          ]),
+                  fontSize: 15.5,
+                  fontWeight: FontWeight.w700,
+                  color: p.heading,
+                ),
+              ),
+            ],
+          ),
           const SizedBox(height: 6),
-          Text('disclaimer_body'.tr,
-              style: TextStyle(fontSize: 14.5, height: 1.6, color: p.text)),
+          Text(
+            'disclaimer_body'.tr,
+            style: TextStyle(fontSize: 14.5, height: 1.6, color: p.text),
+          ),
           Align(
             alignment: Alignment.centerRight,
             child: TextButton.icon(
-              onPressed: () => Get.toNamed(Routes.feedback, arguments: {
-                'type': pathTitle == null ? 'suggestion' : 'path_error',
-                if (pathTitle != null) 'path': pathTitle,
-              }),
+              onPressed: () => Get.toNamed(
+                Routes.feedback,
+                arguments: {
+                  'type': pathTitle == null ? 'suggestion' : 'path_error',
+                  if (pathTitle != null) 'path': pathTitle,
+                },
+              ),
               icon: Icon(Icons.flag_outlined, size: 18, color: p.primary),
-              label: Text('report_error'.tr,
-                  style: TextStyle(
-                      color: p.primary, fontWeight: FontWeight.w700)),
+              label: Text(
+                'report_error'.tr,
+                style: TextStyle(color: p.primary, fontWeight: FontWeight.w700),
+              ),
             ),
           ),
         ],

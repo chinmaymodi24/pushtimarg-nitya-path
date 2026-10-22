@@ -7,7 +7,7 @@ import '../../core/services/reading_service.dart';
 import '../../core/services/settings_service.dart';
 import '../../core/theme/palette.dart';
 import '../../core/utils/day_info.dart';
-import '../../core/widgets/logo_header.dart';
+import '../../core/widgets/app_logo.dart';
 import '../../core/widgets/svg_icon.dart';
 import '../../data/models/seva.dart';
 import '../../data/repository/path_repository.dart';
@@ -47,110 +47,66 @@ class _Header extends GetView<HomeController> {
   Widget build(BuildContext context) {
     final p = context.pal;
     final s = Get.find<SettingsController>();
-    return Stack(
-      children: [
-        Positioned.fill(
-          left: 8,
-          right: 8,
-          child: CustomPaint(
-            painter: _ArchPainter(p.gold.withValues(alpha: 0.45)),
-          ),
-        ),
-        Container(
-          width: double.infinity,
-          padding: const EdgeInsets.only(top: 6),
-          child: Column(
-            children: [
-              const AppLogo(width: 200),
-              const SizedBox(height: 2),
-              Obx(
-                () => Text.rich(
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.only(top: 6),
+      child: Column(
+        children: [
+          const AppLogo(width: 200),
+          const SizedBox(height: 2),
+          Obx(
+            () => Text.rich(
+              TextSpan(
+                children: [
                   TextSpan(
-                    children: [
-                      TextSpan(
-                        text: '${DayInfo.greeting(controller.now.value)} · ',
-                      ),
-                      TextSpan(
-                        text: 'jsk'.tr,
-                        style: const TextStyle(fontWeight: FontWeight.w700),
-                      ),
-                      const TextSpan(text: ' 🙏'),
-                    ],
+                    text: '${DayInfo.greeting(controller.now.value)} · ',
                   ),
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 14.5,
-                    fontWeight: FontWeight.w600,
-                    color: p.heading,
+                  TextSpan(
+                    text: 'jsk'.tr,
+                    style: const TextStyle(fontWeight: FontWeight.w700),
                   ),
-                ),
+                  const TextSpan(text: ' 🙏'),
+                ],
               ),
-              const SizedBox(height: 6),
-              Container(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 12,
-                  vertical: 3,
-                ),
-                decoration: BoxDecoration(
-                  color: p.card,
-                  borderRadius: BorderRadius.circular(14),
-                  border: Border.all(color: p.cardBorder),
-                ),
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Icon(
-                      Icons.calendar_today_rounded,
-                      size: 13,
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: 14.5,
+                fontWeight: FontWeight.w600,
+                color: p.heading,
+              ),
+            ),
+          ),
+          const SizedBox(height: 6),
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 3),
+            decoration: BoxDecoration(
+              color: p.card,
+              borderRadius: BorderRadius.circular(14),
+              border: Border.all(color: p.cardBorder),
+            ),
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Icon(Icons.calendar_today_rounded, size: 13, color: p.subtext),
+                const SizedBox(width: 6),
+                Obx(
+                  () => Text(
+                    DayInfo.date(controller.now.value, s.uiLang.value),
+                    style: TextStyle(
+                      fontSize: 12.5,
+                      fontWeight: FontWeight.w600,
                       color: p.subtext,
                     ),
-                    const SizedBox(width: 6),
-                    Obx(
-                      () => Text(
-                        DayInfo.date(controller.now.value, s.uiLang.value),
-                        style: TextStyle(
-                          fontSize: 12.5,
-                          fontWeight: FontWeight.w600,
-                          color: p.subtext,
-                        ),
-                      ),
-                    ),
-                  ],
+                  ),
                 ),
-              ),
-              const SizedBox(height: 4),
-            ],
+              ],
+            ),
           ),
-        ),
-      ],
+          const SizedBox(height: 4),
+        ],
+      ),
     );
   }
-}
-
-/// Semicircular top with straight sides, open at the bottom.
-class _ArchPainter extends CustomPainter {
-  _ArchPainter(this.color);
-  final Color color;
-
-  @override
-  void paint(Canvas canvas, Size size) {
-    final r = size.width / 2;
-    final path = Path()
-      ..moveTo(0, size.height)
-      ..lineTo(0, r)
-      ..arcToPoint(Offset(size.width, r), radius: Radius.circular(r))
-      ..lineTo(size.width, size.height);
-    canvas.drawPath(
-      path,
-      Paint()
-        ..color = color
-        ..style = PaintingStyle.stroke
-        ..strokeWidth = 1.2,
-    );
-  }
-
-  @override
-  bool shouldRepaint(_ArchPainter old) => old.color != color;
 }
 
 class _NowSevaCard extends GetView<HomeController> {

@@ -13,22 +13,25 @@ class SizeSlider extends StatelessWidget {
     final s = Get.find<SettingsController>();
     final p = context.pal;
     final label = TextStyle(
-        fontFamily: 'NotoSans',
-        fontSize: 17,
-        fontWeight: FontWeight.w600,
-        color: p.text);
+      fontFamily: 'NotoSans',
+      fontSize: 17,
+      fontWeight: FontWeight.w600,
+      color: p.text,
+    );
     return SizedBox(
       height: 44,
       child: Row(
         children: [
           Text('A-', style: label),
           Expanded(
-            child: Obx(() => Slider(
-                  value: s.textScale.value,
-                  min: SettingsController.minScale,
-                  max: SettingsController.maxScale,
-                  onChanged: s.setTextScale,
-                )),
+            child: Obx(
+              () => Slider(
+                value: s.textScale.value,
+                min: SettingsController.minScale,
+                max: SettingsController.maxScale,
+                onChanged: s.setTextScale,
+              ),
+            ),
           ),
           Text('A+', style: label),
         ],

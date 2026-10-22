@@ -5,7 +5,6 @@ import '../../core/config/app_config.dart';
 import '../../core/theme/palette.dart';
 import '../../core/widgets/app_card.dart';
 import '../../core/widgets/disclaimer_note.dart';
-import '../../core/widgets/logo_header.dart';
 import '../../core/widgets/page_header.dart';
 import '../../routes/app_routes.dart';
 
@@ -43,7 +42,6 @@ class MoreView extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              const LogoHeader(height: 190, logoWidth: 220),
               const SizedBox(height: 16),
               for (final g in _groups) ...[
                 AppCard(

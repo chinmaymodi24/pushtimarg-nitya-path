@@ -34,8 +34,11 @@ class PageHeader extends StatelessWidget {
                   ? null
                   : IconButton(
                       onPressed: onBack,
-                      icon: Icon(Icons.arrow_back_ios_new_rounded,
-                          size: 22, color: p.heading),
+                      icon: Icon(
+                        Icons.arrow_back_ios_new_rounded,
+                        size: 22,
+                        color: p.heading,
+                      ),
                     ),
             ),
           ),
@@ -43,16 +46,17 @@ class PageHeader extends StatelessWidget {
             child: FittedBox(
               fit: BoxFit.scaleDown,
               child: Text(
-              title,
-              textAlign: TextAlign.center,
-              maxLines: 1,
-              style: titleStyle ??
-                  TextStyle(
-                    fontSize: 21,
-                    fontWeight: FontWeight.w700,
-                    color: p.heading,
-                  ),
-            ),
+                title,
+                textAlign: TextAlign.center,
+                maxLines: 1,
+                style:
+                    titleStyle ??
+                    TextStyle(
+                      fontSize: 21,
+                      fontWeight: FontWeight.w700,
+                      color: p.heading,
+                    ),
+              ),
             ),
           ),
           SizedBox(

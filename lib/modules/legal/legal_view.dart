@@ -29,8 +29,10 @@ class LegalView extends StatelessWidget {
               return ListView(
                 padding: const EdgeInsets.fromLTRB(16, 0, 16, 32),
                 children: [
-                  Text('${'last_updated'.tr}: ${doc.updated}',
-                      style: TextStyle(fontSize: 13.5, color: p.subtext)),
+                  Text(
+                    '${'last_updated'.tr}: ${doc.updated}',
+                    style: TextStyle(fontSize: 13.5, color: p.subtext),
+                  ),
                   const SizedBox(height: 12),
                   AppCard(
                     padding: const EdgeInsets.fromLTRB(18, 18, 18, 6),
@@ -38,15 +40,23 @@ class LegalView extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         for (final (i, (h, b)) in doc.sections.indexed) ...[
-                          Text('${i + 1}. $h',
-                              style: TextStyle(
-                                  fontSize: 16.5,
-                                  fontWeight: FontWeight.w700,
-                                  color: p.heading)),
+                          Text(
+                            '${i + 1}. $h',
+                            style: TextStyle(
+                              fontSize: 16.5,
+                              fontWeight: FontWeight.w700,
+                              color: p.heading,
+                            ),
+                          ),
                           const SizedBox(height: 6),
-                          Text(b,
-                              style: TextStyle(
-                                  fontSize: 15, height: 1.7, color: p.text)),
+                          Text(
+                            b,
+                            style: TextStyle(
+                              fontSize: 15,
+                              height: 1.7,
+                              color: p.text,
+                            ),
+                          ),
                           const SizedBox(height: 16),
                         ],
                       ],

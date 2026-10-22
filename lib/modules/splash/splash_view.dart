@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../core/theme/palette.dart';
-import '../../core/widgets/logo_header.dart';
-import '../../core/widgets/ornaments.dart';
+import '../../core/widgets/app_logo.dart';
 import '../../core/widgets/page_scaffold.dart';
 import 'splash_controller.dart';
 
@@ -17,16 +16,6 @@ class SplashView extends GetView<SplashController> {
     return PageScaffold(
       body: Stack(
         children: [
-          Positioned(
-            top: 0,
-            left: 0,
-            right: 0,
-            height: 260,
-            child: CustomPaint(
-                painter: ArchPainter(p.gold.withValues(alpha: 0.45))),
-          ),
-          const Positioned(left: 34, top: 8, child: HangingLamp(height: 170)),
-          const Positioned(right: 34, top: 8, child: HangingLamp(height: 170)),
           Center(
             child: TweenAnimationBuilder<double>(
               tween: Tween(begin: 0, end: 1),
@@ -47,9 +36,10 @@ class SplashView extends GetView<SplashController> {
               'mantra'.tr,
               textAlign: TextAlign.center,
               style: TextStyle(
-                  fontSize: 17,
-                  fontWeight: FontWeight.w600,
-                  color: p.heading),
+                fontSize: 17,
+                fontWeight: FontWeight.w600,
+                color: p.heading,
+              ),
             ),
           ),
         ],

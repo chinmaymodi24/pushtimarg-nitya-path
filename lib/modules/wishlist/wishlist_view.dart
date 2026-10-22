@@ -23,21 +23,34 @@ class WishlistView extends StatelessWidget {
           PageHeader(title: 'wishlist'.tr, onBack: Get.back),
           Expanded(
             child: Obx(() {
-              final paths =
-                  fav.ids.map(repo.byId).whereType<PathModel>().toList();
+              final paths = fav.ids
+                  .map(repo.byId)
+                  .whereType<PathModel>()
+                  .toList();
               if (paths.isEmpty) {
                 return Center(
                   child: Padding(
                     padding: const EdgeInsets.all(32),
-                    child: Column(mainAxisSize: MainAxisSize.min, children: [
-                      Icon(Icons.favorite_border_rounded,
-                          size: 56, color: p.pillBorder),
-                      const SizedBox(height: 14),
-                      Text('wishlist_empty'.tr,
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Icon(
+                          Icons.favorite_border_rounded,
+                          size: 56,
+                          color: p.pillBorder,
+                        ),
+                        const SizedBox(height: 14),
+                        Text(
+                          'wishlist_empty'.tr,
                           textAlign: TextAlign.center,
                           style: TextStyle(
-                              fontSize: 16, height: 1.6, color: p.subtext)),
-                    ]),
+                            fontSize: 16,
+                            height: 1.6,
+                            color: p.subtext,
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 );
               }

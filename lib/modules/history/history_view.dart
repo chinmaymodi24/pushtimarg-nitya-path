@@ -24,19 +24,21 @@ class HistoryView extends GetView<HistoryController> {
     return PageScaffold(
       body: Column(
         children: [
-          Obx(() => PageHeader(
-                title: 'history'.tr,
-                onBack: Get.back,
-                actions: [
-                  if (controller.reading.records.isNotEmpty)
-                    IconButton(
-                      tooltip: 'clear_all'.tr,
-                      icon: Icon(Icons.delete_sweep_outlined, color: p.heading),
-                      onPressed: () => confirm(
-                          'clear_history', controller.reading.clear),
-                    ),
-                ],
-              )),
+          Obx(
+            () => PageHeader(
+              title: 'history'.tr,
+              onBack: Get.back,
+              actions: [
+                if (controller.reading.records.isNotEmpty)
+                  IconButton(
+                    tooltip: 'clear_all'.tr,
+                    icon: Icon(Icons.delete_sweep_outlined, color: p.heading),
+                    onPressed: () =>
+                        confirm('clear_history', controller.reading.clear),
+                  ),
+              ],
+            ),
+          ),
           Padding(
             padding: const EdgeInsets.fromLTRB(16, 0, 16, 8),
             child: TextField(
@@ -47,21 +49,25 @@ class HistoryView extends GetView<HistoryController> {
                 hintText: 'history_search'.tr,
                 hintStyle: TextStyle(color: p.subtext),
                 prefixIcon: Icon(Icons.search_rounded, color: p.subtext),
-                suffixIcon: Obx(() => controller.query.value.isEmpty
-                    ? const SizedBox.shrink()
-                    : IconButton(
-                        icon: Icon(Icons.close_rounded, color: p.subtext),
-                        onPressed: controller.search.clear,
-                      )),
+                suffixIcon: Obx(
+                  () => controller.query.value.isEmpty
+                      ? const SizedBox.shrink()
+                      : IconButton(
+                          icon: Icon(Icons.close_rounded, color: p.subtext),
+                          onPressed: controller.search.clear,
+                        ),
+                ),
                 filled: true,
                 fillColor: p.card,
                 contentPadding: const EdgeInsets.symmetric(vertical: 12),
                 enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(26),
-                    borderSide: BorderSide(color: p.chipBorder)),
+                  borderRadius: BorderRadius.circular(26),
+                  borderSide: BorderSide(color: p.chipBorder),
+                ),
                 focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(26),
-                    borderSide: BorderSide(color: p.primary, width: 1.5)),
+                  borderRadius: BorderRadius.circular(26),
+                  borderSide: BorderSide(color: p.primary, width: 1.5),
+                ),
               ),
             ),
           ),
@@ -94,13 +100,18 @@ class _Empty extends StatelessWidget {
     return Center(
       child: Padding(
         padding: const EdgeInsets.all(32),
-        child: Column(mainAxisSize: MainAxisSize.min, children: [
-          Icon(Icons.auto_stories_outlined, size: 56, color: p.pillBorder),
-          const SizedBox(height: 12),
-          Text(text,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Icon(Icons.auto_stories_outlined, size: 56, color: p.pillBorder),
+            const SizedBox(height: 12),
+            Text(
+              text,
               textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 16, height: 1.6, color: p.subtext)),
-        ]),
+              style: TextStyle(fontSize: 16, height: 1.6, color: p.subtext),
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -119,59 +130,70 @@ class _Row extends StatelessWidget {
     return AppCard(
       margin: const EdgeInsets.only(bottom: 12),
       padding: const EdgeInsets.fromLTRB(12, 12, 4, 12),
-      onTap: () => Get.toNamed(Routes.reader, arguments: {
-        'id': path.id,
-        'resume': r.isComplete ? 0.0 : r.progress,
-      }),
-      child: Row(children: [
-        Container(
-          width: 48,
-          height: 48,
-          alignment: Alignment.center,
-          decoration: BoxDecoration(
-              color: p.iconTile, borderRadius: BorderRadius.circular(12)),
-          child: SvgIcon(path.icon, size: 30),
-        ),
-        const SizedBox(width: 12),
-        Expanded(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(path.title(ui),
-                  style: TextStyle(
-                      fontSize: 17, fontWeight: FontWeight.w700, color: p.text)),
-              const SizedBox(height: 6),
-              ClipRRect(
-                borderRadius: BorderRadius.circular(3),
-                child: LinearProgressIndicator(
-                  value: r.progress,
-                  minHeight: 4,
-                  backgroundColor: p.chipBorder,
-                  valueColor: AlwaysStoppedAnimation(p.primary),
-                ),
-              ),
-              const SizedBox(height: 6),
-              Text(
-                [
-                  TimeFormat.ago(r.lastReadAt),
-                  r.isComplete
-                      ? 'read_done'.tr
-                      : '${(r.progress * 100).round()}%',
-                  if (r.completedCount > 0)
-                    'completed_times'.trParams({'n': '${r.completedCount}'}),
-                ].join('  ·  '),
-                style: small,
-              ),
-            ],
+      onTap: () => Get.toNamed(
+        Routes.reader,
+        arguments: {'id': path.id, 'resume': r.isComplete ? 0.0 : r.progress},
+      ),
+      child: Row(
+        children: [
+          Container(
+            width: 48,
+            height: 48,
+            alignment: Alignment.center,
+            decoration: BoxDecoration(
+              color: p.iconTile,
+              borderRadius: BorderRadius.circular(12),
+            ),
+            child: SvgIcon(path.icon, size: 30),
           ),
-        ),
-        IconButton(
-          tooltip: 'delete'.tr,
-          icon: Icon(Icons.delete_outline_rounded, color: p.subtext),
-          onPressed: () => confirm('delete_read',
-              () => Get.find<HistoryController>().reading.remove(r.pathId)),
-        ),
-      ]),
+          const SizedBox(width: 12),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  path.title(ui),
+                  style: TextStyle(
+                    fontSize: 17,
+                    fontWeight: FontWeight.w700,
+                    color: p.text,
+                  ),
+                ),
+                const SizedBox(height: 6),
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(3),
+                  child: LinearProgressIndicator(
+                    value: r.progress,
+                    minHeight: 4,
+                    backgroundColor: p.chipBorder,
+                    valueColor: AlwaysStoppedAnimation(p.primary),
+                  ),
+                ),
+                const SizedBox(height: 6),
+                Text(
+                  [
+                    TimeFormat.ago(r.lastReadAt),
+                    r.isComplete
+                        ? 'read_done'.tr
+                        : '${(r.progress * 100).round()}%',
+                    if (r.completedCount > 0)
+                      'completed_times'.trParams({'n': '${r.completedCount}'}),
+                  ].join('  ·  '),
+                  style: small,
+                ),
+              ],
+            ),
+          ),
+          IconButton(
+            tooltip: 'delete'.tr,
+            icon: Icon(Icons.delete_outline_rounded, color: p.subtext),
+            onPressed: () => confirm(
+              'delete_read',
+              () => Get.find<HistoryController>().reading.remove(r.pathId),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

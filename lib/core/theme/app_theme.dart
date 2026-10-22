@@ -8,14 +8,19 @@ class AppTheme {
 
   /// UI font follows the app language; the others cover mixed-script labels.
   static String uiFont(Lang l) => switch (l) {
-        Lang.gu => 'NotoSansGujarati',
-        Lang.hi => 'NotoSansDevanagari',
-        Lang.en => 'NotoSans',
-      };
+    Lang.gu => 'NotoSansGujarati',
+    Lang.hi => 'NotoSansDevanagari',
+    Lang.en => 'NotoSans',
+  };
 
-  static const fallback = ['NotoSansGujarati', 'NotoSansDevanagari', 'NotoSans'];
+  static const fallback = [
+    'NotoSansGujarati',
+    'NotoSansDevanagari',
+    'NotoSans',
+  ];
 
-  static ThemeData light(Lang ui) => _build(ui, Brightness.light, Palette.light);
+  static ThemeData light(Lang ui) =>
+      _build(ui, Brightness.light, Palette.light);
   static ThemeData dark(Lang ui) => _build(ui, Brightness.dark, Palette.dark);
 
   static ThemeData _build(Lang ui, Brightness b, Palette p) {
@@ -37,8 +42,9 @@ class AppTheme {
       splashFactory: InkRipple.splashFactory,
       switchTheme: SwitchThemeData(
         thumbColor: const WidgetStatePropertyAll(Colors.white),
-        trackColor: WidgetStateProperty.resolveWith((s) =>
-            s.contains(WidgetState.selected) ? p.primary : p.chipBorder),
+        trackColor: WidgetStateProperty.resolveWith(
+          (s) => s.contains(WidgetState.selected) ? p.primary : p.chipBorder,
+        ),
         trackOutlineColor: const WidgetStatePropertyAll(Colors.transparent),
       ),
       sliderTheme: SliderThemeData(
@@ -54,26 +60,29 @@ class AppTheme {
         backgroundColor: p.card,
         surfaceTintColor: Colors.transparent,
         titleTextStyle: TextStyle(
-            fontFamily: uiFont(ui),
-            fontFamilyFallback: fallback,
-            fontSize: 20,
-            fontWeight: FontWeight.w600,
-            color: p.text),
+          fontFamily: uiFont(ui),
+          fontFamilyFallback: fallback,
+          fontSize: 20,
+          fontWeight: FontWeight.w600,
+          color: p.text,
+        ),
         contentTextStyle: TextStyle(
-            fontFamily: uiFont(ui),
-            fontFamilyFallback: fallback,
-            fontSize: 15.5,
-            height: 1.5,
-            color: p.subtext),
+          fontFamily: uiFont(ui),
+          fontFamilyFallback: fallback,
+          fontSize: 15.5,
+          height: 1.5,
+          color: p.subtext,
+        ),
       ),
       textButtonTheme: TextButtonThemeData(
         style: TextButton.styleFrom(
           foregroundColor: p.primary,
           textStyle: TextStyle(
-              fontFamily: uiFont(ui),
-              fontFamilyFallback: fallback,
-              fontSize: 15.5,
-              fontWeight: FontWeight.w700),
+            fontFamily: uiFont(ui),
+            fontFamilyFallback: fallback,
+            fontSize: 15.5,
+            fontWeight: FontWeight.w700,
+          ),
         ),
       ),
     );
@@ -96,10 +105,10 @@ class AppTheme {
   }
 
   static TextStyle meaning(Lang l, double size, Color color) => TextStyle(
-        fontFamily: uiFont(l),
-        fontFamilyFallback: fallback,
-        fontSize: size,
-        height: l == Lang.en ? 1.55 : 1.7,
-        color: color,
-      );
+    fontFamily: uiFont(l),
+    fontFamilyFallback: fallback,
+    fontSize: size,
+    height: l == Lang.en ? 1.55 : 1.7,
+    color: color,
+  );
 }

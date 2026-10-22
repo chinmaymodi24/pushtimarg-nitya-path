@@ -20,31 +20,41 @@ class JapaHistoryView extends GetView<JapaController> {
     return PageScaffold(
       body: Column(
         children: [
-          Obx(() => PageHeader(
-                title: 'mala_history'.tr,
-                onBack: Get.back,
-                actions: [
-                  if (controller.history.isNotEmpty)
-                    IconButton(
-                      tooltip: 'clear_all'.tr,
-                      icon: Icon(Icons.delete_sweep_outlined, color: p.heading),
-                      onPressed: () => confirm('clear_mala',
-                          controller.clearHistory),
-                    ),
-                ],
-              )),
+          Obx(
+            () => PageHeader(
+              title: 'mala_history'.tr,
+              onBack: Get.back,
+              actions: [
+                if (controller.history.isNotEmpty)
+                  IconButton(
+                    tooltip: 'clear_all'.tr,
+                    icon: Icon(Icons.delete_sweep_outlined, color: p.heading),
+                    onPressed: () =>
+                        confirm('clear_mala', controller.clearHistory),
+                  ),
+              ],
+            ),
+          ),
           Expanded(
             child: Obx(() {
               final h = controller.history;
               if (h.isEmpty) {
                 return Center(
-                  child: Column(mainAxisSize: MainAxisSize.min, children: [
-                    Icon(Icons.blur_circular_rounded,
-                        size: 56, color: p.pillBorder),
-                    const SizedBox(height: 12),
-                    Text('mala_empty'.tr,
-                        style: TextStyle(fontSize: 16, color: p.subtext)),
-                  ]),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Icon(
+                        Icons.blur_circular_rounded,
+                        size: 56,
+                        color: p.pillBorder,
+                      ),
+                      const SizedBox(height: 12),
+                      Text(
+                        'mala_empty'.tr,
+                        style: TextStyle(fontSize: 16, color: p.subtext),
+                      ),
+                    ],
+                  ),
                 );
               }
               final children = <Widget>[];
@@ -55,22 +65,32 @@ class JapaHistoryView extends GetView<JapaController> {
                   final n = h
                       .where((e) => TimeFormat.day(e.completedAt) == day)
                       .length;
-                  children.add(Padding(
-                    padding: const EdgeInsets.fromLTRB(4, 14, 4, 8),
-                    child: Row(children: [
-                      Text(day,
-                          style: TextStyle(
+                  children.add(
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(4, 14, 4, 8),
+                      child: Row(
+                        children: [
+                          Text(
+                            day,
+                            style: TextStyle(
                               fontSize: 16,
                               fontWeight: FontWeight.w700,
-                              color: p.heading)),
-                      const Spacer(),
-                      Text('$n × 108',
-                          style: TextStyle(
+                              color: p.heading,
+                            ),
+                          ),
+                          const Spacer(),
+                          Text(
+                            '$n × 108',
+                            style: TextStyle(
                               fontFamily: 'NotoSans',
                               fontSize: 13.5,
-                              color: p.subtext)),
-                    ]),
-                  ));
+                              color: p.subtext,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  );
                   lastDay = day;
                 }
                 children.add(MalaTile(entry: h[i], number: h.length - i));
@@ -101,48 +121,56 @@ class MalaTile extends StatelessWidget {
     return AppCard(
       margin: const EdgeInsets.only(bottom: 10),
       padding: const EdgeInsets.fromLTRB(14, 10, 4, 10),
-      child: Row(children: [
-        Container(
-          width: 40,
-          height: 40,
-          decoration: BoxDecoration(color: p.iconTile, shape: BoxShape.circle),
-          child: Icon(Icons.check_rounded, color: p.primary),
-        ),
-        const SizedBox(width: 12),
-        Expanded(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text('mala_n'.trParams({'n': '$number'}),
-                  style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w700,
-                      color: p.text)),
-              Text(
-                [
-                  '${TimeFormat.day(at)}, ${TimeFormat.clock(at)}',
-                  if (entry.seconds != null) TimeFormat.duration(entry.seconds!),
-                ].join('  ·  '),
-                style: TextStyle(fontSize: 13.5, color: p.subtext),
-              ),
-            ],
+      child: Row(
+        children: [
+          Container(
+            width: 40,
+            height: 40,
+            decoration: BoxDecoration(
+              color: p.iconTile,
+              shape: BoxShape.circle,
+            ),
+            child: Icon(Icons.check_rounded, color: p.primary),
           ),
-        ),
-        IconButton(
-          tooltip: 'delete'.tr,
-          icon: Icon(Icons.delete_outline_rounded, color: p.subtext),
-          onPressed: () =>
-              confirm('delete_mala', () => c.deleteEntry(entry)),
-        ),
-      ]),
+          const SizedBox(width: 12),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'mala_n'.trParams({'n': '$number'}),
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w700,
+                    color: p.text,
+                  ),
+                ),
+                Text(
+                  [
+                    '${TimeFormat.day(at)}, ${TimeFormat.clock(at)}',
+                    if (entry.seconds != null)
+                      TimeFormat.duration(entry.seconds!),
+                  ].join('  ·  '),
+                  style: TextStyle(fontSize: 13.5, color: p.subtext),
+                ),
+              ],
+            ),
+          ),
+          IconButton(
+            tooltip: 'delete'.tr,
+            icon: Icon(Icons.delete_outline_rounded, color: p.subtext),
+            onPressed: () => confirm('delete_mala', () => c.deleteEntry(entry)),
+          ),
+        ],
+      ),
     );
   }
 }
 
 /// Asks before deleting anything. [key] picks the `key_t` / `key_m` texts.
 void confirm(String key, VoidCallback onYes) => showConfirm(
-      title: '${key}_t'.tr,
-      message: '${key}_m'.tr,
-      confirmLabel: 'delete'.tr,
-      onConfirm: onYes,
-    );
+  title: '${key}_t'.tr,
+  message: '${key}_m'.tr,
+  confirmLabel: 'delete'.tr,
+  onConfirm: onYes,
+);

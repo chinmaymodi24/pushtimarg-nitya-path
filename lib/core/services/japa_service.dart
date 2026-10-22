@@ -22,19 +22,25 @@ class JapaController extends GetxController {
     super.onInit();
     count.value = _box.read<int>('japa_count') ?? 0;
     final started = _box.read<int>('japa_started');
-    _startedAt =
-        started == null ? null : DateTime.fromMillisecondsSinceEpoch(started);
-    history.assignAll((_box.read<List>('japa_history') ?? const [])
-        .map((e) => MalaEntry.fromJson(e as Map)));
+    _startedAt = started == null
+        ? null
+        : DateTime.fromMillisecondsSinceEpoch(started);
+    history.assignAll(
+      (_box.read<List>('japa_history') ?? const []).map(
+        (e) => MalaEntry.fromJson(e as Map),
+      ),
+    );
   }
 
   int get malasToday {
     final now = DateTime.now();
     return history
-        .where((e) =>
-            e.completedAt.year == now.year &&
-            e.completedAt.month == now.month &&
-            e.completedAt.day == now.day)
+        .where(
+          (e) =>
+              e.completedAt.year == now.year &&
+              e.completedAt.month == now.month &&
+              e.completedAt.day == now.day,
+        )
         .length;
   }
 

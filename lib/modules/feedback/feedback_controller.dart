@@ -38,10 +38,13 @@ class FeedbackController extends GetxController {
     if (pathTitle != null) body.writeln('Path: $pathTitle');
     body
       ..writeln('Type: $label')
-      ..writeln('Script: ${s.script.value.name}, '
-          'Meaning: ${s.meaningLang.value.name}, UI: ${s.uiLang.value.name}')
+      ..writeln(
+        'Script: ${s.script.value.name}, '
+        'Meaning: ${s.meaningLang.value.name}, UI: ${s.uiLang.value.name}',
+      )
       ..writeln('App version: ${AppConfig.version}');
-    final subject = 'Nitya Path - $label'
+    final subject =
+        'Nitya Path - $label'
         '${pathTitle == null ? '' : ' - $pathTitle'}';
     await Mailer.compose(subject: subject, body: body.toString());
   }

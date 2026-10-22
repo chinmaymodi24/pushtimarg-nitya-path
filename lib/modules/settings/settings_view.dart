@@ -28,85 +28,111 @@ class SettingsView extends StatelessWidget {
             children: [
               _Section(
                 title: 'script'.tr,
-                child: Obx(() => ChoiceChips<ReaderScript>(
-                      values: ReaderScript.values,
-                      selected: s.script.value,
-                      label: (v) => v.nativeName,
-                      onSelected: s.setScript,
-                    )),
+                child: Obx(
+                  () => ChoiceChips<ReaderScript>(
+                    values: ReaderScript.values,
+                    selected: s.script.value,
+                    label: (v) => v.nativeName,
+                    onSelected: s.setScript,
+                  ),
+                ),
               ),
               _Section(
                 title: 'meaning'.tr,
-                trailing: Obx(() => Switch(
-                      value: s.showMeaning.value,
-                      onChanged: s.setShowMeaning,
-                    )),
+                trailing: Obx(
+                  () => Switch(
+                    value: s.showMeaning.value,
+                    onChanged: s.setShowMeaning,
+                  ),
+                ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Row(children: [
-                      Icon(Icons.translate_rounded, size: 18, color: p.heading),
-                      const SizedBox(width: 8),
-                      Text('show_meaning'.tr,
+                    Row(
+                      children: [
+                        Icon(
+                          Icons.translate_rounded,
+                          size: 18,
+                          color: p.heading,
+                        ),
+                        const SizedBox(width: 8),
+                        Text(
+                          'show_meaning'.tr,
                           style: TextStyle(
-                              fontSize: 15,
-                              fontWeight: FontWeight.w600,
-                              color: p.text)),
-                    ]),
+                            fontSize: 15,
+                            fontWeight: FontWeight.w600,
+                            color: p.text,
+                          ),
+                        ),
+                      ],
+                    ),
                     const SizedBox(height: 12),
-                    Obx(() => ChoiceChips<Lang>(
-                          values: Lang.values,
-                          selected: s.meaningLang.value,
-                          enabled: s.showMeaning.value,
-                          label: (v) => v.nativeName,
-                          onSelected: s.setMeaningLang,
-                        )),
+                    Obx(
+                      () => ChoiceChips<Lang>(
+                        values: Lang.values,
+                        selected: s.meaningLang.value,
+                        enabled: s.showMeaning.value,
+                        label: (v) => v.nativeName,
+                        onSelected: s.setMeaningLang,
+                      ),
+                    ),
                   ],
                 ),
               ),
               _Section(
                 title: 'app_language'.tr,
-                child: Obx(() => ChoiceChips<Lang>(
-                      values: Lang.values,
-                      selected: s.uiLang.value,
-                      label: (v) => v.nativeName,
-                      onSelected: s.setUiLang,
-                    )),
+                child: Obx(
+                  () => ChoiceChips<Lang>(
+                    values: Lang.values,
+                    selected: s.uiLang.value,
+                    label: (v) => v.nativeName,
+                    onSelected: s.setUiLang,
+                  ),
+                ),
               ),
               _Section(title: 'text_size'.tr, child: const SizeSlider()),
               _Section(
                 title: 'theme'.tr,
-                child: Obx(() => ChoiceChips<ThemeMode>(
-                      values: const [
-                        ThemeMode.light,
-                        ThemeMode.dark,
-                        ThemeMode.system,
-                      ],
-                      selected: s.themeMode.value,
-                      label: (v) => switch (v) {
-                        ThemeMode.light => 'light'.tr,
-                        ThemeMode.dark => 'dark'.tr,
-                        ThemeMode.system => 'system'.tr,
-                      },
-                      onSelected: s.setThemeMode,
-                    )),
+                child: Obx(
+                  () => ChoiceChips<ThemeMode>(
+                    values: const [
+                      ThemeMode.light,
+                      ThemeMode.dark,
+                      ThemeMode.system,
+                    ],
+                    selected: s.themeMode.value,
+                    label: (v) => switch (v) {
+                      ThemeMode.light => 'light'.tr,
+                      ThemeMode.dark => 'dark'.tr,
+                      ThemeMode.system => 'system'.tr,
+                    },
+                    onSelected: s.setThemeMode,
+                  ),
+                ),
               ),
               AppCard(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 16,
+                  vertical: 14,
+                ),
                 onTap: () => Get.toNamed(Routes.specimen),
-                child: Row(children: [
-                  Icon(Icons.text_fields_rounded, color: p.heading),
-                  const SizedBox(width: 12),
-                  Expanded(
-                    child: Text('type_specimen'.tr,
+                child: Row(
+                  children: [
+                    Icon(Icons.text_fields_rounded, color: p.heading),
+                    const SizedBox(width: 12),
+                    Expanded(
+                      child: Text(
+                        'type_specimen'.tr,
                         style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w600,
-                            color: p.text)),
-                  ),
-                  Icon(Icons.chevron_right_rounded, color: p.subtext),
-                ]),
+                          fontSize: 16,
+                          fontWeight: FontWeight.w600,
+                          color: p.text,
+                        ),
+                      ),
+                    ),
+                    Icon(Icons.chevron_right_rounded, color: p.subtext),
+                  ],
+                ),
               ),
             ],
           ),
@@ -133,17 +159,21 @@ class _Section extends StatelessWidget {
         children: [
           SizedBox(
             height: 36,
-            child: Row(children: [
-              Expanded(
-                child: Text(title,
+            child: Row(
+              children: [
+                Expanded(
+                  child: Text(
+                    title,
                     style: TextStyle(
-                        fontSize: 16.5,
-                        fontWeight: FontWeight.w700,
-                        color: p.text)),
-              ),
-              trailing ??
-                  Icon(Icons.chevron_right_rounded, color: p.subtext),
-            ]),
+                      fontSize: 16.5,
+                      fontWeight: FontWeight.w700,
+                      color: p.text,
+                    ),
+                  ),
+                ),
+                trailing ?? Icon(Icons.chevron_right_rounded, color: p.subtext),
+              ],
+            ),
           ),
           const SizedBox(height: 10),
           child,

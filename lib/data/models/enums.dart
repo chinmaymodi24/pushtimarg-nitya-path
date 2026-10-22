@@ -7,23 +7,23 @@ enum Lang { gu, hi, en }
 extension LangX on Lang {
   String get code => name;
   String get nativeName => switch (this) {
-        Lang.gu => 'ગુજરાતી',
-        Lang.hi => 'हिन्दी',
-        Lang.en => 'English',
-      };
+    Lang.gu => 'ગુજરાતી',
+    Lang.hi => 'हिन्दी',
+    Lang.en => 'English',
+  };
 
   /// "Meaning" written in this language, for the heading above a meaning.
   String get meaningWord => switch (this) {
-        Lang.gu => 'અર્થ',
-        Lang.hi => 'अर्थ',
-        Lang.en => 'Meaning',
-      };
+    Lang.gu => 'અર્થ',
+    Lang.hi => 'अर्थ',
+    Lang.en => 'Meaning',
+  };
 }
 
 extension ReaderScriptX on ReaderScript {
   String get nativeName => switch (this) {
-        ReaderScript.gujarati => 'ગુજરાતી',
-        ReaderScript.devanagari => 'देवनागरी',
-        ReaderScript.roman => 'Roman',
-      };
+    ReaderScript.gujarati => 'ગુજરાતી',
+    ReaderScript.devanagari => 'देवनागरी',
+    ReaderScript.roman => 'Roman',
+  };
 }
