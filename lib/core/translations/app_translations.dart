@@ -137,6 +137,9 @@ class AppTranslations extends Translations {
     'contact_phone': "મોબાઈલ",
     'call': "ફોન કરો",
     'no_dialer': "ફોન એપ મળી નહીં. નંબર કૉપિ કર્યો છે:",
+    'exit_t': "એપ બંધ કરવી છે?",
+    'exit_m': "તમારી પ્રગતિ સચવાઈ ગઈ છે.",
+    'exit': "બંધ કરો",
   };
 
   static const _hi = {
@@ -268,6 +271,9 @@ class AppTranslations extends Translations {
     'contact_phone': "मोबाइल",
     'call': "कॉल करें",
     'no_dialer': "फ़ोन ऐप नहीं मिला। नंबर कॉपी कर लिया है:",
+    'exit_t': "ऐप बंद करना है?",
+    'exit_m': "आपकी प्रगति सहेज ली गई है।",
+    'exit': "बंद करें",
   };
 
   static const _en = {
@@ -399,5 +405,8 @@ class AppTranslations extends Translations {
     'contact_phone': "Mobile",
     'call': "Call",
     'no_dialer': "No phone app found. Number copied:",
+    'exit_t': "Exit the app?",
+    'exit_m': "Your progress has been saved.",
+    'exit': "Exit",
   };
 }
