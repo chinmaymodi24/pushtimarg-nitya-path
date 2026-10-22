@@ -1,8 +1,8 @@
 name: Build APK
 
+# Runs only when started by hand (Actions tab -> Build APK -> Run workflow),
+# not on every push.
 on:
-  push:
-    branches: [claude/pushtimarg-nitya-path-ogsi4n]
   workflow_dispatch:
 
 jobs:
