@@ -6,9 +6,9 @@ import '../../core/widgets/bottom_nav.dart';
 import '../../core/widgets/confirm_dialog.dart';
 import '../../core/widgets/page_scaffold.dart';
 import '../home/home_view.dart';
+import '../japa/japa_view.dart';
 import '../more/more_view.dart';
 import '../paths/paths_view.dart';
-import '../settings/settings_view.dart';
 import 'shell_controller.dart';
 
 class ShellView extends GetView<ShellController> {
@@ -40,7 +40,7 @@ class ShellView extends GetView<ShellController> {
               children: [
                 const HomeView(),
                 PathsView(onBack: () => controller.go(0)),
-                SettingsView(onBack: () => controller.go(0)),
+                JapaView(onBack: () => controller.go(0)),
                 MoreView(onBack: () => controller.go(0)),
               ],
             ),

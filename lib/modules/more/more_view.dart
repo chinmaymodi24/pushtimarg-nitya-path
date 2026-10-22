@@ -15,7 +15,7 @@ class MoreView extends StatelessWidget {
 
   static const _groups = [
     [
-      (Icons.radio_button_checked_rounded, 'japa_title', Routes.japa, null),
+      (Icons.settings_outlined, 'settings', Routes.settings, null),
       (Icons.favorite_border_rounded, 'wishlist', Routes.wishlist, null),
       (Icons.history_rounded, 'history', Routes.history, null),
     ],

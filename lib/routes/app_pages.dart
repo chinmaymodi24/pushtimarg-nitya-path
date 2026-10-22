@@ -5,6 +5,7 @@ import '../modules/feedback/feedback_controller.dart';
 import '../modules/feedback/feedback_view.dart';
 import '../modules/history/history_controller.dart';
 import '../modules/history/history_view.dart';
+import '../modules/home/home_controller.dart';
 import '../modules/japa/japa_history_view.dart';
 import '../modules/japa/japa_view.dart';
 import '../modules/legal/legal_view.dart';
@@ -36,6 +37,7 @@ class AppPages {
       page: () => const ShellView(),
       binding: BindingsBuilder(() {
         Get.put(ShellController(), permanent: true);
+        Get.put(HomeController(), permanent: true);
         Get.put(PathsController(), permanent: true);
       }),
     ),
