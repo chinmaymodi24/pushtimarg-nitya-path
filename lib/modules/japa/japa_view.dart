@@ -103,16 +103,26 @@ class JapaView extends GetView<JapaController> {
                   ),
                 ],
               ),
-              const SizedBox(height: 16),
-              Center(
-                child: TextButton.icon(
-                  onPressed: _confirmReset,
-                  icon: Icon(Icons.restart_alt_rounded, color: p.subtext),
-                  label: Text(
-                    'japa_reset'.tr,
-                    style: TextStyle(color: p.subtext, fontSize: 15),
-                  ),
-                ),
+              // Restarting only makes sense once something is counted.
+              Obx(
+                () => controller.count.value == 0
+                    ? const SizedBox(height: 16)
+                    : Padding(
+                        padding: const EdgeInsets.only(top: 16),
+                        child: Center(
+                          child: TextButton.icon(
+                            onPressed: _confirmReset,
+                            icon: Icon(
+                              Icons.restart_alt_rounded,
+                              color: p.subtext,
+                            ),
+                            label: Text(
+                              'japa_reset'.tr,
+                              style: TextStyle(color: p.subtext, fontSize: 15),
+                            ),
+                          ),
+                        ),
+                      ),
               ),
               const SizedBox(height: 8),
               Row(
