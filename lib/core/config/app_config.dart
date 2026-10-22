@@ -7,6 +7,9 @@ abstract class AppConfig {
   static const contactPhone = '+919714888466';
   static const contactPhoneDisplay = '+91 97148 88466';
 
+  /// Same number, in the form wa.me links expect.
+  static const whatsappNumber = '919714888466';
+
   /// Approximate start of each seva (minutes after midnight), used only to
   /// highlight "now" on Home. Timings differ by haveli; adjust here.
   static const sevaStarts = <String, int>{

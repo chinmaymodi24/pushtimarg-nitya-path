@@ -18,7 +18,6 @@ import '../modules/reader/reader_view.dart';
 import '../modules/search/search_controller.dart';
 import '../modules/search/search_view.dart';
 import '../modules/settings/settings_page.dart';
-import '../modules/settings/specimen_view.dart';
 import '../modules/shell/shell_controller.dart';
 import '../modules/shell/shell_view.dart';
 import '../modules/splash/splash_controller.dart';
@@ -55,7 +54,6 @@ class AppPages {
       binding: BindingsBuilder(() => Get.lazyPut(() => ReaderController())),
     ),
     GetPage(name: Routes.settings, page: () => const SettingsPage()),
-    GetPage(name: Routes.specimen, page: () => const SpecimenView()),
     GetPage(name: Routes.japa, page: () => const JapaView()),
     GetPage(name: Routes.wishlist, page: () => const WishlistView()),
     GetPage(

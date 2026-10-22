@@ -6,6 +6,7 @@ import '../../core/services/reading_service.dart';
 import '../../core/services/settings_service.dart';
 import '../../core/theme/palette.dart';
 import '../../core/widgets/svg_icon.dart';
+import '../../core/widgets/tab_header.dart';
 import '../../data/models/path_model.dart';
 import '../../data/models/seva.dart';
 import '../../routes/app_routes.dart';
@@ -20,26 +21,12 @@ class PathsView extends GetView<PathsTabController> {
     final p = context.pal;
     return Column(
       children: [
-        Padding(
-          padding: const EdgeInsets.fromLTRB(20, 8, 16, 10),
-          child: Row(
-            children: [
-              Expanded(
-                child: Text(
-                  'nav_paths'.tr,
-                  style: TextStyle(
-                    fontSize: 24,
-                    fontWeight: FontWeight.w700,
-                    color: p.text,
-                  ),
-                ),
-              ),
-              _SquareButton(
-                icon: Icons.history_rounded,
-                tooltip: 'history'.tr,
-                onTap: () => Get.toNamed(Routes.history),
-              ),
-            ],
+        TabHeader(
+          title: 'nav_paths'.tr,
+          action: HeaderButton(
+            icon: Icons.history_rounded,
+            tooltip: 'history'.tr,
+            onTap: () => Get.toNamed(Routes.history),
           ),
         ),
         Padding(
@@ -91,40 +78,6 @@ class PathsView extends GetView<PathsTabController> {
           }),
         ),
       ],
-    );
-  }
-}
-
-class _SquareButton extends StatelessWidget {
-  const _SquareButton({
-    required this.icon,
-    required this.tooltip,
-    required this.onTap,
-  });
-  final IconData icon;
-  final String tooltip;
-  final VoidCallback onTap;
-
-  @override
-  Widget build(BuildContext context) {
-    final p = context.pal;
-    return Tooltip(
-      message: tooltip,
-      child: Material(
-        color: p.card,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(14),
-          side: BorderSide(color: p.cardBorder),
-        ),
-        child: InkWell(
-          borderRadius: BorderRadius.circular(14),
-          onTap: onTap,
-          child: SizedBox.square(
-            dimension: 40,
-            child: Icon(icon, size: 21, color: p.heading),
-          ),
-        ),
-      ),
     );
   }
 }

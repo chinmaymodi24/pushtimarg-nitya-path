@@ -5,12 +5,11 @@ import '../../core/config/app_config.dart';
 import '../../core/theme/palette.dart';
 import '../../core/widgets/app_card.dart';
 import '../../core/widgets/disclaimer_note.dart';
-import '../../core/widgets/page_header.dart';
+import '../../core/widgets/tab_header.dart';
 import '../../routes/app_routes.dart';
 
 class MoreView extends StatelessWidget {
-  const MoreView({super.key, this.onBack});
-  final VoidCallback? onBack;
+  const MoreView({super.key});
 
   static const _groups = [
     [
@@ -36,13 +35,13 @@ class MoreView extends StatelessWidget {
       // Header sits edge to edge like every other page; content is inset.
       padding: const EdgeInsets.only(bottom: 24),
       children: [
-        PageHeader(title: 'more'.tr, onBack: onBack),
+        TabHeader(title: 'more'.tr),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              const SizedBox(height: 16),
+              const SizedBox(height: 4),
               for (final g in _groups) ...[
                 AppCard(
                   padding: EdgeInsets.zero,

@@ -6,6 +6,8 @@ import '../../core/config/app_config.dart';
 import '../../core/theme/palette.dart';
 import '../../core/utils/dialer.dart';
 import '../../core/utils/mailer.dart';
+import '../../core/utils/whatsapp.dart';
+import '../../core/widgets/action_button.dart';
 import '../../core/widgets/app_card.dart';
 import '../../core/widgets/page_header.dart';
 import '../../core/widgets/page_scaffold.dart';
@@ -34,18 +36,35 @@ class ContactView extends StatelessWidget {
                   icon: Icons.mail_outline_rounded,
                   label: 'contact_email'.tr,
                   value: AppConfig.contactEmail,
-                  actionIcon: Icons.edit_outlined,
-                  actionLabel: 'write_email'.tr,
-                  onAction: () => Mailer.compose(subject: 'Nitya Path'),
+                  actions: [
+                    ActionButton(
+                      icon: Icons.edit_outlined,
+                      label: 'write_email'.tr,
+                      height: 46,
+                      onTap: () => Mailer.compose(subject: 'Nitya Path'),
+                    ),
+                  ],
                 ),
                 const SizedBox(height: 14),
                 _ContactCard(
                   icon: Icons.call_outlined,
                   label: 'contact_phone'.tr,
                   value: AppConfig.contactPhoneDisplay,
-                  actionIcon: Icons.call_rounded,
-                  actionLabel: 'call'.tr,
-                  onAction: Dialer.call,
+                  actions: [
+                    ActionButton(
+                      icon: Icons.chat_rounded,
+                      label: 'WhatsApp',
+                      whatsapp: true,
+                      height: 46,
+                      onTap: WhatsApp.chat,
+                    ),
+                    ActionButton(
+                      icon: Icons.call_rounded,
+                      label: 'call'.tr,
+                      height: 46,
+                      onTap: Dialer.call,
+                    ),
+                  ],
                 ),
                 const SizedBox(height: 18),
                 SizedBox(
@@ -83,14 +102,12 @@ class _ContactCard extends StatelessWidget {
     required this.icon,
     required this.label,
     required this.value,
-    required this.actionIcon,
-    required this.actionLabel,
-    required this.onAction,
+    required this.actions,
   });
 
-  final IconData icon, actionIcon;
-  final String label, value, actionLabel;
-  final VoidCallback onAction;
+  final IconData icon;
+  final String label, value;
+  final List<Widget> actions;
 
   @override
   Widget build(BuildContext context) {
@@ -147,26 +164,13 @@ class _ContactCard extends StatelessWidget {
             ],
           ),
           const SizedBox(height: 16),
-          SizedBox(
-            height: 46,
-            child: DecoratedBox(
-              decoration: BoxDecoration(
-                gradient: LinearGradient(colors: p.chipSelected),
-                borderRadius: BorderRadius.circular(23),
-              ),
-              child: TextButton.icon(
-                onPressed: onAction,
-                icon: Icon(actionIcon, size: 19, color: p.onChipSelected),
-                label: Text(
-                  actionLabel,
-                  style: TextStyle(
-                    fontSize: 15.5,
-                    fontWeight: FontWeight.w700,
-                    color: p.onChipSelected,
-                  ),
-                ),
-              ),
-            ),
+          Row(
+            children: [
+              for (var i = 0; i < actions.length; i++) ...[
+                if (i > 0) const SizedBox(width: 10),
+                Expanded(child: actions[i]),
+              ],
+            ],
           ),
         ],
       ),

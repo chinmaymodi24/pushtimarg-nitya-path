@@ -57,14 +57,21 @@ class ChoiceChips<T> extends StatelessWidget {
                             ]
                           : null,
                     ),
-                    child: Text(
-                      label(v),
-                      style: TextStyle(
-                        fontSize: 15,
-                        fontWeight: v == selected
-                            ? FontWeight.w700
-                            : FontWeight.w500,
-                        color: v == selected ? p.onChipSelected : p.text,
+                    // Shrinks the label rather than clip it at large font sizes.
+                    child: FittedBox(
+                      fit: BoxFit.scaleDown,
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 6),
+                        child: Text(
+                          label(v),
+                          style: TextStyle(
+                            fontSize: 15,
+                            fontWeight: v == selected
+                                ? FontWeight.w700
+                                : FontWeight.w500,
+                            color: v == selected ? p.onChipSelected : p.text,
+                          ),
+                        ),
                       ),
                     ),
                   ),

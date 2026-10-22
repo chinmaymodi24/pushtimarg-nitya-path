@@ -16,18 +16,9 @@ class SplashView extends GetView<SplashController> {
     return PageScaffold(
       body: Stack(
         children: [
-          Center(
-            child: TweenAnimationBuilder<double>(
-              tween: Tween(begin: 0, end: 1),
-              duration: const Duration(milliseconds: 1100),
-              curve: Curves.easeOutCubic,
-              builder: (_, t, child) => Opacity(
-                opacity: t,
-                child: Transform.scale(scale: 0.92 + 0.08 * t, child: child),
-              ),
-              child: AppLogo(width: w * 0.78),
-            ),
-          ),
+          // No fade-in: the native splash already shows the logo, so it
+          // stays on screen without a flicker.
+          Center(child: AppLogo(width: w * 0.78)),
           Positioned(
             left: 0,
             right: 0,

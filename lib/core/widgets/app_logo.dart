@@ -10,9 +10,10 @@ class AppLogo extends StatelessWidget {
     final dark = Theme.of(context).brightness == Brightness.dark;
     return Image.asset(
       dark
-          ? 'assets/images/logo_dark.png'
-          : 'assets/images/logo_transparent.png',
+          ? 'assets/images/logo_dark.webp'
+          : 'assets/images/logo_transparent.webp',
       width: width,
+      gaplessPlayback: true,
     );
   }
 }

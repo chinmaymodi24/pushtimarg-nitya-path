@@ -4,7 +4,6 @@ abstract class Routes {
   static const seva = '/seva';
   static const reader = '/reader';
   static const settings = '/settings';
-  static const specimen = '/specimen';
   static const japa = '/japa';
   static const wishlist = '/wishlist';
   static const feedback = '/feedback';

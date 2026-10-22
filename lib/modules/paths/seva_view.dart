@@ -18,7 +18,7 @@ class SevaView extends GetView<SevaController> {
     final p = context.pal;
     final seva = sevaList.firstWhere((s) => s.id == controller.sevaId);
     return PageScaffold(
-      bottom: const AppBottomNav(current: 1),
+      bottom: const AppBottomNav(current: 0),
       body: Column(
         children: [
           PageHeader(

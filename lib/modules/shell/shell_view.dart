@@ -42,7 +42,7 @@ class ShellView extends GetView<ShellController> {
               const HomeView(),
               const PathsView(),
               JapaView(onBack: () => controller.go(0)),
-              MoreView(onBack: () => controller.go(0)),
+              const MoreView(),
             ],
           ),
         ),

@@ -13,6 +13,7 @@ import '../../core/widgets/app_card.dart';
 import '../../core/widgets/confirm_dialog.dart';
 import '../../core/widgets/page_header.dart';
 import '../../core/widgets/page_scaffold.dart';
+import '../../core/widgets/tab_header.dart';
 import '../../routes/app_routes.dart';
 import 'japa_history_view.dart';
 
@@ -20,7 +21,7 @@ import 'japa_history_view.dart';
 class JapaView extends GetView<JapaController> {
   const JapaView({super.key, this.onBack});
 
-  /// Set when shown as a tab; the page then has no scaffold of its own.
+  /// Set when shown as a tab: tab header, no scaffold of its own.
   final VoidCallback? onBack;
 
   static const _mantra = 'श्रीकृष्णः शरणं मम';
@@ -30,19 +31,21 @@ class JapaView extends GetView<JapaController> {
     final p = context.pal;
     final s = Get.find<SettingsController>();
     final size = math.min(MediaQuery.sizeOf(context).width - 48, 330.0);
+    final historyButton = HeaderButton(
+      icon: Icons.history_rounded,
+      tooltip: 'mala_history'.tr,
+      onTap: () => Get.toNamed(Routes.japaHistory),
+    );
     final body = Column(
       children: [
-        PageHeader(
-          title: 'japa_title'.tr,
-          onBack: onBack ?? Get.back,
-          actions: [
-            IconButton(
-              tooltip: 'mala_history'.tr,
-              icon: Icon(Icons.history_rounded, color: p.heading),
-              onPressed: () => Get.toNamed(Routes.japaHistory),
-            ),
-          ],
-        ),
+        if (onBack != null)
+          TabHeader(title: 'japa_title'.tr, action: historyButton)
+        else
+          PageHeader(
+            title: 'japa_title'.tr,
+            onBack: Get.back,
+            actions: [historyButton],
+          ),
         Expanded(
           child: ListView(
             padding: const EdgeInsets.fromLTRB(16, 0, 16, 24),

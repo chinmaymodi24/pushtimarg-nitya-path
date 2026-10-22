@@ -87,12 +87,6 @@ final features = <Feature>[
     'theme dark light night mode raat રાત ડાર્ક લાઈટ रात',
   ),
   Feature(
-    Icons.text_fields_rounded,
-    'type_specimen',
-    Routes.specimen,
-    'font specimen sample type નમૂનો',
-  ),
-  Feature(
     Icons.rate_review_outlined,
     'feedback',
     Routes.feedback,
@@ -102,7 +96,7 @@ final features = <Feature>[
     Icons.call_outlined,
     'contact',
     Routes.contact,
-    'contact call phone mobile number email mail ફોન ઈમેલ फ़ोन',
+    'contact call phone mobile number email mail whatsapp ફોન ઈમેલ વોટ્સએપ फ़ोन',
   ),
   Feature(
     Icons.account_circle_outlined,

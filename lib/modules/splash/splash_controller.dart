@@ -7,7 +7,7 @@ class SplashController extends GetxController {
   void onReady() {
     super.onReady();
     Future.delayed(
-      const Duration(milliseconds: 2200),
+      const Duration(milliseconds: 900),
       () => Get.offAllNamed(Routes.shell),
     );
   }

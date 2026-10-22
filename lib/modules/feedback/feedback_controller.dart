@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import '../../core/config/app_config.dart';
 import '../../core/services/settings_service.dart';
 import '../../core/utils/mailer.dart';
+import '../../core/utils/whatsapp.dart';
 
 class FeedbackController extends GetxController {
   static const types = ['suggestion', 'path_error', 'meaning_error', 'other'];
@@ -23,10 +24,11 @@ class FeedbackController extends GetxController {
     }
   }
 
-  Future<void> send() async {
+  /// Subject and body for the message, or null when nothing was typed.
+  (String, String)? _compose() {
     if (message.text.trim().isEmpty) {
       Get.rawSnackbar(message: 'fb_empty'.tr);
-      return;
+      return null;
     }
     final s = Get.find<SettingsController>();
     final label = 'fb_${type.value}'.tr;
@@ -46,7 +48,17 @@ class FeedbackController extends GetxController {
     final subject =
         'Nitya Path - $label'
         '${pathTitle == null ? '' : ' - $pathTitle'}';
-    await Mailer.compose(subject: subject, body: body.toString());
+    return (subject, body.toString());
+  }
+
+  Future<void> sendWhatsApp() async {
+    final m = _compose();
+    if (m != null) await WhatsApp.chat('${m.$1}\n\n${m.$2}');
+  }
+
+  Future<void> sendEmail() async {
+    final m = _compose();
+    if (m != null) await Mailer.compose(subject: m.$1, body: m.$2);
   }
 
   @override

@@ -8,7 +8,6 @@ import '../../core/widgets/choice_chips.dart';
 import '../../core/widgets/page_header.dart';
 import '../../core/widgets/size_slider.dart';
 import '../../data/models/enums.dart';
-import '../../routes/app_routes.dart';
 
 /// Three language axes, each in its own card. None changes another.
 class SettingsView extends StatelessWidget {
@@ -110,30 +109,6 @@ class SettingsView extends StatelessWidget {
                   ),
                 ),
               ),
-              AppCard(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 16,
-                  vertical: 14,
-                ),
-                onTap: () => Get.toNamed(Routes.specimen),
-                child: Row(
-                  children: [
-                    Icon(Icons.text_fields_rounded, color: p.heading),
-                    const SizedBox(width: 12),
-                    Expanded(
-                      child: Text(
-                        'type_specimen'.tr,
-                        style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w600,
-                          color: p.text,
-                        ),
-                      ),
-                    ),
-                    Icon(Icons.chevron_right_rounded, color: p.subtext),
-                  ],
-                ),
-              ),
             ],
           ),
         ),
@@ -171,7 +146,7 @@ class _Section extends StatelessWidget {
                     ),
                   ),
                 ),
-                trailing ?? Icon(Icons.chevron_right_rounded, color: p.subtext),
+                ?trailing,
               ],
             ),
           ),

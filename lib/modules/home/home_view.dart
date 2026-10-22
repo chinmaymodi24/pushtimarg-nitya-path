@@ -259,11 +259,12 @@ class _SevaGrid extends GetView<HomeController> {
         shrinkWrap: true,
         physics: const NeverScrollableScrollPhysics(),
         padding: EdgeInsets.zero,
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 4,
           mainAxisSpacing: 12,
           crossAxisSpacing: 6,
-          mainAxisExtent: 84,
+          // Tile, gap and a label that grows with the phone's font size.
+          mainAxisExtent: 61 + MediaQuery.textScalerOf(context).scale(13) * 1.9,
         ),
         children: [
           for (final s in sevaList)
@@ -485,7 +486,7 @@ class _Mini extends StatelessWidget {
               const SizedBox(height: 8),
               Text(
                 title,
-                maxLines: 1,
+                maxLines: 2,
                 overflow: TextOverflow.ellipsis,
                 style: TextStyle(
                   fontSize: 15,

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../core/theme/palette.dart';
+import '../../core/widgets/action_button.dart';
 import '../../core/widgets/app_card.dart';
 import '../../core/widgets/page_header.dart';
 import '../../core/widgets/page_scaffold.dart';
@@ -124,26 +125,19 @@ class FeedbackView extends GetView<FeedbackController> {
                   ),
                 ),
                 const SizedBox(height: 18),
-                SizedBox(
+                ActionButton(
+                  icon: Icons.chat_rounded,
+                  label: 'fb_send_whatsapp'.tr,
+                  whatsapp: true,
                   height: 52,
-                  child: DecoratedBox(
-                    decoration: BoxDecoration(
-                      gradient: LinearGradient(colors: p.chipSelected),
-                      borderRadius: BorderRadius.circular(26),
-                    ),
-                    child: TextButton.icon(
-                      onPressed: controller.send,
-                      icon: Icon(Icons.send_rounded, color: p.onChipSelected),
-                      label: Text(
-                        'fb_send'.tr,
-                        style: TextStyle(
-                          fontSize: 16.5,
-                          fontWeight: FontWeight.w700,
-                          color: p.onChipSelected,
-                        ),
-                      ),
-                    ),
-                  ),
+                  onTap: controller.sendWhatsApp,
+                ),
+                const SizedBox(height: 10),
+                ActionButton(
+                  icon: Icons.mail_outline_rounded,
+                  label: 'fb_send'.tr,
+                  height: 52,
+                  onTap: controller.sendEmail,
                 ),
                 const SizedBox(height: 10),
                 Text(
