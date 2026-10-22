@@ -21,6 +21,9 @@ class PathRepository extends GetxService {
   List<PathModel> forSeva(String sevaId) =>
       _paths.where((p) => p.seva == sevaId).toList();
 
+  List<PathModel> forCategory(String categoryId) =>
+      _paths.where((p) => p.category == categoryId).toList();
+
   PathModel? byId(String id) {
     for (final p in _paths) {
       if (p.id == id) return p;

@@ -7,7 +7,7 @@ import '../../core/theme/palette.dart';
 import '../../core/widgets/app_card.dart';
 import '../../core/widgets/svg_icon.dart';
 import '../../data/models/path_model.dart';
-import '../../routes/app_routes.dart';
+import '../../core/utils/open_path.dart';
 
 class PathTile extends StatelessWidget {
   const PathTile(this.path, {super.key});
@@ -20,7 +20,7 @@ class PathTile extends StatelessWidget {
     return AppCard(
       margin: const EdgeInsets.only(bottom: 12),
       padding: const EdgeInsets.fromLTRB(12, 12, 10, 12),
-      onTap: () => Get.toNamed(Routes.reader, arguments: path.id),
+      onTap: () => openPath(path),
       child: Row(
         children: [
           Container(

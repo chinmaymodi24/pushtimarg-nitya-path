@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 
 import '../../core/services/settings_service.dart';
 import '../../core/theme/palette.dart';
+import '../../core/utils/open_path.dart';
 import '../../core/utils/script_converter.dart';
 import '../../core/utils/search_fold.dart';
 import '../../core/widgets/page_scaffold.dart';
@@ -80,11 +81,10 @@ class SearchView extends GetView<AppSearchController> {
                         _Row(
                           lead: SvgIcon(x.icon, size: 26),
                           title: x.title(ui),
-                          subtitle: 'n_verses'.trParams({
-                            'n': '${x.verses.length}',
-                          }),
-                          onTap: () =>
-                              Get.toNamed(Routes.reader, arguments: x.id),
+                          subtitle: x.available
+                              ? 'n_verses'.trParams({'n': '${x.verses.length}'})
+                              : 'coming_soon'.tr,
+                          onTap: () => openPath(x),
                         ),
                     ]),
                   if (verses.isNotEmpty)

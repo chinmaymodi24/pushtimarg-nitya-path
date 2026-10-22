@@ -2,6 +2,7 @@ abstract class Routes {
   static const splash = '/splash';
   static const shell = '/';
   static const seva = '/seva';
+  static const category = '/category';
   static const reader = '/reader';
   static const settings = '/settings';
   static const japa = '/japa';

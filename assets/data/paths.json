@@ -15,7 +15,8 @@
      "en": "With a joyful heart I worship the feet of Shri Govardhannathji, giver of lasting joy; Shri Navnitpriyaji who loves fresh butter; Shri Mathuradhishji, Shri Vitthalnathji, Shri Dwarkadhishji, Shri Gokulnathji, Shri Gokulchandramaji, Shri Madanmohanji and Shri Balkrishnalalji."
     }
    }
-  ]
+  ],
+  "category": "nitya"
  },
  {
   "id": "yamunashtak",
@@ -105,7 +106,8 @@
      "en": "O daughter of the Sun, whoever joyfully recites this octet is freed of every fault and awakens love for Mukunda. Through it come all fulfilments, the Lord is pleased and one's own nature is conquered: so says Shri Vallabha, dear to Hari."
     }
    }
-  ]
+  ],
+  "category": "shodash"
  },
  {
   "id": "madhurashtak",
@@ -186,6 +188,559 @@
      "en": "The cowherds, the cows, his staff and his creation are sweet; his subduing of the wicked and his bestowing of fruit are sweet too. Everything about Shri Krishna, Lord of sweetness, is sweet."
     }
    }
-  ]
+  ],
+  "category": "mahaprabhuji"
+ },
+ {
+  "id": "mangalacharan",
+  "category": "nitya",
+  "title": "मङ्गलाचरणम्",
+  "title_gu": "મંગલાચરણમ્",
+  "title_en": "Mangalacharanam",
+  "verses": []
+ },
+ {
+  "id": "ratri_pad",
+  "category": "nitya",
+  "title": "रात्रे सूति वखते बोलवानुं पद",
+  "title_gu": "રાત્રે સૂતી વખતે બોલવાનું પદ",
+  "title_en": "Pad to recite at bedtime",
+  "verses": []
+ },
+ {
+  "id": "balbodh",
+  "category": "shodash",
+  "title": "बालबोधः",
+  "title_gu": "બાલબોધઃ",
+  "title_en": "Balbodh",
+  "verses": []
+ },
+ {
+  "id": "siddhant_muktavali",
+  "category": "shodash",
+  "title": "सिद्धान्तमुक्तावली",
+  "title_gu": "સિદ્ધાંત મુક્તાવલી",
+  "title_en": "Siddhant Muktavali",
+  "verses": []
+ },
+ {
+  "id": "pushti_pravah",
+  "category": "shodash",
+  "title": "पुष्टिप्रवाहमर्यादाभेदः",
+  "title_gu": "પુષ્ટિ પ્રવાહ મર્યાદા ભેદઃ",
+  "title_en": "Pushti Pravah Maryada Bhed",
+  "verses": []
+ },
+ {
+  "id": "siddhant_rahasya",
+  "category": "shodash",
+  "title": "सिद्धान्तरहस्यम्",
+  "title_gu": "સિદ્ધાંત રહસ્યમ્",
+  "title_en": "Siddhant Rahasyam",
+  "verses": []
+ },
+ {
+  "id": "navratna",
+  "category": "shodash",
+  "title": "नवरत्नस्तोत्रम्",
+  "title_gu": "નવરત્ન સ્તોત્રમ્",
+  "title_en": "Navratna Stotram",
+  "verses": []
+ },
+ {
+  "id": "antahkaran_prabodh",
+  "category": "shodash",
+  "title": "अन्तःकरणप्रबोधः",
+  "title_gu": "અંતઃકરણ પ્રબોધ",
+  "title_en": "Antahkaran Prabodh",
+  "verses": []
+ },
+ {
+  "id": "vivek_dhairya",
+  "category": "shodash",
+  "title": "विवेकधैर्याश्रयः",
+  "title_gu": "વિવેકધૈર્યાશ્રયઃ",
+  "title_en": "Vivek Dhairyashray",
+  "verses": []
+ },
+ {
+  "id": "krishnashraya",
+  "category": "shodash",
+  "title": "श्रीकृष्णाश्रयः",
+  "title_gu": "શ્રીકૃષ્ણાશ્રયઃ",
+  "title_en": "Shri Krishnashray",
+  "verses": []
+ },
+ {
+  "id": "chatuhshloki",
+  "category": "shodash",
+  "title": "चतुःश्लोकी",
+  "title_gu": "ચતુઃશ્લોકી",
+  "title_en": "Chatuhshloki",
+  "verses": []
+ },
+ {
+  "id": "bhakti_vardhini",
+  "category": "shodash",
+  "title": "भक्तिवर्धिनी",
+  "title_gu": "ભક્તિવર્ધિની",
+  "title_en": "Bhaktivardhini",
+  "verses": []
+ },
+ {
+  "id": "jalbhed",
+  "category": "shodash",
+  "title": "जलभेदः",
+  "title_gu": "જલભેદઃ",
+  "title_en": "Jalbhed",
+  "verses": []
+ },
+ {
+  "id": "panchpadyani",
+  "category": "shodash",
+  "title": "पञ्चपद्यानि",
+  "title_gu": "પંચપદ્યાનિ",
+  "title_en": "Panchpadyani",
+  "verses": []
+ },
+ {
+  "id": "sanyas_nirnay",
+  "category": "shodash",
+  "title": "संन्यासनिर्णयः",
+  "title_gu": "સંન્યાસ નિર્ણય",
+  "title_en": "Sanyas Nirnay",
+  "verses": []
+ },
+ {
+  "id": "nirodh_lakshan",
+  "category": "shodash",
+  "title": "निरोधलक्षणम्",
+  "title_gu": "નિરોધલક્ષણમ્",
+  "title_en": "Nirodh Lakshanam",
+  "verses": []
+ },
+ {
+  "id": "sevaphal",
+  "category": "shodash",
+  "title": "सेवाफलम्",
+  "title_gu": "સેવાફલમ્",
+  "title_en": "Sevaphalam",
+  "verses": []
+ },
+ {
+  "id": "sevaphal_vivaran",
+  "category": "mahaprabhuji",
+  "title": "सेवाफलविवरणम्",
+  "title_gu": "સેવાફલ-વિવરણમ્",
+  "title_en": "Sevaphal Vivaranam",
+  "verses": []
+ },
+ {
+  "id": "shiksha_shloka",
+  "category": "mahaprabhuji",
+  "title": "शिक्षाश्लोकाः",
+  "title_gu": "શિક્ષાશ્લોકાઃ",
+  "title_en": "Shiksha Shlokah",
+  "verses": []
+ },
+ {
+  "id": "panch_shloki",
+  "category": "mahaprabhuji",
+  "title": "पञ्चश्लोकी",
+  "title_gu": "પંચશ્લોકી",
+  "title_en": "Panchashloki",
+  "verses": []
+ },
+ {
+  "id": "giriraj_dharyashtak",
+  "category": "mahaprabhuji",
+  "title": "श्रीगिरिराजधार्याष्टकम्",
+  "title_gu": "શ્રી ગિરિરાજ ધાર્યાષ્ટકમ્",
+  "title_en": "Shri Giriraj Dharyashtakam",
+  "verses": []
+ },
+ {
+  "id": "nandkumarashtak",
+  "category": "mahaprabhuji",
+  "title": "श्रीनन्दकुमाराष्टकम्",
+  "title_gu": "શ્રી નંદકુમારાષ્ટકમ્",
+  "title_en": "Shri Nandkumarashtakam",
+  "verses": []
+ },
+ {
+  "id": "trividh_leela",
+  "category": "mahaprabhuji",
+  "title": "त्रिविधलीलानामावली",
+  "title_gu": "ત્રિવિધ લીલા નામાવલી",
+  "title_en": "Trividh Leela Namavali",
+  "verses": []
+ },
+ {
+  "id": "purushottam_sahasranam",
+  "category": "mahaprabhuji",
+  "title": "श्रीपुरुषोत्तमसहस्रनामस्तोत्रम्",
+  "title_gu": "શ્રી પુરુષોત્તમ સહસ્રનામ સ્તોત્રમ્",
+  "title_en": "Shri Purushottam Sahasranam Stotram",
+  "verses": []
+ },
+ {
+  "id": "sarvottam_stotra",
+  "category": "gusaiji",
+  "title": "श्रीसर्वोत्तमस्तोत्रम्",
+  "title_gu": "શ્રી સર્વોત્તમ સ્તોત્રમ્",
+  "title_en": "Shri Sarvottam Stotram",
+  "verses": []
+ },
+ {
+  "id": "sarvottam_namavali",
+  "category": "gusaiji",
+  "title": "श्रीसर्वोत्तमस्तोत्रनामावली",
+  "title_gu": "શ્રી સર્વોત્તમ સ્તોત્ર નામાવલી",
+  "title_en": "Shri Sarvottam Stotra Namavali",
+  "verses": []
+ },
+ {
+  "id": "sapta_shloki",
+  "category": "gusaiji",
+  "title": "श्रीसप्तश्लोकी",
+  "title_gu": "શ્રી સપ્તશ્લોકી",
+  "title_en": "Shri Saptashloki",
+  "verses": []
+ },
+ {
+  "id": "vallabhashtak",
+  "category": "gusaiji",
+  "title": "श्रीवल्लभाष्टकम्",
+  "title_gu": "શ્રી વલ્લભાષ્ટકમ્",
+  "title_en": "Shri Vallabhashtakam",
+  "verses": []
+ },
+ {
+  "id": "gokulashtak",
+  "category": "gusaiji",
+  "title": "श्रीगोकुलाष्टकम्",
+  "title_gu": "શ્રી ગોકુલાષ્ટકમ્",
+  "title_en": "Shri Gokulashtakam",
+  "verses": []
+ },
+ {
+  "id": "panchakshar_stotra",
+  "category": "hariraiji",
+  "title": "श्रीपञ्चाक्षरमन्त्रगर्भस्तोत्रम्",
+  "title_gu": "શ્રી પંચાક્ષરમંત્ર ગર્ભ સ્તોત્રમ્",
+  "title_en": "Shri Panchakshar Mantra Garbh Stotram",
+  "verses": []
+ },
+ {
+  "id": "vallabh_sharanashtak",
+  "category": "hariraiji",
+  "title": "श्रीवल्लभशरणाष्टकम्",
+  "title_gu": "શ્રી વલ્લભશરણાષ્ટકમ્",
+  "title_en": "Shri Vallabh Sharanashtakam",
+  "verses": []
+ },
+ {
+  "id": "dainyashtak",
+  "category": "hariraiji",
+  "title": "श्रीदैन्याष्टकम्",
+  "title_gu": "શ્રી દૈન્યાષ્ટકમ્",
+  "title_en": "Shri Dainyashtakam",
+  "verses": []
+ },
+ {
+  "id": "haha_dainyashtak",
+  "category": "hariraiji",
+  "title": "हाहा दैन्याष्टकम्",
+  "title_gu": "હાહા દૈન્યાષ્ટકમ્",
+  "title_en": "Haha Dainyashtakam",
+  "verses": []
+ },
+ {
+  "id": "janma_vaifalya",
+  "category": "hariraiji",
+  "title": "जन्मवैफल्यनिरूपणाष्टकम्",
+  "title_gu": "જન્મ વૈફલ્ય-નિરૂપણાષ્ટકમ્",
+  "title_en": "Janma Vaifalya Nirupanashtakam",
+  "verses": []
+ },
+ {
+  "id": "vallabh_sakhi",
+  "category": "hariraiji",
+  "title": "श्रीवल्लभ साखी",
+  "title_gu": "શ્રી વલ્લભ સાખી",
+  "title_en": "Shri Vallabh Sakhi",
+  "verses": []
+ },
+ {
+  "id": "nitya_leela",
+  "category": "hariraiji",
+  "title": "नित्य लीला",
+  "title_gu": "નિત્ય લીલા",
+  "title_en": "Nitya Leela",
+  "verses": []
+ },
+ {
+  "id": "vachanamrut_84",
+  "category": "hariraiji",
+  "title": "श्रीहरिरायजी के ८४ वचनामृत",
+  "title_gu": "શ્રીહરિરાયજીના ૮૪ વચનામૃત",
+  "title_en": "84 Vachanamrut of Shri Hariraiji",
+  "verses": []
+ },
+ {
+  "id": "naam_ratnakhya",
+  "category": "raghunathji",
+  "title": "श्रीनामरत्नाख्यस्तोत्रम्",
+  "title_gu": "શ્રી નામ રત્નાખ્ય સ્તોત્રમ્",
+  "title_en": "Shri Naam Ratnakhya Stotram",
+  "verses": []
+ },
+ {
+  "id": "gokuleshashtak",
+  "category": "raghunathji",
+  "title": "श्रीगोकुलेशाष्टकम्",
+  "title_gu": "શ્રી ગોકુલેશાષ્ટકમ્",
+  "title_en": "Shri Gokuleshashtakam",
+  "verses": []
+ },
+ {
+  "id": "yamuna_41_pad",
+  "category": "yamunaji",
+  "title": "श्रीयमुनाजी के ४१ पद",
+  "title_gu": "શ્રી યમુનાજીના ૪૧ પદ",
+  "title_en": "41 Pads of Shri Yamunaji",
+  "verses": []
+ },
+ {
+  "id": "yamuna_aarti",
+  "category": "yamunaji",
+  "title": "श्रीयमुनाजी की आरती",
+  "title_gu": "શ્રી યમુનાજીની આરતી",
+  "title_en": "Aarti of Shri Yamunaji",
+  "verses": []
+ },
+ {
+  "id": "yamuna_kavach",
+  "category": "yamunaji",
+  "title": "श्रीयमुनाकवचम्",
+  "title_gu": "શ્રી યમુના કવચ",
+  "title_en": "Shri Yamuna Kavach",
+  "verses": []
+ },
+ {
+  "id": "gopigeet",
+  "category": "geet",
+  "title": "श्रीगोपीगीत",
+  "title_gu": "શ્રી ગોપીગીત",
+  "title_en": "Shri Gopi Geet",
+  "verses": []
+ },
+ {
+  "id": "bhramargeet",
+  "category": "geet",
+  "title": "श्रीभ्रमरगीत",
+  "title_gu": "શ્રી ભ્રમરગીત",
+  "title_en": "Shri Bhramar Geet",
+  "verses": []
+ },
+ {
+  "id": "venugeet",
+  "category": "geet",
+  "title": "श्रीवेणुगीत",
+  "title_gu": "શ્રી વેણુગીત",
+  "title_en": "Shri Venu Geet",
+  "verses": []
+ },
+ {
+  "id": "yugalgeet",
+  "category": "geet",
+  "title": "श्रीयुगलगीत",
+  "title_gu": "શ્રી યુગલગીત",
+  "title_en": "Shri Yugal Geet",
+  "verses": []
+ },
+ {
+  "id": "uddhavgeet",
+  "category": "geet",
+  "title": "श्रीउद्धवगीत",
+  "title_gu": "શ્રી ઉદ્ધવગીત",
+  "title_en": "Shri Uddhav Geet",
+  "verses": []
+ },
+ {
+  "id": "vritrasur_chatuhshloki",
+  "category": "geet",
+  "title": "वृत्रासुरचतुःश्लोकी",
+  "title_gu": "વૃત્રાસુર ચતુઃશ્લોકી",
+  "title_en": "Vritrasur Chatuhshloki",
+  "verses": []
+ },
+ {
+  "id": "bhagavat_path",
+  "category": "geet",
+  "title": "श्रीमद्भागवत का पाठ",
+  "title_gu": "શ્રીમદ્ ભાગવતનો પાઠ",
+  "title_en": "Recitation from Shrimad Bhagavat",
+  "verses": []
+ },
+ {
+  "id": "vallabhakhyan",
+  "category": "dhol",
+  "title": "श्रीवल्लभाख्यान और मूलपुरुष",
+  "title_gu": "શ્રીવલ્લભાખ્યાન (નવ) અને મૂલપુરુષ",
+  "title_en": "Shri Vallabhakhyan and Mulpurush",
+  "verses": []
+ },
+ {
+  "id": "sarvottamji_dhol",
+  "category": "dhol",
+  "title": "श्रीसर्वोत्तमजी का धोळ",
+  "title_gu": "શ્રી સર્વોત્તમજીનું ધોળ",
+  "title_en": "Dhol of Shri Sarvottamji",
+  "verses": []
+ },
+ {
+  "id": "chorasi_dhol",
+  "category": "dhol",
+  "title": "श्री चौरासी वैष्णव का धोळ",
+  "title_gu": "શ્રી ચોર્યાશી વૈષ્ણવનું ધોળ",
+  "title_en": "Dhol of the 84 Vaishnavas",
+  "verses": []
+ },
+ {
+  "id": "basobavan_dhol",
+  "category": "dhol",
+  "title": "श्री दो सौ बावन वैष्णव का धोळ",
+  "title_gu": "શ્રી બસોબાવન વૈષ્ણવનું ધોળ",
+  "title_en": "Dhol of the 252 Vaishnavas",
+  "verses": []
+ },
+ {
+  "id": "ras_leelamrut",
+  "category": "dhol",
+  "title": "रास लीलामृत",
+  "title_gu": "રાસ લીલામૃત",
+  "title_en": "Ras Leelamrut",
+  "verses": []
+ },
+ {
+  "id": "govardhanvasi",
+  "category": "dhol",
+  "title": "श्रीगोवर्धनवासी सांवरेलाल",
+  "title_gu": "શ્રીગોવર્ધનવાસી સાંવરેલાલ",
+  "title_en": "Shri Govardhanvasi Sanvrelal",
+  "verses": []
+ },
+ {
+  "id": "tarahati",
+  "category": "dhol",
+  "title": "तरहटी श्रीगोवर्धन की रहिये",
+  "title_gu": "તરહટી શ્રીગોવર્ધનકી રહિયે",
+  "title_en": "Tarahati Shri Govardhan ki Rahiye",
+  "verses": []
+ },
+ {
+  "id": "e_hi_hamare",
+  "category": "dhol",
+  "title": "ए ही हमारे श्रीनाथजी",
+  "title_gu": "એ હી હમારે શ્રીનાથજી",
+  "title_en": "E Hi Hamare Shrinathji",
+  "verses": []
+ },
+ {
+  "id": "vallabh_bharoso",
+  "category": "dhol",
+  "title": "श्रीवल्लभ ही को भारी भरोसो",
+  "title_gu": "શ્રી વલ્લભ હી કો ભારી ભરોંસો",
+  "title_en": "Shri Vallabh hi ko Bhari Bharoso",
+  "verses": []
+ },
+ {
+  "id": "dradh_charanan",
+  "category": "dhol",
+  "title": "दृढ़ इन चरणन केरो भरोसो",
+  "title_gu": "દઢ ઈન ચરણન કેરો ભરોંસો",
+  "title_en": "Dradh in Charanan Kero Bharoso",
+  "verses": []
+ },
+ {
+  "id": "ma_baap",
+  "category": "dhol",
+  "title": "मा-बाप ने भूलशो नहीं",
+  "title_gu": "મા-બાપને ભૂલશો નહીં",
+  "title_en": "Ma-Baapne Bhulsho Nahi",
+  "verses": []
+ },
+ {
+  "id": "bethakji_dandvat",
+  "category": "dhol",
+  "title": "१५३ बैठकजी में दण्डवत्",
+  "title_gu": "૧૫૩ બેઠકજીમાં દંડવત્",
+  "title_en": "Dandvat at the 153 Bethakji",
+  "verses": []
+ },
+ {
+  "id": "narayan_kavach",
+  "category": "kavach",
+  "title": "श्रीनारायणकवचम्",
+  "title_gu": "શ્રી નારાયણ કવચ",
+  "title_en": "Shri Narayan Kavach",
+  "verses": []
+ },
+ {
+  "id": "sudarshan_kavach",
+  "category": "kavach",
+  "title": "श्रीसुदर्शनकवचम्",
+  "title_gu": "શ્રી સુદર્શન કવચ",
+  "title_en": "Shri Sudarshan Kavach",
+  "verses": []
+ },
+ {
+  "id": "nitya_seva_reet",
+  "category": "siddhant",
+  "title": "नित्य सेवा की रीत",
+  "title_gu": "નિત્ય સેવાની રીત",
+  "title_en": "How to do daily seva",
+  "verses": []
+ },
+ {
+  "id": "brahmasambandh",
+  "category": "siddhant",
+  "title": "ब्रह्मसम्बन्ध",
+  "title_gu": "બ્રહ્મસંબંધ",
+  "title_en": "Brahmasambandh",
+  "verses": []
+ },
+ {
+  "id": "brahmasambandh_bhavarth",
+  "category": "siddhant",
+  "title": "ब्रह्मसम्बन्ध का भावार्थ",
+  "title_gu": "બ્રહ્મસંબંધનો ભાવાર્થ",
+  "title_en": "Meaning of Brahmasambandh",
+  "verses": []
+ },
+ {
+  "id": "mukhya_siddhant",
+  "category": "siddhant",
+  "title": "पुष्टिमार्ग के मुख्य सिद्धान्त",
+  "title_gu": "પુષ્ટિમાર્ગના મુખ્ય સિદ્ધાંત",
+  "title_en": "Main principles of Pushtimarg",
+  "verses": []
+ },
+ {
+  "id": "panch_tattva",
+  "category": "siddhant",
+  "title": "पुष्टिमार्ग के पाँच तत्त्व",
+  "title_gu": "પુષ્ટિમાર્ગના પાંચ તત્ત્વ",
+  "title_en": "Five tattvas of Pushtimarg",
+  "verses": []
+ },
+ {
+  "id": "vangmay_swarup",
+  "category": "siddhant",
+  "title": "श्रीवल्लभ का वाङ्मय स्वरूप - षोडशग्रन्थ",
+  "title_gu": "શ્રીવલ્લભનું વાઙ્મય સ્વરૂપ - ષોડશગ્રંથ",
+  "title_en": "Shri Vallabh in his writings: the sixteen granths",
+  "verses": []
  }
 ]

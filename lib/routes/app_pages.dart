@@ -10,6 +10,7 @@ import '../modules/japa/japa_history_view.dart';
 import '../modules/japa/japa_view.dart';
 import '../modules/legal/legal_view.dart';
 import '../modules/more/about_view.dart';
+import '../modules/paths/category_view.dart';
 import '../modules/paths/paths_controller.dart';
 import '../modules/paths/paths_tab_controller.dart';
 import '../modules/paths/seva_view.dart';
@@ -48,6 +49,7 @@ class AppPages {
       page: () => const SevaView(),
       binding: BindingsBuilder(() => Get.lazyPut(() => SevaController())),
     ),
+    GetPage(name: Routes.category, page: () => const CategoryView()),
     GetPage(
       name: Routes.reader,
       page: () => const ReaderView(),
