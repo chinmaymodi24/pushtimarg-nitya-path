@@ -33,11 +33,16 @@ class SevaView extends GetView<SevaController> {
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          Opacity(opacity: 0.6, child: SvgIcon(seva.icon, size: 64)),
+                          Opacity(
+                            opacity: 0.6,
+                            child: SvgIcon(seva.icon, size: 64),
+                          ),
                           const SizedBox(height: 16),
-                          Text('no_paths'.tr,
-                              textAlign: TextAlign.center,
-                              style: TextStyle(fontSize: 16, color: p.subtext)),
+                          Text(
+                            'no_paths'.tr,
+                            textAlign: TextAlign.center,
+                            style: TextStyle(fontSize: 16, color: p.subtext),
+                          ),
                         ],
                       ),
                     ),

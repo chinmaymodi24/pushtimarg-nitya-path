@@ -46,6 +46,14 @@ class PathModel {
         Lang.en => titleEn,
       };
 
+  /// Title in every script, lower-cased, for search.
+  late final String searchText = [
+    titleDev,
+    ScriptConverter.convert(titleDev, ReaderScript.gujarati),
+    ScriptConverter.convert(titleDev, ReaderScript.roman),
+    titleEn,
+  ].join(' ').toLowerCase();
+
   factory PathModel.fromJson(Map<String, dynamic> j) => PathModel(
         id: j['id'] as String,
         seva: j['seva'] as String,

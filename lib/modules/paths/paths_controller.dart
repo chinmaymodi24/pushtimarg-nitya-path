@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import '../../data/models/path_model.dart';
 import '../../data/repository/path_repository.dart';
 
-/// Used by both the "Paths" tab (all) and a single seva page (arguments = id).
+/// Paths of one seva (arguments = seva id).
 class PathsController extends GetxController {
   final _repo = Get.find<PathRepository>();
   String? sevaId;

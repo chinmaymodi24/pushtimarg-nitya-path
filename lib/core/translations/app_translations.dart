@@ -155,6 +155,11 @@ class AppTranslations extends Translations {
     'japa_today_n': "આજે @n માળા",
     'not_started': "હજુ કોઈ પાઠ વાંચ્યો નથી",
     'start_reading': "વાંચવાનું શરૂ કરો",
+    'all_chip': "બધા",
+    'n_verses': "@n શ્લોક",
+    'read_pct': "@n% વાંચ્યું",
+    'scroll_left': "પાછળ",
+    'scroll_right': "આગળ",
   };
 
   static const _hi = {
@@ -304,6 +309,11 @@ class AppTranslations extends Translations {
     'japa_today_n': "आज @n माला",
     'not_started': "अभी कोई पाठ नहीं पढ़ा",
     'start_reading': "पढ़ना शुरू करें",
+    'all_chip': "सभी",
+    'n_verses': "@n श्लोक",
+    'read_pct': "@n% पढ़ा",
+    'scroll_left': "पीछे",
+    'scroll_right': "आगे",
   };
 
   static const _en = {
@@ -453,5 +463,10 @@ class AppTranslations extends Translations {
     'japa_today_n': "@n malas today",
     'not_started': "Nothing read yet",
     'start_reading': "Start reading",
+    'all_chip': "All",
+    'n_verses': "@n verses",
+    'read_pct': "@n% read",
+    'scroll_left': "Scroll left",
+    'scroll_right': "Scroll right",
   };
 }

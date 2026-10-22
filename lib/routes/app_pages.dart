@@ -11,6 +11,7 @@ import '../modules/japa/japa_view.dart';
 import '../modules/legal/legal_view.dart';
 import '../modules/more/about_view.dart';
 import '../modules/paths/paths_controller.dart';
+import '../modules/paths/paths_tab_controller.dart';
 import '../modules/paths/seva_view.dart';
 import '../modules/reader/reader_controller.dart';
 import '../modules/reader/reader_view.dart';
@@ -38,7 +39,7 @@ class AppPages {
       binding: BindingsBuilder(() {
         Get.put(ShellController(), permanent: true);
         Get.put(HomeController(), permanent: true);
-        Get.put(PathsController(), permanent: true);
+        Get.put(PathsTabController(), permanent: true);
       }),
     ),
     GetPage(

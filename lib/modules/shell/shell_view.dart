@@ -39,7 +39,7 @@ class ShellView extends GetView<ShellController> {
               index: controller.index.value,
               children: [
                 const HomeView(),
-                PathsView(onBack: () => controller.go(0)),
+                const PathsView(),
                 JapaView(onBack: () => controller.go(0)),
                 MoreView(onBack: () => controller.go(0)),
               ],

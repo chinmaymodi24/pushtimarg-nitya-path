@@ -35,19 +35,29 @@ class PathTile extends StatelessWidget {
           ),
           const SizedBox(width: 16),
           Expanded(
-            child: Obx(() => Text(
-                  path.title(s.uiLang.value),
-                  style: TextStyle(
-                      fontSize: 18, fontWeight: FontWeight.w700, color: p.text),
-                )),
+            child: Obx(
+              () => Text(
+                path.title(s.uiLang.value),
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.w700,
+                  color: p.text,
+                ),
+              ),
+            ),
           ),
-          Obx(() => Get.find<FavoritesController>().isFav(path.id)
-              ? Padding(
-                  padding: const EdgeInsets.only(right: 4),
-                  child: Icon(Icons.favorite_rounded,
-                      size: 18, color: p.primary),
-                )
-              : const SizedBox.shrink()),
+          Obx(
+            () => Get.find<FavoritesController>().isFav(path.id)
+                ? Padding(
+                    padding: const EdgeInsets.only(right: 4),
+                    child: Icon(
+                      Icons.favorite_rounded,
+                      size: 18,
+                      color: p.primary,
+                    ),
+                  )
+                : const SizedBox.shrink(),
+          ),
           Icon(Icons.chevron_right_rounded, color: p.subtext),
         ],
       ),
