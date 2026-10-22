@@ -5,13 +5,16 @@ import 'package:nityapath/data/models/enums.dart';
 
 void main() {
   test('plain Latin typing finds IAST text', () {
-    final roman =
-        fold(ScriptConverter.convert('श्रीयमुनाष्टकम् नमामि', ReaderScript.roman));
+    final roman = fold(
+      ScriptConverter.convert('श्रीयमुनाष्टकम् नमामि', ReaderScript.roman),
+    );
     expect(roman.contains(fold('shri')), isTrue);
     expect(roman.contains(fold('yamunashtak')), isTrue);
     expect(roman.contains(fold('namami')), isTrue);
     expect(fold('कृष्ण'), 'कृष्ण');
-    expect(fold(ScriptConverter.convert('कृष्ण', ReaderScript.roman)),
-        'krishna');
+    expect(
+      fold(ScriptConverter.convert('कृष्ण', ReaderScript.roman)),
+      'krishna',
+    );
   });
 }
