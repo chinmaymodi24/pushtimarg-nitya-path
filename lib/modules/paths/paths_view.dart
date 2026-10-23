@@ -73,11 +73,7 @@ class PathsView extends GetView<PathsTabController> {
                 for (final (i, c) in categoryList.indexed)
                   FadeSlideIn(
                     index: i,
-                    child: _CategoryCard(
-                      c,
-                      controller.pathsIn(c).length,
-                      controller.pathsIn(c).where((x) => x.available).length,
-                    ),
+                    child: _CategoryCard(c, controller.pathsIn(c).length),
                   ),
               ],
             );
@@ -128,9 +124,9 @@ class _SectionTitle extends StatelessWidget {
 
 /// One section: icon, name, a few example titles and how many paths.
 class _CategoryCard extends StatelessWidget {
-  const _CategoryCard(this.c, this.total, this.ready);
+  const _CategoryCard(this.c, this.total);
   final PathCategory c;
-  final int total, ready;
+  final int total;
 
   @override
   Widget build(BuildContext context) {
@@ -181,14 +177,11 @@ class _CategoryCard extends StatelessWidget {
                       ),
                       const SizedBox(height: 3),
                       Text(
-                        [
-                          'n_paths'.trParams({'n': '$total'}),
-                          if (ready > 0) 'n_ready'.trParams({'n': '$ready'}),
-                        ].join('  ·  '),
+                        'n_paths'.trParams({'n': '$total'}),
                         style: TextStyle(
                           fontSize: 12,
                           fontWeight: FontWeight.w600,
-                          color: ready > 0 ? p.primary : p.subtext,
+                          color: p.subtext,
                         ),
                       ),
                     ],
