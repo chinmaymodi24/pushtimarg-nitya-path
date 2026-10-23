@@ -153,7 +153,7 @@ class _SectionTitle extends StatelessWidget {
   }
 }
 
-/// The first eight sections of the Paths tab, two to a row.
+/// The first eight sections of the Paths tab, four to a row.
 class _SectionGrid extends StatelessWidget {
   const _SectionGrid();
 
@@ -161,95 +161,51 @@ class _SectionGrid extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final items = categoryList.take(_shown).toList();
-    return Column(
+    final p = context.pal;
+    return GridView(
+      shrinkWrap: true,
+      physics: const NeverScrollableScrollPhysics(),
+      padding: EdgeInsets.zero,
+      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: 4,
+        mainAxisSpacing: 12,
+        crossAxisSpacing: 6,
+        // Tile, gap and a label that grows with the phone's font size.
+        mainAxisExtent: 61 + MediaQuery.textScalerOf(context).scale(13) * 1.9,
+      ),
       children: [
-        for (var i = 0; i < items.length; i += 2)
-          Padding(
-            padding: EdgeInsets.only(top: i == 0 ? 0 : 10),
-            child: IntrinsicHeight(
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  Expanded(child: _SectionTile(items[i])),
-                  const SizedBox(width: 10),
-                  Expanded(
-                    child: i + 1 < items.length
-                        ? _SectionTile(items[i + 1])
-                        : const SizedBox(),
+        for (final c in categoryList.take(_shown))
+          GestureDetector(
+            behavior: HitTestBehavior.opaque,
+            onTap: () => Get.toNamed(Routes.category, arguments: c.id),
+            child: Column(
+              children: [
+                Container(
+                  width: 56,
+                  height: 56,
+                  alignment: Alignment.center,
+                  decoration: BoxDecoration(
+                    color: p.card,
+                    borderRadius: BorderRadius.circular(18),
+                    border: Border.all(color: p.cardBorder),
                   ),
-                ],
-              ),
+                  child: SvgIcon(c.icon, size: 31),
+                ),
+                const SizedBox(height: 5),
+                Text(
+                  c.shortKey.tr,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(
+                    fontSize: 13,
+                    fontWeight: FontWeight.w700,
+                    color: p.text,
+                  ),
+                ),
+              ],
             ),
           ),
       ],
-    );
-  }
-}
-
-class _SectionTile extends StatelessWidget {
-  const _SectionTile(this.c);
-  final PathCategory c;
-
-  @override
-  Widget build(BuildContext context) {
-    final p = context.pal;
-    final paths = Get.find<PathRepository>().forCategory(c.id);
-    final ready = paths.where((x) => x.available).length;
-    return Material(
-      color: p.card,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(18),
-        side: BorderSide(color: p.cardBorder),
-      ),
-      child: InkWell(
-        borderRadius: BorderRadius.circular(18),
-        onTap: () => Get.toNamed(Routes.category, arguments: c.id),
-        child: Padding(
-          padding: const EdgeInsets.fromLTRB(12, 12, 10, 12),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Container(
-                width: 40,
-                height: 40,
-                alignment: Alignment.center,
-                decoration: BoxDecoration(
-                  color: p.iconTile,
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                child: SvgIcon(c.icon, size: 26),
-              ),
-              const SizedBox(height: 8),
-              Text(
-                c.nameKey.tr,
-                maxLines: 2,
-                overflow: TextOverflow.ellipsis,
-                style: TextStyle(
-                  fontSize: 14,
-                  height: 1.3,
-                  fontWeight: FontWeight.w700,
-                  color: p.text,
-                ),
-              ),
-              const Spacer(),
-              const SizedBox(height: 2),
-              Text(
-                ready > 0
-                    ? 'n_ready'.trParams({'n': '$ready'})
-                    : 'n_paths'.trParams({'n': '${paths.length}'}),
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
-                style: TextStyle(
-                  fontSize: 12,
-                  fontWeight: FontWeight.w600,
-                  color: ready > 0 ? p.primary : p.subtext,
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
     );
   }
 }

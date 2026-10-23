@@ -9,6 +9,9 @@ class PathCategory {
 
   String get nameKey => 'cat_$id';
   String get subKey => 'cat_${id}_sub';
+
+  /// Short name for the Home grid.
+  String get shortKey => 'cat_${id}_short';
 }
 
 const categoryList = <PathCategory>[

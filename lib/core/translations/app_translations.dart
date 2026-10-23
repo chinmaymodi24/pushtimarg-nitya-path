@@ -200,6 +200,17 @@ class AppTranslations extends Translations {
     'cat_kavach_sub': "નારાયણ કવચ, સુદર્શન કવચ",
     'cat_siddhant_sub': "નિત્ય સેવા, બ્રહ્મસંબંધ, પાંચ તત્ત્વ",
     'all_categories': "વિભાગ",
+    'cat_nitya_short': "નિત્ય સ્મરણ",
+    'cat_shodash_short': "ષોડશ ગ્રંથ",
+    'cat_mahaprabhuji_short': "શ્રીમહાપ્રભુજી",
+    'cat_gusaiji_short': "શ્રીગુસાંઈજી",
+    'cat_hariraiji_short': "શ્રીહરિરાયજી",
+    'cat_raghunathji_short': "શ્રીરઘુનાથજી",
+    'cat_yamunaji_short': "શ્રીયમુનાજી",
+    'cat_geet_short': "પંચગીત",
+    'cat_dhol_short': "ધોળ-પદ",
+    'cat_kavach_short': "કવચ",
+    'cat_siddhant_short': "સિદ્ધાંત",
   };
 
   static const _hi = {
@@ -393,6 +404,17 @@ class AppTranslations extends Translations {
     'cat_kavach_sub': "नारायण कवच, सुदर्शन कवच",
     'cat_siddhant_sub': "नित्य सेवा, ब्रह्मसम्बन्ध, पाँच तत्त्व",
     'all_categories': "विभाग",
+    'cat_nitya_short': "नित्य स्मरण",
+    'cat_shodash_short': "षोडश ग्रन्थ",
+    'cat_mahaprabhuji_short': "श्रीमहाप्रभुजी",
+    'cat_gusaiji_short': "श्रीगुसाँईजी",
+    'cat_hariraiji_short': "श्रीहरिरायजी",
+    'cat_raghunathji_short': "श्रीरघुनाथजी",
+    'cat_yamunaji_short': "श्रीयमुनाजी",
+    'cat_geet_short': "पंचगीत",
+    'cat_dhol_short': "धोळ-पद",
+    'cat_kavach_short': "कवच",
+    'cat_siddhant_short': "सिद्धान्त",
   };
 
   static const _en = {
@@ -586,5 +608,16 @@ class AppTranslations extends Translations {
     'cat_kavach_sub': "Narayan Kavach, Sudarshan Kavach",
     'cat_siddhant_sub': "Daily seva, Brahmasambandh, five tattvas",
     'all_categories': "Sections",
+    'cat_nitya_short': "Daily",
+    'cat_shodash_short': "Shodash",
+    'cat_mahaprabhuji_short': "Mahaprabhuji",
+    'cat_gusaiji_short': "Gusaiji",
+    'cat_hariraiji_short': "Hariraiji",
+    'cat_raghunathji_short': "Raghunathji",
+    'cat_yamunaji_short': "Yamunaji",
+    'cat_geet_short': "Panchgeet",
+    'cat_dhol_short': "Dhol",
+    'cat_kavach_short': "Kavach",
+    'cat_siddhant_short': "Siddhant",
   };
 }
