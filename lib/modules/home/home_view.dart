@@ -5,14 +5,17 @@ import '../../core/config/app_config.dart';
 import '../../core/services/japa_service.dart';
 import '../../core/services/reading_service.dart';
 import '../../core/services/settings_service.dart';
+import '../../core/theme/app_theme.dart';
 import '../../core/theme/palette.dart';
 import '../../core/utils/day_info.dart';
+import '../../core/utils/script_converter.dart';
 import '../../core/widgets/app_logo.dart';
 import '../../core/widgets/motion.dart';
 import '../../core/widgets/svg_icon.dart';
 import '../../data/models/category.dart';
 import '../../data/repository/path_repository.dart';
 import '../../routes/app_routes.dart';
+import '../paths/path_row.dart';
 import '../shell/shell_controller.dart';
 import 'home_controller.dart';
 
@@ -23,14 +26,31 @@ class HomeView extends GetView<HomeController> {
   Widget build(BuildContext context) {
     return ListView(
       padding: const EdgeInsets.fromLTRB(18, 4, 18, 24),
-      children: const [
-        FadeSlideIn(index: 0, child: _Header()),
-        SizedBox(height: 12),
-        FadeSlideIn(index: 1, child: _SearchBar()),
-        SizedBox(height: 16),
-        FadeSlideIn(index: 2, child: _MiniCards()),
-        FadeSlideIn(index: 3, child: _SectionTitle()),
-        FadeSlideIn(index: 4, child: _SectionGrid()),
+      children: [
+        const FadeSlideIn(index: 0, child: _Header()),
+        const SizedBox(height: 12),
+        const FadeSlideIn(index: 1, child: _SearchBar()),
+        const SizedBox(height: 16),
+        const FadeSlideIn(index: 2, child: _MiniCards()),
+        const FadeSlideIn(index: 3, child: _VerseOfDay()),
+        FadeSlideIn(
+          index: 4,
+          child: _SectionTitle(
+            'home_sections',
+            onSeeAll: () => Get.find<ShellController>().go(1),
+          ),
+        ),
+        const FadeSlideIn(index: 5, child: _SectionGrid()),
+        const SizedBox(height: 8),
+        FadeSlideIn(
+          index: 6,
+          child: _SectionTitle(
+            'ready_paths',
+            onSeeAll: () => Get.find<ShellController>().go(1),
+          ),
+        ),
+        const FadeSlideIn(index: 7, child: _ReadyPaths()),
+        const FadeSlideIn(index: 8, child: _Closing()),
       ],
     );
   }
@@ -107,7 +127,9 @@ class _Header extends GetView<HomeController> {
 }
 
 class _SectionTitle extends StatelessWidget {
-  const _SectionTitle();
+  const _SectionTitle(this.titleKey, {required this.onSeeAll});
+  final String titleKey;
+  final VoidCallback onSeeAll;
 
   @override
   Widget build(BuildContext context) {
@@ -118,7 +140,7 @@ class _SectionTitle extends StatelessWidget {
         children: [
           Expanded(
             child: Text(
-              'home_sections'.tr,
+              titleKey.tr,
               style: TextStyle(
                 fontSize: 16.5,
                 fontWeight: FontWeight.w700,
@@ -127,7 +149,7 @@ class _SectionTitle extends StatelessWidget {
             ),
           ),
           TextButton(
-            onPressed: () => Get.find<ShellController>().go(1),
+            onPressed: onSeeAll,
             style: TextButton.styleFrom(
               foregroundColor: p.primary,
               padding: const EdgeInsets.symmetric(horizontal: 8),
@@ -428,6 +450,172 @@ class _SearchBar extends StatelessWidget {
               ],
             ),
           ),
+        ),
+      ),
+    );
+  }
+}
+
+/// One verse a day from the paths that have text, in the reader's script
+/// and meaning language. Opens the reader at that verse.
+class _VerseOfDay extends GetView<HomeController> {
+  const _VerseOfDay();
+
+  @override
+  Widget build(BuildContext context) {
+    final p = context.pal;
+    final s = Get.find<SettingsController>();
+    return Obx(() {
+      final pick = controller.verseOfDay;
+      if (pick == null) return const SizedBox.shrink();
+      final (path, verse) = pick;
+      final meaning = s.showMeaning.value
+          ? verse.meaning(s.meaningLang.value)
+          : null;
+      return Padding(
+        padding: const EdgeInsets.only(bottom: 6),
+        child: Material(
+          color: Colors.transparent,
+          child: InkWell(
+            borderRadius: BorderRadius.circular(20),
+            onTap: () => Get.toNamed(
+              Routes.reader,
+              arguments: {'id': path.id, 'verse': verse.number},
+            ),
+            child: Ink(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(20),
+                border: Border.all(color: p.cardBorder),
+                gradient: LinearGradient(
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                  colors: [p.iconTile, p.card],
+                ),
+              ),
+              child: Padding(
+                padding: const EdgeInsets.fromLTRB(16, 14, 16, 12),
+                child: Column(
+                  children: [
+                    Row(
+                      children: [
+                        Icon(
+                          Icons.auto_awesome_rounded,
+                          size: 16,
+                          color: p.primary,
+                        ),
+                        const SizedBox(width: 6),
+                        Text(
+                          'verse_of_day'.tr,
+                          style: TextStyle(
+                            fontSize: 13,
+                            fontWeight: FontWeight.w700,
+                            color: p.primary,
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 10),
+                    Text(
+                      ScriptConverter.convert(verse.dev, s.script.value),
+                      textAlign: TextAlign.center,
+                      maxLines: 4,
+                      overflow: TextOverflow.ellipsis,
+                      style: AppTheme.verse(s.script.value, 16.5, p.verse),
+                    ),
+                    if (meaning != null) ...[
+                      Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 8),
+                        child: Text(
+                          '❀',
+                          style: TextStyle(fontSize: 12, color: p.gold),
+                        ),
+                      ),
+                      Text(
+                        meaning,
+                        textAlign: TextAlign.center,
+                        maxLines: 3,
+                        overflow: TextOverflow.ellipsis,
+                        style: AppTheme.meaning(
+                          s.meaningLang.value,
+                          13,
+                          p.meaning,
+                        ),
+                      ),
+                    ],
+                    const SizedBox(height: 10),
+                    Divider(height: 1, color: p.cardBorder),
+                    const SizedBox(height: 8),
+                    Row(
+                      children: [
+                        Expanded(
+                          child: Text(
+                            '${path.title(s.uiLang.value)} · '
+                            '${'verse_n'.trParams({'n': '${verse.number}'})}',
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                            style: TextStyle(
+                              fontSize: 12.5,
+                              fontWeight: FontWeight.w600,
+                              color: p.subtext,
+                            ),
+                          ),
+                        ),
+                        Text(
+                          'read_path'.tr,
+                          style: TextStyle(
+                            fontSize: 13,
+                            fontWeight: FontWeight.w700,
+                            color: p.primary,
+                          ),
+                        ),
+                        Icon(
+                          Icons.chevron_right_rounded,
+                          size: 18,
+                          color: p.primary,
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+        ),
+      );
+    });
+  }
+}
+
+/// Paths that already have their text, so Home always has something to read.
+class _ReadyPaths extends StatelessWidget {
+  const _ReadyPaths();
+
+  @override
+  Widget build(BuildContext context) {
+    final ready = Get.find<PathRepository>().all
+        .where((x) => x.available)
+        .take(5)
+        .toList();
+    if (ready.isEmpty) return const SizedBox.shrink();
+    return PathGroupCard(items: ready);
+  }
+}
+
+class _Closing extends StatelessWidget {
+  const _Closing();
+
+  @override
+  Widget build(BuildContext context) {
+    final p = context.pal;
+    return Padding(
+      padding: const EdgeInsets.only(top: 22, bottom: 8),
+      child: Text(
+        '॥ ${'japa_sub'.tr} ॥',
+        textAlign: TextAlign.center,
+        style: TextStyle(
+          fontSize: 14,
+          fontWeight: FontWeight.w600,
+          color: p.gold,
         ),
       ),
     );
