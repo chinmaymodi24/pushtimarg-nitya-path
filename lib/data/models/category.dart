@@ -17,7 +17,7 @@ const categoryList = <PathCategory>[
   PathCategory('mahaprabhuji', 'flower'),
   PathCategory('gusaiji', 'leaf'),
   PathCategory('hariraiji', 'diya'),
-  PathCategory('raghunathji', 'matki'),
+  PathCategory('raghunathji', 'cow'),
   PathCategory('yamunaji', 'wave'),
   PathCategory('geet', 'flute'),
   PathCategory('dhol', 'music'),
