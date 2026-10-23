@@ -6,7 +6,9 @@ import '../../core/theme/palette.dart';
 import '../../core/widgets/motion.dart';
 import '../../core/widgets/svg_icon.dart';
 import '../../core/widgets/tab_header.dart';
+import '../../core/services/settings_service.dart';
 import '../../data/models/category.dart';
+import '../../data/models/path_model.dart';
 import '../../routes/app_routes.dart';
 import 'path_row.dart';
 import 'paths_tab_controller.dart';
@@ -73,7 +75,7 @@ class PathsView extends GetView<PathsTabController> {
                 for (final (i, c) in categoryList.indexed)
                   FadeSlideIn(
                     index: i,
-                    child: _CategoryCard(c, controller.pathsIn(c).length),
+                    child: _CategoryCard(c, controller.pathsIn(c)),
                   ),
               ],
             );
@@ -124,13 +126,14 @@ class _SectionTitle extends StatelessWidget {
 
 /// One section: icon, name, a few example titles and how many paths.
 class _CategoryCard extends StatelessWidget {
-  const _CategoryCard(this.c, this.total);
+  const _CategoryCard(this.c, this.paths);
   final PathCategory c;
-  final int total;
+  final List<PathModel> paths;
 
   @override
   Widget build(BuildContext context) {
     final p = context.pal;
+    final ui = Get.find<SettingsController>().uiLang.value;
     return Padding(
       padding: const EdgeInsets.only(bottom: 10),
       child: Material(
@@ -170,14 +173,16 @@ class _CategoryCard extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        c.subKey.tr,
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                        style: TextStyle(fontSize: 12.5, color: p.subtext),
+                        paths.map((x) => x.title(ui)).join(', '),
+                        style: TextStyle(
+                          fontSize: 12.5,
+                          height: 1.4,
+                          color: p.subtext,
+                        ),
                       ),
                       const SizedBox(height: 3),
                       Text(
-                        'n_paths'.trParams({'n': '$total'}),
+                        'n_paths'.trParams({'n': '${paths.length}'}),
                         style: TextStyle(
                           fontSize: 12,
                           fontWeight: FontWeight.w600,
