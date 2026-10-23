@@ -153,11 +153,11 @@ class _SectionTitle extends StatelessWidget {
   }
 }
 
-/// The first ten sections of the Paths tab, two to a row.
+/// The first eight sections of the Paths tab, two to a row.
 class _SectionGrid extends StatelessWidget {
   const _SectionGrid();
 
-  static const _shown = 10;
+  static const _shown = 8;
 
   @override
   Widget build(BuildContext context) {
