@@ -27,16 +27,17 @@ class HomeView extends GetView<HomeController> {
         const FadeSlideIn(index: 0, child: _Header()),
         const SizedBox(height: 12),
         const FadeSlideIn(index: 1, child: _SearchBar()),
-        const SizedBox(height: 8),
+        const SizedBox(height: 14),
+        const FadeSlideIn(index: 2, child: _MiniCards()),
+        const SizedBox(height: 6),
         FadeSlideIn(
-          index: 2,
+          index: 3,
           child: _SectionTitle(
             'home_sections',
             onSeeAll: () => Get.find<ShellController>().go(1),
           ),
         ),
-        const FadeSlideIn(index: 3, child: _SectionGrid()),
-        const FadeSlideIn(index: 4, child: _MiniCards()),
+        const FadeSlideIn(index: 4, child: _SectionGrid()),
       ],
     );
   }
@@ -259,9 +260,7 @@ class _SectionTile extends StatelessWidget {
   }
 }
 
-/// "Continue reading" and today's japa side by side, under the sections.
-/// Each shows only once there is something to continue; with only one, it
-/// takes the full width.
+/// "Continue reading" and today's japa side by side, above the sections.
 class _MiniCards extends StatelessWidget {
   const _MiniCards();
 
@@ -279,81 +278,77 @@ class _MiniCards extends StatelessWidget {
       japa.history.length; // rebuild when a mala completes
       final today = japa.malasToday;
       final cards = <Widget>[
-        if (r != null && path != null)
-          _Mini(
-            onTap: () => Get.toNamed(
-              Routes.reader,
-              arguments: {
-                'id': path.id,
-                'resume': r.isComplete ? 0.0 : r.progress,
-              },
+        _Mini(
+          onTap: path == null
+              ? () => Get.find<ShellController>().go(1)
+              : () => Get.toNamed(
+                  Routes.reader,
+                  arguments: {
+                    'id': path.id,
+                    'resume': r!.isComplete ? 0.0 : r.progress,
+                  },
+                ),
+          lead: Container(
+            width: 36,
+            height: 36,
+            alignment: Alignment.center,
+            decoration: BoxDecoration(
+              color: p.iconTile,
+              borderRadius: BorderRadius.circular(11),
             ),
-            lead: Container(
-              width: 36,
-              height: 36,
+            child: SvgIcon(path?.icon ?? 'lotus', size: 22),
+          ),
+          label: 'continue_btn'.tr,
+          title: path?.title(s.uiLang.value) ?? 'not_started'.tr,
+          titleColor: p.text,
+          subtitle: path == null
+              ? 'start_reading'.tr
+              : 'verse_of'.trParams({
+                  'a': '${r!.verse}',
+                  'b': '${path.verses.length}',
+                }),
+          progress: r?.progress ?? 0,
+        ),
+        _Mini(
+          onTap: () => Get.find<ShellController>().go(2),
+          lead: SizedBox.square(
+            dimension: 36,
+            child: Stack(
               alignment: Alignment.center,
-              decoration: BoxDecoration(
-                color: p.iconTile,
-                borderRadius: BorderRadius.circular(11),
-              ),
-              child: SvgIcon(path.icon, size: 22),
-            ),
-            label: 'continue_btn'.tr,
-            title: path.title(s.uiLang.value),
-            titleColor: p.text,
-            subtitle: 'verse_of'.trParams({
-              'a': '${r.verse}',
-              'b': '${path.verses.length}',
-            }),
-            progress: r.progress,
-          ),
-        if (c > 0 || today > 0)
-          _Mini(
-            onTap: () => Get.find<ShellController>().go(2),
-            lead: SizedBox.square(
-              dimension: 36,
-              child: Stack(
-                alignment: Alignment.center,
-                children: [
-                  CircularProgressIndicator(
-                    value: c / AppConfig.malaBeads,
-                    strokeWidth: 4,
-                    backgroundColor: p.chipBorder,
-                    valueColor: AlwaysStoppedAnimation(p.primary),
+              children: [
+                CircularProgressIndicator(
+                  value: c / AppConfig.malaBeads,
+                  strokeWidth: 4,
+                  backgroundColor: p.chipBorder,
+                  valueColor: AlwaysStoppedAnimation(p.primary),
+                ),
+                Text(
+                  '$c',
+                  style: TextStyle(
+                    fontFamily: 'NotoSans',
+                    fontSize: 10.5,
+                    fontWeight: FontWeight.w700,
+                    color: p.heading,
                   ),
-                  Text(
-                    '$c',
-                    style: TextStyle(
-                      fontFamily: 'NotoSans',
-                      fontSize: 10.5,
-                      fontWeight: FontWeight.w700,
-                      color: p.heading,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            label: 'japa_title'.tr,
-            title: 'japa_sub'.tr,
-            titleColor: p.heading,
-            subtitle: 'japa_today_n'.trParams({'n': '$today'}),
-            progress: c / AppConfig.malaBeads,
-          ),
-      ];
-      if (cards.isEmpty) return const SizedBox.shrink();
-      return Padding(
-        padding: const EdgeInsets.only(top: 14),
-        child: IntrinsicHeight(
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              Expanded(child: cards.first),
-              if (cards.length > 1) ...[
-                const SizedBox(width: 10),
-                Expanded(child: cards.last),
+                ),
               ],
-            ],
+            ),
           ),
+          label: 'japa_title'.tr,
+          title: 'japa_sub'.tr,
+          titleColor: p.heading,
+          subtitle: 'japa_today_n'.trParams({'n': '$today'}),
+          progress: c / AppConfig.malaBeads,
+        ),
+      ];
+      return IntrinsicHeight(
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Expanded(child: cards.first),
+            const SizedBox(width: 10),
+            Expanded(child: cards.last),
+          ],
         ),
       );
     });
