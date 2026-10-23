@@ -164,28 +164,36 @@ class _CategoryCard extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        c.nameKey.tr,
-                        style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w700,
-                          color: p.text,
-                        ),
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.baseline,
+                        textBaseline: TextBaseline.alphabetic,
+                        children: [
+                          Expanded(
+                            child: Text(
+                              c.nameKey.tr,
+                              style: TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.w700,
+                                color: p.text,
+                              ),
+                            ),
+                          ),
+                          const SizedBox(width: 8),
+                          Text(
+                            'n_paths'.trParams({'n': '${paths.length}'}),
+                            style: TextStyle(
+                              fontSize: 12,
+                              fontWeight: FontWeight.w600,
+                              color: p.primary,
+                            ),
+                          ),
+                        ],
                       ),
                       Text(
                         paths.map((x) => x.title(ui)).join(', '),
                         style: TextStyle(
                           fontSize: 12.5,
                           height: 1.4,
-                          color: p.subtext,
-                        ),
-                      ),
-                      const SizedBox(height: 3),
-                      Text(
-                        'n_paths'.trParams({'n': '${paths.length}'}),
-                        style: TextStyle(
-                          fontSize: 12,
-                          fontWeight: FontWeight.w600,
                           color: p.subtext,
                         ),
                       ),
