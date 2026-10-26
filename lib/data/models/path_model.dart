@@ -4,9 +4,18 @@ import 'category.dart';
 import 'enums.dart';
 
 class Verse {
-  Verse({required this.number, required this.dev, required this.meanings});
+  Verse({
+    required this.number,
+    required this.dev,
+    required this.meanings,
+    this.label,
+  });
 
   final int number;
+
+  /// Printed verse number when it is not [number] (e.g. "7½"); an empty
+  /// label hides the mark, for prose and notes.
+  final String? label;
 
   /// Devanagari source text, lines separated by '\n'.
   final String dev;
@@ -29,6 +38,7 @@ class Verse {
 
   factory Verse.fromJson(Map<String, dynamic> j) => Verse(
     number: j['n'] as int,
+    label: j['label'] as String?,
     dev: j['dev'] as String,
     meanings: Map<String, String>.from(j['meaning'] as Map? ?? {}),
   );

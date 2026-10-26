@@ -187,12 +187,14 @@ class _VerseBlock extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          Text(
-            ScriptConverter.verseMark(verse.number, script),
-            textAlign: TextAlign.center,
-            style: AppTheme.verse(script, 16 * scale, p.subtext),
-          ),
-          const SizedBox(height: 4),
+          if (verse.label != '') ...[
+            Text(
+              ScriptConverter.verseMark(verse.label ?? verse.number, script),
+              textAlign: TextAlign.center,
+              style: AppTheme.verse(script, 16 * scale, p.subtext),
+            ),
+            const SizedBox(height: 4),
+          ],
           Text(
             ScriptConverter.convert(verse.dev, script),
             textAlign: TextAlign.center,

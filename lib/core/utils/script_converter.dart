@@ -132,6 +132,6 @@ class ScriptConverter {
   }
 
   /// "॥ 1 ॥" as in the designs; Roman gets "|| 1 ||".
-  static String verseMark(int n, ReaderScript script) =>
+  static String verseMark(Object n, ReaderScript script) =>
       script == ReaderScript.roman ? '|| $n ||' : '॥ $n ॥';
 }
