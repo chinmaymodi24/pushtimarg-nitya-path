@@ -8,21 +8,22 @@ class PathCategory {
   final String icon;
 
   String get nameKey => 'cat_$id';
-  String get subKey => 'cat_${id}_sub';
 }
 
+/// The book's own order: an opening group, then its eleven "pushpa".
 const categoryList = <PathCategory>[
-  PathCategory('nitya', 'sun'),
-  PathCategory('shodash', 'granth'),
-  PathCategory('mahaprabhuji', 'granth'),
-  PathCategory('gusaiji', 'book_closed'),
-  PathCategory('hariraiji', 'book_stack'),
-  PathCategory('raghunathji', 'book_ribbon'),
-  PathCategory('yamunaji', 'wave'),
-  PathCategory('geet', 'bhagavat'),
-  PathCategory('dhol', 'music'),
-  PathCategory('kavach', 'shield'),
-  PathCategory('siddhant', 'book'),
+  PathCategory('intro', 'sun'),
+  PathCategory('p1', 'book_closed'),
+  PathCategory('p2', 'granth'),
+  PathCategory('p3', 'book_stack'),
+  PathCategory('p4', 'book_ribbon'),
+  PathCategory('p5', 'wave'),
+  PathCategory('p6', 'flower'),
+  PathCategory('p7', 'bhagavat'),
+  PathCategory('p8', 'leaf'),
+  PathCategory('p9', 'music'),
+  PathCategory('p10', 'shield'),
+  PathCategory('p11', 'diya'),
 ];
 
 PathCategory categoryById(String id) => categoryList.firstWhere(
