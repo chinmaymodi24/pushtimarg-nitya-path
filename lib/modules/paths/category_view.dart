@@ -14,7 +14,7 @@ class CategoryView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final c = categoryById(Get.arguments as String);
+    final c = categoryById((Get.arguments as String?) ?? categoryList.first.id);
     final items = Get.find<PathRepository>().forCategory(c.id);
     return PageScaffold(
       body: Column(
